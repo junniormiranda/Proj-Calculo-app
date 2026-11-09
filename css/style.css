@@ -1,0 +1,468 @@
+/* =========================================================
+   Projeto Cálculo — tema verde escuro e preto
+   ========================================================= */
+
+:root {
+  --bg: #050706;
+  --bg-soft: #0a0f0c;
+  --panel: #0d1511;
+  --panel-2: #111c16;
+  --green-900: #04291d;
+  --green-800: #064e3b;
+  --green-700: #065f46;
+  --green-600: #059669;
+  --green-500: #10b981;
+  --green-400: #34d399;
+  --green-300: #6ee7b7;
+  --text: #d9e8e0;
+  --muted: #8ba598;
+  --border: rgba(16, 185, 129, 0.22);
+  --border-strong: rgba(16, 185, 129, 0.45);
+  --danger: #f87171;
+  --ok: #34d399;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(6, 78, 59, 0.35), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(4, 41, 29, 0.55), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+/* ---------------- Navegação ---------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 26px;
+  background: rgba(5, 7, 6, 0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.4px;
+  color: var(--green-300);
+  text-decoration: none;
+}
+
+.brand .logo {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--green-700), var(--green-500));
+  color: #03150e;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--green-300);
+  border-color: var(--border);
+  background: rgba(6, 95, 70, 0.25);
+}
+
+.nav-links a.active {
+  color: #04150e;
+  background: linear-gradient(135deg, var(--green-500), var(--green-400));
+  font-weight: 600;
+}
+
+/* ---------------- Layout ---------------- */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 22px 70px;
+}
+
+.page-header {
+  padding: 26px;
+  margin-bottom: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(140deg, rgba(6, 78, 59, 0.5), rgba(13, 21, 17, 0.9));
+  box-shadow: var(--shadow);
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  color: var(--green-300);
+}
+
+.page-header p { margin: 0; color: var(--muted); max-width: 780px; }
+
+section {
+  margin: 34px 0;
+  scroll-margin-top: 80px;
+}
+
+section > h2 {
+  font-size: 1.4rem;
+  color: var(--green-400);
+  margin: 0 0 16px;
+  padding-left: 12px;
+  border-left: 4px solid var(--green-500);
+}
+
+h3 { color: var(--green-300); margin: 22px 0 8px; font-size: 1.08rem; }
+
+p { margin: 8px 0; }
+
+a { color: var(--green-400); }
+
+.muted { color: var(--muted); }
+
+/* ---------------- Cartões ---------------- */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover { transform: translateY(-3px); border-color: var(--border-strong); }
+
+.card h3, .card h4 { margin-top: 0; color: var(--green-300); }
+
+.card p:last-child { margin-bottom: 0; }
+
+.card .tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green-400);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  margin-bottom: 10px;
+}
+
+a.card { text-decoration: none; color: var(--text); display: block; }
+
+/* ---------------- Hero (início) ---------------- */
+.hero {
+  text-align: center;
+  padding: 60px 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(160deg, rgba(6, 78, 59, 0.65), rgba(5, 7, 6, 0.9));
+  box-shadow: var(--shadow);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin: 0 0 12px;
+  color: var(--green-300);
+}
+
+.hero p { color: var(--muted); max-width: 700px; margin: 0 auto 22px; }
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  background: linear-gradient(135deg, var(--green-700), var(--green-600));
+  color: #eafff5;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: 0.2s;
+  text-decoration: none;
+}
+
+.btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+
+.btn.ghost { background: transparent; color: var(--green-300); }
+
+.btn.small { padding: 7px 14px; font-size: 0.87rem; font-weight: 500; }
+
+/* ---------------- Fórmulas ---------------- */
+.mth {
+  font-family: "Cambria Math", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: var(--green-300);
+  white-space: nowrap;
+}
+
+.formula {
+  display: block;
+  background: var(--bg-soft);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-family: "Cambria Math", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--green-300);
+  overflow-x: auto;
+}
+
+.formula.center { text-align: center; }
+
+/* ---------------- Listas ---------------- */
+ul.clean { padding-left: 20px; }
+ul.clean li { margin: 6px 0; }
+
+/* ---------------- Exemplos / passo a passo ---------------- */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.steps li {
+  position: relative;
+  padding: 8px 0 8px 42px;
+  border-bottom: 1px dashed rgba(16, 185, 129, 0.15);
+}
+
+.steps li:last-child { border-bottom: none; }
+
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--green-800);
+  color: var(--green-300);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ---------------- Gráficos ---------------- */
+.plot-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.plot-box canvas {
+  width: 100%;
+  height: 340px;
+  display: block;
+  background: #060a08;
+  border-radius: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.plot-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+
+.field label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 9px 11px;
+  font-size: 0.95rem;
+  min-width: 90px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus { border-color: var(--green-500); }
+
+input.wide { min-width: 240px; font-family: "Consolas", monospace; }
+
+.preset-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+.chip {
+  cursor: pointer;
+  background: rgba(6, 95, 70, 0.3);
+  border: 1px solid var(--border);
+  color: var(--green-300);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.chip:hover { background: var(--green-700); color: #eafff5; }
+
+/* ---------------- Exercícios ---------------- */
+.exercise {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--green-600);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+
+.exercise .q-title {
+  font-weight: 700;
+  color: var(--green-300);
+  margin-bottom: 6px;
+}
+
+.inputs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  margin: 12px 0;
+}
+
+.answer-field input {
+  border-color: var(--border-strong);
+  background: #08110c;
+}
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+
+.feedback {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  display: none;
+  border: 1px solid transparent;
+}
+
+.feedback.show { display: block; }
+
+.feedback.ok {
+  background: rgba(5, 150, 105, 0.16);
+  border-color: var(--green-500);
+  color: var(--green-300);
+}
+
+.feedback.err {
+  background: rgba(248, 113, 113, 0.12);
+  border-color: rgba(248, 113, 113, 0.5);
+  color: var(--danger);
+}
+
+.solution {
+  display: none;
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--bg-soft);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+}
+
+.solution.show { display: block; }
+
+.solution h4 { margin: 0 0 8px; color: var(--green-400); font-size: 0.95rem; }
+
+/* ---------------- Tabela ---------------- */
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.94rem;
+}
+
+table.data th, table.data td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: center;
+}
+
+table.data th { background: var(--green-900); color: var(--green-300); }
+
+table.data td { background: var(--panel); }
+
+/* ---------------- Nota / destaque ---------------- */
+.note {
+  background: rgba(6, 78, 59, 0.25);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--green-500);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 14px 0;
+  color: var(--muted);
+}
+
+.note strong { color: var(--green-300); }
+
+/* ---------------- Rodapé ---------------- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------------- Responsivo ---------------- */
+@media (max-width: 720px) {
+  .navbar { flex-direction: column; align-items: flex-start; padding: 12px 16px; }
+  .hero h1 { font-size: 1.9rem; }
+  .page-header h1 { font-size: 1.55rem; }
+  .plot-box canvas { height: 280px; }
+  input.wide { min-width: 100%; }
+}

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funções — Cálculo Visual</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="brand" href="index.html"><span class="logo">∑</span> Cálculo Visual</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="funcoes.html" class="active">Funções</a>
+      <a href="limites.html">Limites</a>
+      <a href="derivadas.html">Derivadas</a>
+      <a href="integrais.html">Integrais</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <header class="page-header">
+      <h1>1. Funções</h1>
+      <p>
+        A função é a base de todo o Cálculo: uma relação que associa cada
+        elemento de um conjunto (entrada) a exatamente um elemento de outro
+        conjunto (saída). Aqui você verá conceito, tipos, exemplos,
+        gráficos interativos e exercícios com correção automática.
+      </p>
+    </header>
+
+    <section id="sumario">
+      <h2>Nesta página</h2>
+      <ul class="clean">
+        <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
+          <a href="#exemplos">Exemplos resolvidos</a> ·
+          <a href="#graficos">Gráficos interativos</a> ·
+          <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
+          <a href="#ex-propostos">Exercícios propostos</a></li>
+      </ul>
+    </section>
+
+    <!-- ================= CONCEITO ================= -->
+    <section id="conceito">
+      <h2>Conceito</h2>
+      <p>
+        Uma <strong>função</strong> <span class="mth">f</span> é uma regra que
+        associa a cada valor <span class="mth">x</span> de um conjunto
+        <span class="mth">D</span> exatamente um valor
+        <span class="mth">y = f(x)</span>.
+      </p>
+      <span class="formula center">f : D → C &nbsp;&nbsp;&nbsp; x ↦ f(x)</span>
+      <ul class="clean">
+        <li><strong>Domínio (D):</strong> conjunto de todos os valores de entrada possíveis de <span class="mth">x</span>.</li>
+        <li><strong>Imagem (C):</strong> conjunto de todos os valores de saída <span class="mth">f(x)</span>.</li>
+        <li><strong>Variação:</strong> outro nome usado para a imagem em alguns livros.</li>
+        <li><strong>Gráfico:</strong> conjunto de pontos <span class="mth">(x, f(x))</span> no plano cartesiano.</li>
+      </ul>
+      <div class="note">
+        <strong>Como saber se é uma função?</strong> Pelo <em>teste vertical</em>:
+        qualquer linha vertical que intersecta o gráfico pode cruzá-lo no máximo
+        <strong>uma vez</strong>. Se cruza duas vezes, não é função.
+      </div>
+      <h3>Formas de representação</h3>
+      <ul class="clean">
+        <li><strong>Analítica (fórmula):</strong> <span class="mth">f(x) = 3x − 2</span></li>
+        <li><strong>Numérica (tabela):</strong> pares <span class="mth">(x, f(x))</span>.</li>
+        <li><strong>Gráfica:</strong> a curva desenhada no plano.</li>
+        <li><strong>Verbal:</strong> uma regra escrita com palavras.</li>
+      </ul>
+    </section>
+
+    <!-- ================= TIPOS ================= -->
+    <section id="tipos">
+      <h2>Tipos de funções</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Grau 1</span>
+          <h3>Linear</h3>
+          <span class="formula">f(x) = ax + b &nbsp;(a ≠ 0)</span>
+          <p class="mth">Gráfico: reta. Coeficiente a = inclinação; b = altura em x = 0.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Grau 2</span>
+          <h3>Quadrática</h3>
+          <span class="formula">f(x) = ax² + bx + c</span>
+          <p class="mth">Gráfico: parábola. Vértice em x = −b/2a; se a &gt; 0 abre para cima.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Grau n</span>
+          <h3>Polinomial</h3>
+          <span class="formula">f(x) = aₙxⁿ + … + a₁x + a₀</span>
+          <p class="mth">Soma de potências de x. Raízes: valores em que f(x) = 0.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Razão</span>
+          <h3>Racional</h3>
+          <span class="formula">f(x) = p(x) / q(x)</span>
+          <p class="mth">Onde q(x) = 0 a função não existe (buraco na reta vertical).</p>
+        </div>
+        <div class="card">
+          <span class="tag">Crescimento</span>
+          <h3>Exponencial</h3>
+          <span class="formula">f(x) = a·bˣ &nbsp;(b &gt; 0, b ≠ 1)</span>
+          <p class="mth">Cresce (b &gt; 1) ou decai (0 &lt; b &lt; 1) rapidamente. Nunca zera.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Inversa da exponencial</span>
+          <h3>Logarítmica</h3>
+          <span class="formula">f(x) = log<sub>b</sub>(x)</span>
+          <p class="mth">Domínio: x &gt; 0. Crescente se b &gt; 1; assíntota vertical em x = 0.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Periódica</span>
+          <h3>Trigonométrica</h3>
+          <span class="formula">f(x) = sen(x), cos(x), tan(x)</span>
+          <p class="mth">Oscilam em ciclos (período 2π para seno e cosseno).</p>
+        </div>
+        <div class="card">
+          <span class="tag">Não diferenciável no “canto”</span>
+          <h3>Valor absoluto</h3>
+          <span class="formula">f(x) = |x|</span>
+          <p class="mth">Gráfico em “V”. Vértice em x = 0; usada em problemas de distância.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXEMPLOS ================= -->
+    <section id="exemplos">
+      <h2>Exemplos resolvidos</h2>
+
+      <div class="card">
+        <h3>Exemplo 1 — Domínio de uma função racional</h3>
+        <p class="mth">f(x) = 1 / (x − 5)</p>
+        <ol class="steps">
+          <li>A única restrição é o denominador diferente de zero: <span class="mth">x − 5 ≠ 0</span>.</li>
+          <li>Portanto <span class="mth">x ≠ 5</span>.</li>
+          <li><strong>Domínio:</strong> todos os reais menos 5, isto é
+            <span class="mth">D = ℝ − {5}</span>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 2 — Vértice de uma parábola</h3>
+        <p class="mth">f(x) = x² − 6x + 5</p>
+        <ol class="steps">
+          <li>Coeficientes: <span class="mth">a = 1</span>, <span class="mth">b = −6</span>, <span class="mth">c = 5</span>.</li>
+          <li>Abscissa do vértice: <span class="mth">x<sub>v</sub> = −b / 2a = 6 / 2 = 3</span>.</li>
+          <li>Ordenada: <span class="mth">f(3) = 9 − 18 + 5 = −4</span>.</li>
+          <li><strong>Vértice:</strong> <span class="mth">(3, −4)</span> — é o ponto de mínimo, pois <span class="mth">a &gt; 0</span>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 3 — Raízes de uma função</h3>
+        <p class="mth">f(x) = x² − 4</p>
+        <ol class="steps">
+          <li>Buscar <span class="mth">x</span> tal que <span class="mth">f(x) = 0</span>: <span class="mth">x² − 4 = 0</span>.</li>
+          <li>Fatorar: <span class="mth">(x − 2)(x + 2) = 0</span>.</li>
+          <li><strong>Raízes:</strong> <span class="mth">x = 2</span> e <span class="mth">x = −2</span> — são os cortes no eixo x.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= GRÁFICOS ================= -->
+    <section id="graficos">
+      <h2>Gráficos interativos</h2>
+
+      <h3>Gráficos dos tipos principais</h3>
+      <div class="grid">
+        <div class="plot-box"><canvas id="g-linear"></canvas></div>
+        <div class="plot-box"><canvas id="g-quad"></canvas></div>
+        <div class="plot-box"><canvas id="g-exp"></canvas></div>
+        <div class="plot-box"><canvas id="g-sen"></canvas></div>
+      </div>
+
+      <h3>Monte o seu próprio gráfico</h3>
+      <div class="plot-box">
+        <div class="plot-controls">
+          <div class="field">
+            <label for="fn-expr">Função f(x) — use x como variável</label>
+            <input type="text" id="fn-expr" class="wide" value="x^2 - 4*x + 3" placeholder="ex.: x^2 - 4*x + 3">
+          </div>
+          <div class="field"><label for="fn-xmin">x mín.</label><input type="number" id="fn-xmin" value="-8" step="any"></div>
+          <div class="field"><label for="fn-xmax">x máx.</label><input type="number" id="fn-xmax" value="8" step="any"></div>
+          <button class="btn small" id="fn-plot">Traçar gráfico</button>
+        </div>
+
+        <div class="preset-row">
+          <button class="chip" data-expr="2*x + 1">Linear: 2x + 1</button>
+          <button class="chip" data-expr="x^2 - 4*x + 3">Quadrática: x² − 4x + 3</button>
+          <button class="chip" data-expr="x^3 - 3*x">Cúbica: x³ − 3x</button>
+          <button class="chip" data-expr="abs(x)">Valor absoluto: |x|</button>
+          <button class="chip" data-expr="1/x">Racional: 1/x</button>
+          <button class="chip" data-expr="2^x">Exponencial: 2ˣ</button>
+          <button class="chip" data-expr="ln(x)">Logarítmica: ln(x)</button>
+          <button class="chip" data-expr="sin(x)">Seno: sen(x)</button>
+        </div>
+
+        <canvas id="fn-canvas" style="margin-top:14px"></canvas>
+        <p class="muted" id="fn-erro" style="color:var(--danger)"></p>
+      </div>
+      <div class="note">
+        <strong>Sintaxe:</strong> use <span class="mth">^</span> para potência
+        (<span class="mth">x^2</span>), <span class="mth">*</span> para multiplicação
+        (<span class="mth">3*x</span>) e as funções
+        <span class="mth">sin, cos, tan, ln, log, sqrt, abs, exp</span>.
+        Também aceitamos <span class="mth">2x</span> (sem o asterisco).
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
+    <section id="ex-resolvidos">
+      <h2>Exercícios resolvidos</h2>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido A — Calcule f(3) para f(x) = 4x − 7</p>
+        <ol class="steps">
+          <li>Substitua <span class="mth">x = 3</span> na fórmula: <span class="mth">f(3) = 4·3 − 7</span>.</li>
+          <li>Multiplique: <span class="mth">f(3) = 12 − 7</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">f(3) = 5</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido B — Domínio de f(x) = √(x − 2)</p>
+        <ol class="steps">
+          <li>A raiz exige o radicando não negativo: <span class="mth">x − 2 ≥ 0</span>.</li>
+          <li>Resolvendo: <span class="mth">x ≥ 2</span>.</li>
+          <li><strong>Domínio:</strong> <span class="mth">D = [2, +∞)</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido C — Imagem de f(x) = x² para x ∈ ℝ</p>
+        <ol class="steps">
+          <li>Qualquer número real ao quadrado é maior ou igual a zero.</li>
+          <li>O menor valor atingido é 0 (em <span class="mth">x = 0</span>).</li>
+          <li><strong>Imagem:</strong> <span class="mth">C = [0, +∞)</span>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS PROPOSTOS ================= -->
+    <section id="ex-propostos">
+      <h2>Exercícios propostos (digite os números)</h2>
+      <p class="muted">
+        Preencha os campos com os valores pedidos e clique em
+        <strong>Verificar</strong>. Você pode consultar a solução quando quiser.
+      </p>
+
+      <!-- Q1 -->
+      <div class="exercise" data-expect="a*x0 + b" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Você calculou f(x₀) certinho. 🎯">
+        <p class="q-title">Questão 1 — Avaliação de função</p>
+        <p>
+          Sendo <span class="mth">f(x) = a·x + b</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" size="4" style="width:70px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:70px"> </span>
+          e <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:70px"></span>,
+          determine <span class="mth">f(x₀)</span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Escreva a função com os valores: <span class="mth">f(x) = a·x + b</span>.</li>
+            <li>Substitua <span class="mth">x</span> por <span class="mth">x₀</span>: <span class="mth">f(x₀) = a·x₀ + b</span>.</li>
+            <li>Multiplique <span class="mth">a</span> por <span class="mth">x₀</span> e some <span class="mth">b</span>.</li>
+            <li>Fórmula usada: <span class="mth">f(x₀) = a·x₀ + b</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exercise" data-expect="-b/a" data-tol="0.01"
+           data-success="<strong>Excelente!</strong> Raiz encontrada corretamente. 🎯">
+        <p class="q-title">Questão 2 — Raiz de uma função linear</p>
+        <p>
+          Para <span class="mth">f(x) = a·x + b</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:70px"> </span>
+          e <span class="mth">b = <input type="number" data-var="b" step="any" style="width:70px"></span>,
+          encontre o valor de <span class="mth">x</span> em que
+          <span class="mth">f(x) = 0</span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: x =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Iguale a função a zero: <span class="mth">a·x + b = 0</span>.</li>
+            <li>Isole o termo com x: <span class="mth">a·x = −b</span>.</li>
+            <li>Divida por <span class="mth">a</span>: <span class="mth">x = −b / a</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exercise" data-expect="-b/(2*a); c - b^2/(4*a)" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Vértice calculado perfeitamente. 🎯">
+        <p class="q-title">Questão 3 — Vértice da parábola</p>
+        <p>
+          Dada <span class="mth">f(x) = a·x² + b·x + c</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:70px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:70px"> </span> e
+          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:70px"></span>,
+          determine as coordenadas do vértice <span class="mth">(x<sub>v</sub>, y<sub>v</sub>)</span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>x<sub>v</sub> =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="field answer-field">
+            <label>y<sub>v</sub> =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Abcissa do vértice: <span class="mth">x<sub>v</sub> = −b / (2a)</span>.</li>
+            <li>Ordem: substitua <span class="mth">x<sub>v</sub></span> em <span class="mth">f</span>. Uma forma rápida:
+              <span class="mth">y<sub>v</sub> = c − b² / (4a)</span>.</li>
+            <li>O vértice é o ponto de máximo (se <span class="mth">a &lt; 0</span>) ou mínimo (se <span class="mth">a &gt; 0</span>).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exercise" data-expect="k" data-tol="0.0001"
+           data-success="<strong>Certo!</strong> Esse é o ponto proibido do domínio. 🎯">
+        <p class="q-title">Questão 4 — Domínio da função racional</p>
+        <p>
+          Sendo <span class="mth">f(x) = 1 / (x − k)</span> com
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:80px"></span>,
+          qual valor de <span class="mth">x</span> <strong>não</strong> pertence ao domínio?
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: x ≠</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>O denominador não pode ser zero: <span class="mth">x − k ≠ 0</span>.</li>
+            <li>Portanto <span class="mth">x ≠ k</span>.</li>
+            <li><strong>Domínio:</strong> <span class="mth">D = ℝ − {k}</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exercise" data-expect="k*b^x0" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Função exponencial dominada. 🎯">
+        <p class="q-title">Questão 5 — Função exponencial</p>
+        <p>
+          Para <span class="mth">f(x) = k·bˣ</span> com
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:70px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:70px"> </span> e
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:70px"></span>,
+          calcule <span class="mth">f(x₀)</span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Substitua: <span class="mth">f(x₀) = k · b<sup>x₀</sup></span>.</li>
+            <li>Calcule a potência <span class="mth">b<sup>x₀</sup></span> e multiplique por <span class="mth">k</span>.</li>
+            <li>Use a calculadora para potências com expoente decimal.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Cálculo Visual — material de estudo estático (HTML · CSS · JavaScript)
+  </footer>
+
+  <script src="js/math.js?v=3"></script>
+  <script src="js/graph.js?v=3"></script>
+  <script src="js/exercises.js?v=3"></script>
+  <script>
+    /* ---- gráficos dos tipos ---- */
+    Plot.draw('g-linear', [{ expr: '2*x + 1', color: '#34d399', label: 'y = 2x + 1' }],
+      { xmin: -5, xmax: 5, height: 240, showLegend: false });
+
+    Plot.draw('g-quad', [{ expr: 'x^2 - 4*x + 3', color: '#34d399', label: 'y = x² − 4x + 3' }],
+      { xmin: -2, xmax: 6, height: 240, showLegend: false });
+
+    Plot.draw('g-exp', [{ expr: '2^x', color: '#fbbf24', label: 'y = 2ˣ' }],
+      { xmin: -4, xmax: 4, height: 240, showLegend: false });
+
+    Plot.draw('g-sen', [{ expr: 'sin(x)', color: '#60a5fa', label: 'y = sen(x)' }],
+      { xmin: -7, xmax: 7, height: 240, showLegend: false });
+
+    /* ---- explorador de gráficos ---- */
+    const fnCanvas = document.getElementById('fn-canvas');
+    const fnExpr = document.getElementById('fn-expr');
+    const fnErro = document.getElementById('fn-erro');
+
+    function plotFn() {
+      const expr = fnExpr.value.trim();
+      const xmin = parseFloat(document.getElementById('fn-xmin').value);
+      const xmax = parseFloat(document.getElementById('fn-xmax').value);
+      fnErro.textContent = '';
+      try {
+        MathParser.compile(expr); // valida a expressão
+      } catch (e) {
+        fnErro.textContent = 'Erro na expressão: ' + e.message;
+        return;
+      }
+      Plot.draw(fnCanvas, [{ expr: expr, color: '#34d399', label: 'f(x) = ' + expr }],
+        { xmin: isFinite(xmin) ? xmin : -8, xmax: isFinite(xmax) ? xmax : 8 });
+    }
+
+    document.getElementById('fn-plot').addEventListener('click', plotFn);
+    fnExpr.addEventListener('keydown', e => { if (e.key === 'Enter') plotFn(); });
+    document.querySelectorAll('.chip[data-expr]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        fnExpr.value = chip.dataset.expr;
+        plotFn();
+      });
+    });
+    plotFn();
+  </script>
+</body>
+</html>

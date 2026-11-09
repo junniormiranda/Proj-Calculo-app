@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limites — Cálculo Visual</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="brand" href="index.html"><span class="logo">∑</span> Cálculo Visual</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="funcoes.html">Funções</a>
+      <a href="limites.html" class="active">Limites</a>
+      <a href="derivadas.html">Derivadas</a>
+      <a href="integrais.html">Integrais</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <header class="page-header">
+      <h1>2. Limites</h1>
+      <p>
+        O limite responde à pergunta: <strong>para onde a função tende quando
+        x se aproxima de um certo valor?</strong> É o olhar de perto — o valor
+        da função <em>próximo</em> ao ponto, e não necessariamente <em>no</em>
+        ponto. É a porta de entrada para derivadas e integrais.
+      </p>
+    </header>
+
+    <section id="sumario">
+      <h2>Nesta página</h2>
+      <ul class="clean">
+        <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
+          <a href="#exemplos">Exemplos resolvidos</a> ·
+          <a href="#graficos">Gráficos interativos</a> ·
+          <a href="#tabela">Exploração numérica</a> ·
+          <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
+          <a href="#ex-propostos">Exercícios propostos</a></li>
+      </ul>
+    </section>
+
+    <!-- ================= CONCEITO ================= -->
+    <section id="conceito">
+      <h2>Conceito</h2>
+      <p>
+        Dizemos que o limite de <span class="mth">f(x)</span> quando
+        <span class="mth">x</span> tende a <span class="mth">a</span> é
+        <span class="mth">L</span> quando, ao nos aproximarmos cada vez mais de
+        <span class="mth">a</span> (por qualquer caminho), os valores de
+        <span class="mth">f(x)</span> se aproximam cada vez mais de
+        <span class="mth">L</span>:
+      </p>
+      <span class="formula center">lim<sub>x→a</sub> f(x) = L</span>
+      <ul class="clean">
+        <li><strong>Não importa o valor em x = a:</strong> a função pode nem estar definida ali. O limite fala do entorno.</li>
+        <li><strong>Limite lateral à direita:</strong> <span class="mth">lim<sub>x→a⁺</sub> f(x)</span> — caminho com <span class="mth">x &gt; a</span>.</li>
+        <li><strong>Limite lateral à esquerda:</strong> <span class="mth">lim<sub>x→a⁻</sub> f(x)</span> — caminho com <span class="mth">x &lt; a</span>.</li>
+        <li><strong>Limite existe</strong> quando os dois laterais existem e são <strong>iguais</strong>.</li>
+      </ul>
+      <div class="note">
+        <strong>Definição formal (ε–δ):</strong> lim<sub>x→a</sub> f(x) = L significa que
+        para todo <span class="mth">ε &gt; 0</span> existe um
+        <span class="mth">δ &gt; 0</span> tal que, sempre que
+        <span class="mth">0 &lt; |x − a| &lt; δ</span>, temos
+        <span class="mth">|f(x) − L| &lt; ε</span>. Ou seja: eu posso tornar
+        <span class="mth">f(x)</span> tão perto de <span class="mth">L</span> quanto
+        quiser, bastando escolher <span class="mth">x</span> suficientemente
+        próximo de <span class="mth">a</span>.
+      </div>
+    </section>
+
+    <!-- ================= TIPOS ================= -->
+    <section id="tipos">
+      <h2>Tipos / casos de limites</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Caso 1</span>
+          <h3>Por substituição direta</h3>
+          <p class="mth">Funções contínuas: substitua x por a. Ex.: lim x→3 (x² + 1) = 10.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Caso 2</span>
+          <h3>Indeterminação 0/0</h3>
+          <p class="mth">Fatorar, racionalizar ou simplificar antes de substituir. Ex.: lim x→2 (x²−4)/(x−2) = 4.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Caso 3</span>
+          <h3>Limites laterais</h3>
+          <p class="mth">Pedaços da função ou |x|/x: calcule os dois lados. Se diferem → limite não existe.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Caso 4</span>
+          <h3>x → ∞ (assíntota horizontal)</h3>
+          <p class="mth">Compare graus do numerador e denominador. Ex.: lim x→∞ (3x²+1)/(5x²−2) = 3/5.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Caso 5</span>
+          <h3>Infinito (assíntota vertical)</h3>
+          <p class="mth">lim x→a f(x) = ∞ não é número: a função “dispara”. Ex.: lim x→0 1/x² = ∞.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Caso 6</span>
+          <h3>Trigonométricos notáveis</h3>
+          <span class="formula">lim<sub>x→0</sub> sen(x)/x = 1</span>
+          <p class="mth">E lim<sub>x→0</sub> (1 − cos x)/x = 0.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXEMPLOS ================= -->
+    <section id="exemplos">
+      <h2>Exemplos resolvidos</h2>
+
+      <div class="card">
+        <h3>Exemplo 1 — Indeterminação 0/0</h3>
+        <p class="mth">lim<sub>x→3</sub> (x² − 9)/(x − 3)</p>
+        <ol class="steps">
+          <li>Substituindo: <span class="mth">(9 − 9)/(3 − 3) = 0/0</span> → indeterminado.</li>
+          <li>Fatore o numerador: <span class="mth">(x − 3)(x + 3)/(x − 3)</span>.</li>
+          <li>Para <span class="mth">x ≠ 3</span> o fator comum simplifica: sobra <span class="mth">x + 3</span>.</li>
+          <li>Agora substitua: <span class="mth">3 + 3 = 6</span>.</li>
+          <li><strong>Resposta: 6.</strong></li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 2 — Limite trigonométrico</h3>
+        <p class="mth">lim<sub>x→0</sub> sen(5x)/x</p>
+        <ol class="steps">
+          <li>Multiplique e divida por 5: <span class="mth">5 · sen(5x)/(5x)</span>.</li>
+          <li>Seja <span class="mth">u = 5x</span>; quando <span class="mth">x→0</span>, <span class="mth">u→0</span>.</li>
+          <li>Usando <span class="mth">lim<sub>u→0</sub> sen(u)/u = 1</span>: <span class="mth">5 · 1 = 5</span>.</li>
+          <li><strong>Resposta: 5.</strong></li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 3 — x tende ao infinito</h3>
+        <p class="mth">lim<sub>x→∞</sub> (4x² + 3x)/(2x² − 1)</p>
+        <ol class="steps">
+          <li>Numerador e denominador têm o mesmo grau (2).</li>
+          <li>Divida tudo por <span class="mth">x²</span>: <span class="mth">(4 + 3/x)/(2 − 1/x²)</span>.</li>
+          <li>Quando <span class="mth">x→∞</span> os termos <span class="mth">3/x</span> e <span class="mth">1/x²</span> tendem a 0.</li>
+          <li>Sobra <span class="mth">4/2 = 2</span>.</li>
+          <li><strong>Resposta: 2.</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= GRÁFICOS ================= -->
+    <section id="graficos">
+      <h2>Gráficos interativos</h2>
+
+      <h3>Limites “visíveis” no gráfico (o buraco = o ponto removido)</h3>
+      <div class="grid">
+        <div class="plot-box"><canvas id="g1"></canvas></div>
+        <div class="plot-box"><canvas id="g2"></canvas></div>
+      </div>
+
+      <h3>Explore qualquer limite no gráfico</h3>
+      <div class="plot-box">
+        <div class="plot-controls">
+          <div class="field">
+            <label for="lm-expr">Função f(x)</label>
+            <input type="text" id="lm-expr" class="wide" value="(x^2 - 9)/(x - 3)">
+          </div>
+          <div class="field"><label for="lm-a">x →</label><input type="number" id="lm-a" value="3" step="any"></div>
+          <button class="btn small" id="lm-plot">Traçar</button>
+        </div>
+        <div class="preset-row">
+          <button class="chip" data-expr="(x^2 - 9)/(x - 3)" data-a="3">(x²−9)/(x−3), x→3</button>
+          <button class="chip" data-expr="(x^2 - 1)/(x - 1)" data-a="1">(x²−1)/(x−1), x→1</button>
+          <button class="chip" data-expr="sin(x)/x" data-a="0">sen(x)/x, x→0</button>
+          <button class="chip" data-expr="abs(x)/x" data-a="0">|x|/x, x→0 (não existe)</button>
+          <button class="chip" data-expr="1/x" data-a="0">1/x, x→0 (∞)</button>
+          <button class="chip" data-expr="x^2 + 1" data-a="2">x²+1, x→2 (direto)</button>
+        </div>
+        <canvas id="lm-canvas" style="margin-top:14px"></canvas>
+        <p class="muted" id="lm-info"></p>
+        <p class="muted" id="lm-erro" style="color:var(--danger)"></p>
+      </div>
+      <div class="note">
+        <strong>Como ler:</strong> o círculo aberto marca o valor para onde a
+        função tende (o limite); a linha tracejada vertical mostra o ponto
+        <span class="mth">x = a</span>. Se os dois lados da curva chegam em
+        alturas diferentes, o limite <strong>não existe</strong>.
+      </div>
+    </section>
+
+    <!-- ================= TABELA ================= -->
+    <section id="tabela">
+      <h2>Exploração numérica do limite</h2>
+      <p class="muted">
+        Aproxime-se do ponto pela esquerda e pela direita e observe os valores da
+        função convergirem (ou não) para um número.
+      </p>
+      <div class="plot-box">
+        <div class="plot-controls">
+          <div class="field">
+            <label for="tb-expr">Função f(x)</label>
+            <input type="text" id="tb-expr" class="wide" value="(x^2 - 9)/(x - 3)">
+          </div>
+          <div class="field"><label for="tb-a">ponto a</label><input type="number" id="tb-a" value="3" step="any"></div>
+          <button class="btn small" id="tb-run">Gerar tabela</button>
+        </div>
+        <div id="tb-out"></div>
+        <p class="muted" id="tb-erro" style="color:var(--danger)"></p>
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
+    <section id="ex-resolvidos">
+      <h2>Exercícios resolvidos</h2>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido A — lim<sub>x→3</sub> (x² − 5x + 6)/(x − 3)</p>
+        <ol class="steps">
+          <li>Substituição dá <span class="mth">0/0</span>: precisa simplificar.</li>
+          <li>Fatore: <span class="mth">x² − 5x + 6 = (x − 2)(x − 3)</span>.</li>
+          <li>Simplifique o <span class="mth">(x − 3)</span>: sobra <span class="mth">x − 2</span>.</li>
+          <li>Substitua <span class="mth">x = 3</span>: <span class="mth">3 − 2 = 1</span>.</li>
+          <li><strong>Resposta: 1.</strong></li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido B — lim<sub>x→0</sub> (sen(2x))/(3x)</p>
+        <ol class="steps">
+          <li>Escreva <span class="mth">(2/3) · [sen(2x)/(2x)]</span>.</li>
+          <li>Como <span class="mth">lim<sub>u→0</sub> sen(u)/u = 1</span>, o colchete tende a 1.</li>
+          <li><strong>Resposta: 2/3 ≈ 0,6667.</strong></li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido C — lim<sub>x→1⁻</sub> e lim<sub>x→1⁺</sub> de f(x)</p>
+        <p class="mth">f(x) = x + 1, se x &lt; 1 &nbsp;|&nbsp; f(x) = 3x, se x ≥ 1</p>
+        <ol class="steps">
+          <li>Lado esquerdo: <span class="mth">lim<sub>x→1⁻</sub> (x + 1) = 2</span>.</li>
+          <li>Lado direito: <span class="mth">lim<sub>x→1⁺</sub> 3x = 3</span>.</li>
+          <li>Como <span class="mth">2 ≠ 3</span>, os laterais diferem.</li>
+          <li><strong>O limite não existe.</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS PROPOSTOS ================= -->
+    <section id="ex-propostos">
+      <h2>Exercícios propostos (digite os números)</h2>
+      <p class="muted">Preencha os campos e clique em <strong>Verificar</strong>.</p>
+
+      <!-- Q1 -->
+      <div class="exercise" data-expect="2*a" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Você dominou a indeterminação 0/0. 🎯">
+        <p class="q-title">Questão 1 — Indeterminação clássica</p>
+        <p>
+          Calcule <span class="mth">lim<sub>x→a</sub> (x² − a²)/(x − a)</span>,
+          sabendo que <span class="mth">a = <input type="number" data-var="a" step="any" style="width:80px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: limite =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Fatore a diferença de quadrados: <span class="mth">(x − a)(x + a)</span>.</li>
+            <li>Simplifique com o denominador: sobra <span class="mth">x + a</span>.</li>
+            <li>Substitua <span class="mth">x = a</span>: <span class="mth">a + a = 2a</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exercise" data-expect="k" data-tol="0.01"
+           data-success="<strong>Certo!</strong> Limite trigonométrico certo. 🎯">
+        <p class="q-title">Questão 2 — Limite trigonométrico</p>
+        <p>
+          Calcule <span class="mth">lim<sub>x→0</sub> sen(k·x)/x</span> para
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:80px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: limite =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Multiplique e divida por <span class="mth">k</span>: <span class="mth">k · sen(kx)/(kx)</span>.</li>
+            <li>Como <span class="mth">x→0</span>, também <span class="mth">kx→0</span>.</li>
+            <li>Como <span class="mth">lim<sub>u→0</sub> sen(u)/u = 1</span>, o resultado é <span class="mth">k · 1 = k</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exercise" data-expect="m/n" data-tol="0.01"
+           data-success="<strong>Excelente!</strong> Proporção de graus correta. 🎯">
+        <p class="q-title">Questão 3 — Limite no infinito</p>
+        <p>
+          Calcule <span class="mth">lim<sub>x→∞</sub> (m·x² + 3)/(n·x² − 5)</span> com
+          <span class="mth">m = <input type="number" data-var="m" step="any" style="width:75px"> </span>
+          e <span class="mth">n = <input type="number" data-var="n" step="any" style="width:75px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: limite =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Os dois polinomios têm o mesmo grau (2).</li>
+            <li>Divida tudo por <span class="mth">x²</span>: <span class="mth">(m + 3/x²)/(n − 5/x²)</span>.</li>
+            <li>Com <span class="mth">x→∞</span>, os termos com <span class="mth">x</span> no denominador vão a zero.</li>
+            <li>Sobra <span class="mth">m/n</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exercise" data-expect="3*a^2" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Diferência de cubos dominada. 🎯">
+        <p class="q-title">Questão 4 — Diferência de cubos</p>
+        <p>
+          Calcule <span class="mth">lim<sub>x→a</sub> (x³ − a³)/(x − a)</span> para
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:80px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: limite =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Identidade: <span class="mth">x³ − a³ = (x − a)(x² + x·a + a²)</span>.</li>
+            <li>Simplifique o fator <span class="mth">(x − a)</span>.</li>
+            <li>Substitua <span class="mth">x = a</span>: <span class="mth">a² + a² + a² = 3a²</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exercise" data-expect="k/m" data-tol="0.01"
+           data-success="<strong>Certo!</strong> Ajuste de constantes perfeito. 🎯">
+        <p class="q-title">Questão 5 — Limite com duas constantes</p>
+        <p>
+          Calcule <span class="mth">lim<sub>x→0</sub> sen(k·x)/(m·x)</span> com
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:75px"> </span>
+          e <span class="mth">m = <input type="number" data-var="m" step="any" style="width:75px"></span>
+          (<span class="mth">m ≠ 0</span>).
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: limite =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Reescreva: <span class="mth">(k/m) · [sen(kx)/(kx)]</span>.</li>
+            <li>O colchete tende a 1 quando <span class="mth">x→0</span>.</li>
+            <li>Resultado: <span class="mth">k/m</span>.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Cálculo Visual — material de estudo estático (HTML · CSS · JavaScript)
+  </footer>
+
+  <script src="js/math.js?v=3"></script>
+  <script src="js/graph.js?v=3"></script>
+  <script src="js/exercises.js?v=3"></script>
+  <script>
+    /* ---- gráficos prontos ---- */
+    Plot.draw('g1', [{ expr: '(x^2 - 9)/(x - 3)', color: '#34d399', label: 'f(x) = (x²−9)/(x−3)' }],
+      {
+        xmin: -1, xmax: 7, height: 260, showLegend: false,
+        markers: [{ x: 3, y: 6, type: 'open', color: '#fbbf24', label: 'lim = 6' }],
+        lines: [{ vertical: 3, color: 'rgba(251,191,36,0.5)' }]
+      });
+
+    Plot.draw('g2', [{ expr: 'sin(x)/x', color: '#60a5fa', label: 'f(x) = sen(x)/x' }],
+      {
+        xmin: -8, xmax: 8, height: 260, showLegend: false,
+        markers: [{ x: 0, y: 1, type: 'open', color: '#fbbf24', label: 'lim = 1' }],
+        lines: [{ vertical: 0, color: 'rgba(251,191,36,0.5)' }]
+      });
+
+    /* ---- estimativa numérica do limite ---- */
+    function estimateLimit(fn, a) {
+      const hs = [0.1, 0.01, 0.001, 0.0001];
+      let left = NaN, right = NaN, firstL = null, firstR = null;
+      for (const h of hs) {
+        const fl = fn(a - h);
+        const fr = fn(a + h);
+        if (isFinite(fl)) { if (firstL === null) firstL = fl; left = fl; }
+        if (isFinite(fr)) { if (firstR === null) firstR = fr; right = fr; }
+      }
+      const divergiu = (primeiro, ultimo) =>
+        isFinite(primeiro) && isFinite(ultimo) &&
+        Math.abs(ultimo) > Math.abs(primeiro) * 50 + 1000;
+      if (divergiu(firstL, left) || divergiu(firstR, right)) return { kind: 'inf' };
+      if (!isFinite(left) && !isFinite(right)) return { kind: 'inf' };
+      if (isFinite(left) && isFinite(right)) {
+        if (Math.abs(left - right) > 0.05 * (1 + Math.abs(left) + Math.abs(right))) {
+          return { kind: 'none', left, right };
+        }
+        return { kind: 'ok', value: (left + right) / 2, left, right };
+      }
+      return { kind: isFinite(left) ? 'ok' : 'ok', value: isFinite(left) ? left : right };
+    }
+
+    /* ---- explorador de limites ---- */
+    const lmCanvas = document.getElementById('lm-canvas');
+    const lmExpr = document.getElementById('lm-expr');
+    const lmA = document.getElementById('lm-a');
+    const lmInfo = document.getElementById('lm-info');
+    const lmErro = document.getElementById('lm-erro');
+
+    function plotLimit() {
+      const expr = lmExpr.value.trim();
+      const a = parseFloat(lmA.value);
+      lmErro.textContent = '';
+      lmInfo.textContent = '';
+      if (!isFinite(a)) { lmErro.textContent = 'Informe o ponto a.'; return; }
+      let fn;
+      try { MathParser.compile(expr); } catch (e) {
+        lmErro.textContent = 'Erro na expressão: ' + e.message; return;
+      }
+      fn = MathParser.safe(expr);
+
+      const est = estimateLimit(fn, a);
+      const specs = [{ expr: expr, color: '#34d399', label: 'f(x) = ' + expr }];
+      const opts = { xmin: a - 6, xmax: a + 6, lines: [{ vertical: a, color: 'rgba(251,191,36,0.5)' }] };
+
+      if (est.kind === 'ok') {
+        opts.markers = [{ x: a, y: est.value, type: 'open', color: '#fbbf24', label: 'lim = ' + MathParser.format(est.value) }];
+        lmInfo.innerHTML = 'Estimativa numérica: <strong>lim<sub>x→' + MathParser.format(a) +
+          '</sub> f(x) ≈ ' + MathParser.format(est.value) + '</strong>';
+      } else if (est.kind === 'none') {
+        lmInfo.innerHTML = 'Os laterais diferem (esquerda ≈ ' + MathParser.format(est.left) +
+          ' e direita ≈ ' + MathParser.format(est.right) + '): <strong>o limite não existe</strong>.';
+      } else {
+        lmInfo.innerHTML = 'Os valores se dispersam sem estabilizar: <strong>limite infinito ou inexistente</strong>.';
+      }
+      Plot.draw(lmCanvas, specs, opts);
+    }
+
+    document.getElementById('lm-plot').addEventListener('click', plotLimit);
+    lmExpr.addEventListener('keydown', e => { if (e.key === 'Enter') plotLimit(); });
+    document.querySelectorAll('.chip[data-expr]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        lmExpr.value = chip.dataset.expr;
+        lmA.value = chip.dataset.a;
+        plotLimit();
+      });
+    });
+    plotLimit();
+
+    /* ---- tabela numérica ---- */
+    function buildTable() {
+      const expr = document.getElementById('tb-expr').value.trim();
+      const a = parseFloat(document.getElementById('tb-a').value);
+      const out = document.getElementById('tb-out');
+      const err = document.getElementById('tb-erro');
+      err.textContent = '';
+      out.innerHTML = '';
+      if (!isFinite(a)) { err.textContent = 'Informe o ponto a.'; return; }
+      let fn;
+      try { MathParser.compile(expr); } catch (e) {
+        err.textContent = 'Erro na expressão: ' + e.message; return;
+      }
+      fn = MathParser.safe(expr);
+
+      const deltas = [1, 0.5, 0.1, 0.01, 0.001, 0.0001];
+      let html = '<table class="data"><thead><tr><th>distância Δ</th><th>x = a − Δ</th><th>f(x)</th><th>x = a</th><th>f(a)</th><th>x = a + Δ</th><th>f(x)</th></tr></thead><tbody>';
+      const fa = fn(a);
+      deltas.forEach(d => {
+        const xl = a - d, xr = a + d;
+        const fl = fn(xl), fr = fn(xr);
+        html += '<tr><td>' + d + '</td><td>' + MathParser.format(xl) + '</td><td>' +
+          MathParser.format(fl) + '</td><td>' + MathParser.format(a) + '</td><td>' +
+          MathParser.format(fa) + '</td><td>' + MathParser.format(xr) + '</td><td>' +
+          MathParser.format(fr) + '</td></tr>';
+      });
+      html += '</tbody></table>';
+
+      const est = estimateLimit(fn, a);
+      if (est.kind === 'ok') {
+        html += '<div class="note"><strong>Conclusão:</strong> à esquerda e à direita os valores convergem para <strong>' +
+          MathParser.format(est.value) + '</strong> → limite ≈ ' + MathParser.format(est.value) + '.</div>';
+      } else if (est.kind === 'none') {
+        html += '<div class="note"><strong>Conclusão:</strong> os lados convergem para valores diferentes (' +
+          MathParser.format(est.left) + ' e ' + MathParser.format(est.right) + ') → <strong>limite não existe</strong>.</div>';
+      } else {
+        html += '<div class="note"><strong>Conclusão:</strong> os valores não se estabilizam em um número finito → <strong>limite infinito ou inexistente</strong>.</div>';
+      }
+      out.innerHTML = html;
+    }
+
+    document.getElementById('tb-run').addEventListener('click', buildTable);
+    buildTable();
+  </script>
+</body>
+</html>

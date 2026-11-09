@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrais — Cálculo Visual</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="brand" href="index.html"><span class="logo">∑</span> Cálculo Visual</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="funcoes.html">Funções</a>
+      <a href="limites.html">Limites</a>
+      <a href="derivadas.html">Derivadas</a>
+      <a href="integrais.html" class="active">Integrais</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <header class="page-header">
+      <h1>4. Integrais</h1>
+      <p>
+        A integral é a operação que <strong>acumula</strong>: soma infinitesimal
+        de fatias para calcular áreas, volumes, trabalho, probabilidade e muito
+        mais. Geometricamente, a <strong>integral definida</strong> é a área
+        limitada pela curva e pelo eixo x.
+      </p>
+    </header>
+
+    <section id="sumario">
+      <h2>Nesta página</h2>
+      <ul class="clean">
+        <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
+          <a href="#exemplos">Exemplos resolvidos</a> ·
+          <a href="#graficos">Gráficos interativos</a> ·
+          <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
+          <a href="#ex-propostos">Exercícios propostos</a></li>
+      </ul>
+    </section>
+
+    <!-- ================= CONCEITO ================= -->
+    <section id="conceito">
+      <h2>Conceito</h2>
+      <p>
+        A <strong>integral definida</strong> de <span class="mth">f</span> de
+        <span class="mth">a</span> até <span class="mth">b</span> é a soma das
+        áreas das fatias verticais sob a curva, com espessura tendendo a zero:
+      </p>
+      <span class="formula center">∫<sub>a</sub><sup>b</sup> f(x) dx = lim<sub>n→∞</sub> Σ f(xᵢ)·Δx</span>
+      <ul class="clean">
+        <li><strong>∫</strong> = soma (do latim <em>sum</em>); <strong>dx</strong> = espessura infinitesimal da fatia.</li>
+        <li><strong>Limites de integração:</strong> <span class="mth">a</span> (inferior) e <span class="mth">b</span> (superior).</li>
+        <li><strong>Sinal:</strong> se a função fica abaixo do eixo x, a área conta como negativa.</li>
+        <li><strong>Integral indefinida</strong> = conjunto das antiderivadas: <span class="mth">∫ f(x) dx = F(x) + C</span>, com <span class="mth">F′ = f</span>.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Teorema Fundamental do Cálculo:</strong> derivar e integrar são
+        operações inversas. Se <span class="mth">F′ = f</span>, então
+        <span class="mth">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span>.
+        É isso que permite calcular áreas sem somar infinitas fatias.
+      </div>
+
+      <h3>Área vs. integral</h3>
+      <ul class="clean">
+        <li>Área <strong>sempre</strong> é positiva: use módulo quando a curva desce abaixo do eixo.</li>
+        <li>Integral acumula sinal: parte negativa “cancela” parte positiva.</li>
+      </ul>
+    </section>
+
+    <!-- ================= TIPOS ================= -->
+    <section id="tipos">
+      <h2>Tipos de integrais</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Tipo 1</span>
+          <h3>Integral indefinida</h3>
+          <span class="formula">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</span>
+          <p class="mth">Resultado é uma função + constante C (família de antiderivadas).</p>
+        </div>
+        <div class="card">
+          <span class="tag">Tipo 2</span>
+          <h3>Integral definida</h3>
+          <span class="formula">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span>
+          <p class="mth">Resultado é um número — representa a área com sinal.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Método</span>
+          <h3>Por substituição</h3>
+          <span class="formula">∫ f(g(x))·g′(x) dx → ∫ f(u) du</span>
+          <p class="mth">Escolha u = g(x) para simplificar a expressão.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Método</span>
+          <h3>Por partes</h3>
+          <span class="formula">∫ u dv = u·v − ∫ v du</span>
+          <p class="mth">Útil em produtos como x·eˣ ou x·sen x.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Aplicação</span>
+          <h3>Área entre curvas</h3>
+          <span class="formula">∫<sub>a</sub><sup>b</sup> [f(x) − g(x)] dx</span>
+          <p class="mth">Área entre duas funções, integrando a de cima menos a de baixo.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Aplicação</span>
+          <h3>Funções definidas</h3>
+          <span class="formula">P(X ≤ x) = ∫ f(t) dt</span>
+          <p class="mth">Probabilidade, trabalho, deslocamento a partir da velocidade…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXEMPLOS ================= -->
+    <section id="exemplos">
+      <h2>Exemplos resolvidos</h2>
+
+      <div class="card">
+        <h3>Exemplo 1 — Integral indefinida</h3>
+        <p class="mth">∫ (3x² + 2x − 5) dx</p>
+        <ol class="steps">
+          <li>Integre termo a termo pela potência: <span class="mth">∫3x² dx = x³</span>.</li>
+          <li><span class="mth">∫2x dx = x²</span> e <span class="mth">∫5 dx = 5x</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">x³ + x² − 5x + C</span>.</li>
+          <li>Confira derivando: a derivada devolve a expressão original.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 2 — Integral definida pelo Teorema Fundamental</h3>
+        <p class="mth">∫<sub>0</sub><sup>2</sup> x² dx</p>
+        <ol class="steps">
+          <li>Antiderivada: <span class="mth">F(x) = x³/3</span>.</li>
+          <li>Avalie no limite superior: <span class="mth">F(2) = 8/3</span>.</li>
+          <li>Avalie no inferior: <span class="mth">F(0) = 0</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">8/3 − 0 = 8/3 ≈ 2,6667</span> (área sob y = x² de 0 a 2).</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 3 — Funções notáveis</h3>
+        <ol class="steps">
+          <li><span class="mth">∫ 1/x dx = ln|x| + C</span> (para <span class="mth">x ≠ 0</span>).</li>
+          <li><span class="mth">∫ eˣ dx = eˣ + C</span>.</li>
+          <li><span class="mth">∫ sen x dx = −cos x + C</span>; <span class="mth">∫ cos x dx = sen x + C</span>.</li>
+          <li><span class="mth">∫ aˣ dx = aˣ/ln a + C</span>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 4 — Área com sinal</h3>
+        <p class="mth">∫<sub>0</sub><sup>2π</sup> sen x dx</p>
+        <ol class="steps">
+          <li>Antiderivada: <span class="mth">−cos x</span>.</li>
+          <li>Avalie: <span class="mth">(−cos 2π) − (−cos 0) = (−1) − (−1) = 0</span>.</li>
+          <li>Resultado zero porque as áreas acima e abaixo do eixo se cancelam.</li>
+          <li>A <strong>área geométrica</strong> seria <span class="mth">2 + 2 = 4</span> (soma dos módulos).</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= GRÁFICOS ================= -->
+    <section id="graficos">
+      <h2>Gráficos interativos — área sob a curva</h2>
+      <p class="muted">
+        Digite a função e os limites de integração. A área sombreada é a
+        integral definida — o valor numérico é calculado por integração de
+        Simpson.
+      </p>
+
+      <div class="plot-box">
+        <div class="plot-controls">
+          <div class="field">
+            <label for="ig-expr">Função f(x)</label>
+            <input type="text" id="ig-expr" class="wide" value="x^2">
+          </div>
+          <div class="field"><label for="ig-a">limite a</label><input type="number" id="ig-a" value="0" step="any"></div>
+          <div class="field"><label for="ig-b">limite b</label><input type="number" id="ig-b" value="2" step="any"></div>
+          <button class="btn small" id="ig-plot">Traçar área</button>
+        </div>
+        <div class="preset-row">
+          <button class="chip" data-expr="x^2" data-a="0" data-b="2">∫₀² x² dx</button>
+          <button class="chip" data-expr="4 - x^2" data-a="-2" data-b="2">∫₋₂² (4 − x²) dx</button>
+          <button class="chip" data-expr="sin(x)" data-a="0" data-b="3.14159265">∫₀^π sen x dx</button>
+          <button class="chip" data-expr="1/x" data-a="1" data-b="4">∫₁⁴ (1/x) dx</button>
+          <button class="chip" data-expr="x^3 - 3*x" data-a="-2" data-b="2">∫₋₂² (x³ − 3x) dx (cancela)</button>
+          <button class="chip" data-expr="sqrt(x)" data-a="0" data-b="4">∫₀⁴ √x dx</button>
+        </div>
+        <canvas id="ig-canvas" style="margin-top:14px"></canvas>
+        <p class="muted" id="ig-info"></p>
+        <p class="muted" id="ig-erro" style="color:var(--danger)"></p>
+      </div>
+      <div class="note">
+        <strong>Repare:</strong> em <span class="mth">∫<sub>−2</sub><sup>2</sup> (x³ − 3x) dx</span>
+        a integral dá zero — a função é ímpar e as áreas se cancelam. Já a
+        <em>área total</em> somaria os módulos das duas “bolsas”.
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
+    <section id="ex-resolvidos">
+      <h2>Exercícios resolvidos</h2>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido A — ∫<sub>1</sub><sup>3</sup> (2x + 1) dx</p>
+        <ol class="steps">
+          <li>Antiderivada: <span class="mth">F(x) = x² + x</span>.</li>
+          <li><span class="mth">F(3) = 9 + 3 = 12</span>.</li>
+          <li><span class="mth">F(1) = 1 + 1 = 2</span>.</li>
+          <li><strong>Resultado: 12 − 2 = 10.</strong></li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido B — ∫ x·√x dx (simplifique antes)</p>
+        <ol class="steps">
+          <li><span class="mth">x·√x = x·x^(1/2) = x^(3/2)</span>.</li>
+          <li>Some 1 ao expoente: <span class="mth">3/2 + 1 = 5/2</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">x^(5/2)/(5/2) + C = (2/5)·x^(5/2) + C</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido C — Área de um triângulo pela integral</p>
+        <p class="mth">∫<sub>0</sub><sup>4</sup> (−x + 4) dx</p>
+        <ol class="steps">
+          <li>A reta forma um triângulo de base 4 e altura 4 → área 8.</li>
+          <li>Pela integral: antiderivada <span class="mth">−x²/2 + 4x</span>.</li>
+          <li>Avalie em 4: <span class="mth">−8 + 16 = 8</span>; em 0: 0.</li>
+          <li><strong>Resultado: 8</strong> — bateu com a geometria!</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS PROPOSTOS ================= -->
+    <section id="ex-propostos">
+      <h2>Exercícios propostos (digite os números)</h2>
+      <p class="muted">Preencha os campos e clique em <strong>Verificar</strong>. Use vírgula ou ponto para decimais.</p>
+
+      <!-- Q1 -->
+      <div class="exercise" data-expect="k*(s^(n+1) - i^(n+1))/(n+1)" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Potência integrada certinho. 🎯">
+        <p class="q-title">Questão 1 — Integral de uma potência</p>
+        <p>
+          Calcule <span class="mth">∫<sub>i</sub><sup>s</sup> k·xⁿ dx</span> com
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:65px"> </span>,
+          <span class="mth">n = <input type="number" data-var="n" step="any" style="width:65px"> </span>,
+          <span class="mth">i = <input type="number" data-var="i" step="any" style="width:65px"> </span>,
+          <span class="mth">s = <input type="number" data-var="s" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: integral =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li><span class="mth">∫ k·xⁿ dx = k·xⁿ⁺¹/(n+1) + C</span> (para <span class="mth">n ≠ −1</span>).</li>
+            <li>Avalie em <span class="mth">s</span> e em <span class="mth">i</span>.</li>
+            <li><span class="mth">k·[sⁿ⁺¹ − iⁿ⁺¹] / (n+1)</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exercise" data-expect="m/2*(s^2 - i^2) + b*(s - i)" data-tol="0.01"
+           data-success="<strong>Excelente!</strong> Integral linear perfeita. 🎯">
+        <p class="q-title">Questão 2 — Integral de uma função linear</p>
+        <p>
+          Calcule <span class="mth">∫<sub>i</sub><sup>s</sup> (m·x + b) dx</span> com
+          <span class="mth">m = <input type="number" data-var="m" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
+          <span class="mth">i = <input type="number" data-var="i" step="any" style="width:65px"> </span>,
+          <span class="mth">s = <input type="number" data-var="s" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: integral =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Antiderivada: <span class="mth">F(x) = m·x²/2 + b·x</span>.</li>
+            <li><span class="mth">F(s) − F(i) = m/2·(s² − i²) + b·(s − i)</span>.</li>
+            <li>Substitua os valores e calcule.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exercise" data-expect="k*b^(n+1)/(n+1)" data-tol="0.01"
+           data-success="<strong>Certo!</strong> Limite inferior zero facilitou tudo. 🎯">
+        <p class="q-title">Questão 3 — De zero até b</p>
+        <p>
+          Calcule <span class="mth">∫<sub>0</sub><sup>b</sup> k·xⁿ dx</span> com
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:65px"> </span>,
+          <span class="mth">n = <input type="number" data-var="n" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: integral =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li><span class="mth">F(x) = k·xⁿ⁺¹/(n+1)</span>.</li>
+            <li><span class="mth">F(b) = k·bⁿ⁺¹/(n+1)</span> e <span class="mth">F(0) = 0</span> (para <span class="mth">n &gt; −1</span>).</li>
+            <li>Subtraia: sobra <span class="mth">k·bⁿ⁺¹/(n+1)</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exercise" data-expect="a*(s^3 - i^3)/3 + b*(s^2 - i^2)/2 + c*(s - i)" data-tol="0.01"
+           data-success="<strong>Ótimo!</strong> Polinômio integrado termo a termo. 🎯">
+        <p class="q-title">Questão 4 — Integral de um polinômio</p>
+        <p>
+          Calcule <span class="mth">∫<sub>i</sub><sup>s</sup> (a·x² + b·x + c) dx</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:62px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:62px"> </span>,
+          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:62px"> </span>,
+          <span class="mth">i = <input type="number" data-var="i" step="any" style="width:62px"> </span>,
+          <span class="mth">s = <input type="number" data-var="s" step="any" style="width:62px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: integral =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Antiderivada: <span class="mth">F(x) = a·x³/3 + b·x²/2 + c·x</span>.</li>
+            <li><span class="mth">F(s) − F(i) = a/3·(s³ − i³) + b/2·(s² − i²) + c·(s − i)</span>.</li>
+            <li>Substitua e some com atenção aos sinais.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exercise" data-expect="k/(a*(n+1))*((a*s + b)^(n+1) - (a*i + b)^(n+1))" data-tol="0.01"
+           data-success="<strong>Impressionante!</strong> Substituição aplicada corretamente. 🏆">
+        <p class="q-title">Questão 5 — Composição (substituição)</p>
+        <p>
+          Calcule <span class="mth">∫<sub>i</sub><sup>s</sup> k·(a·x + b)ⁿ dx</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:62px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:62px"> </span>,
+          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:62px"> </span>,
+          <span class="mth">n = <input type="number" data-var="n" step="any" style="width:62px"> </span>,
+          <span class="mth">i = <input type="number" data-var="i" step="any" style="width:62px"> </span>,
+          <span class="mth">s = <input type="number" data-var="s" step="any" style="width:62px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: integral =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Substituição: <span class="mth">u = a·x + b</span> → <span class="mth">du = a·dx</span>,
+              logo <span class="mth">dx = du/a</span>.</li>
+            <li><span class="mth">∫ k·uⁿ·(du/a) = (k/a)·uⁿ⁺¹/(n+1)</span>.</li>
+            <li>Voltando: <span class="mth">(k/a)·(a·x + b)ⁿ⁺¹/(n+1)</span>.</li>
+            <li>Avalie de <span class="mth">i</span> a <span class="mth">s</span>.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Cálculo Visual — material de estudo estático (HTML · CSS · JavaScript)
+  </footer>
+
+  <script src="js/math.js?v=3"></script>
+  <script src="js/graph.js?v=3"></script>
+  <script src="js/exercises.js?v=3"></script>
+  <script>
+    const igCanvas = document.getElementById('ig-canvas');
+    const igExpr = document.getElementById('ig-expr');
+    const igA = document.getElementById('ig-a');
+    const igB = document.getElementById('ig-b');
+    const igInfo = document.getElementById('ig-info');
+    const igErro = document.getElementById('ig-erro');
+
+    function plotIntegral() {
+      const expr = igExpr.value.trim();
+      let a = parseFloat(igA.value);
+      let b = parseFloat(igB.value);
+      igErro.textContent = '';
+      igInfo.textContent = '';
+      if (!isFinite(a) || !isFinite(b)) {
+        igErro.textContent = 'Informe os limites a e b.'; return;
+      }
+      if (a > b) { const t = a; a = b; b = t; }
+      let fn;
+      try { MathParser.compile(expr); } catch (e) {
+        igErro.textContent = 'Erro na expressão: ' + e.message; return;
+      }
+      fn = MathParser.safe(expr);
+
+      const area = Plot.integral(fn, a, b, 4000);
+
+      Plot.draw(igCanvas, [{ expr: expr, color: '#34d399', label: 'f(x) = ' + expr }], {
+        xmin: a - Math.max(1, (b - a) * 0.4),
+        xmax: b + Math.max(1, (b - a) * 0.4),
+        fills: [{ expr: expr, from: a, to: b, color: 'rgba(16,185,129,0.35)', label: 'área' }],
+        markers: [
+          { x: a, y: fn(a), type: 'dot', color: '#fbbf24', label: 'a' },
+          { x: b, y: fn(b), type: 'dot', color: '#f472b6', label: 'b' }
+        ]
+      });
+
+      igInfo.innerHTML =
+        '∫ de ' + MathParser.format(a) + ' a ' + MathParser.format(b) + ' de ' +
+        '<strong>' + expr + '</strong> dx ≈ <strong>' + MathParser.format(area) + '</strong>' +
+        ' (área com sinal — partes abaixo do eixo são negativas).';
+    }
+
+    document.getElementById('ig-plot').addEventListener('click', plotIntegral);
+    igExpr.addEventListener('keydown', e => { if (e.key === 'Enter') plotIntegral(); });
+    document.querySelectorAll('.chip[data-expr]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        igExpr.value = chip.dataset.expr;
+        igA.value = chip.dataset.a;
+        igB.value = chip.dataset.b;
+        plotIntegral();
+      });
+    });
+    plotIntegral();
+  </script>
+</body>
+</html>

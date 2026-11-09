@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Derivadas — Cálculo Visual</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="brand" href="index.html"><span class="logo">∑</span> Cálculo Visual</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="funcoes.html">Funções</a>
+      <a href="limites.html">Limites</a>
+      <a href="derivadas.html" class="active">Derivadas</a>
+      <a href="integrais.html">Integrais</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <header class="page-header">
+      <h1>3. Derivadas</h1>
+      <p>
+        A derivada mede a <strong>taxa de variação instantânea</strong> de uma
+        função. Geometricamente, é a <strong>inclinação da reta tangente</strong>
+        ao gráfico em um ponto. É a ferramenta que transforma “quanto muda?” em
+        “quanto muda neste instante exato?”.
+      </p>
+    </header>
+
+    <section id="sumario">
+      <h2>Nesta página</h2>
+      <ul class="clean">
+        <li><a href="#conceito">Conceito</a> · <a href="#tipos">Regras de derivação</a> ·
+          <a href="#exemplos">Exemplos resolvidos</a> ·
+          <a href="#graficos">Gráficos interativos</a> ·
+          <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
+          <a href="#ex-propostos">Exercícios propostos</a></li>
+      </ul>
+    </section>
+
+    <!-- ================= CONCEITO ================= -->
+    <section id="conceito">
+      <h2>Conceito</h2>
+      <p>
+        A <strong>derivada</strong> de <span class="mth">f</span> em
+        <span class="mth">x</span> é o limite da taxa de variação média quando o
+        incremento <span class="mth">h</span> tende a zero:
+      </p>
+      <span class="formula center">f′(x) = lim<sub>h→0</sub> [ f(x + h) − f(x) ] / h</span>
+      <ul class="clean">
+        <li><strong>Taxa média</strong> (secante): <span class="mth">[f(b) − f(a)] / (b − a)</span>.</li>
+        <li><strong>Taxa instantânea</strong> (tangente): o que acontece quando o intervalo encolhe até zero.</li>
+        <li>Notações: <span class="mth">f′(x)</span>, <span class="mth">y′</span>, <span class="mth">df/dx</span>.</li>
+        <li>Se o limite <strong>não existe</strong>, a função não é diferenciável naquele ponto (ex.: o “canto” de <span class="mth">|x|</span> em 0).</li>
+      </ul>
+      <div class="note">
+        <strong>Interpretações:</strong> velocidade instantânea (física),
+        taxa de crescimento (biologia/economia), inclinação da reta tangente
+        (geometria) e marginal em otimização (aplicação clássica).
+      </div>
+
+      <h3>O que a derivada diz sobre o gráfico</h3>
+      <ul class="clean">
+        <li><span class="mth">f′(x) &gt; 0</span> → função <strong>crescente</strong> naquele trecho.</li>
+        <li><span class="mth">f′(x) &lt; 0</span> → função <strong>decrescente</strong>.</li>
+        <li><span class="mth">f′(x) = 0</span> → ponto crítico (candidato a máximo ou mínimo).</li>
+        <li><span class="mth">f″(x) &gt; 0</span> → côncava para cima; <span class="mth">f″(x) &lt; 0</span> → para baixo.</li>
+      </ul>
+    </section>
+
+    <!-- ================= TIPOS / REGRAS ================= -->
+    <section id="tipos">
+      <h2>Regras de derivação</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Básica</span>
+          <h3>Constante e potência</h3>
+          <span class="formula">(c)′ = 0 &nbsp;&nbsp; (xⁿ)′ = n·xⁿ⁻¹</span>
+          <p class="mth">Ex.: (x⁵)′ = 5x⁴ &nbsp;·&nbsp; (7)′ = 0.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Constante</span>
+          <h3>Múltiplo e soma</h3>
+          <span class="formula">(c·f)′ = c·f′ &nbsp;·&nbsp; (f ± g)′ = f′ ± g′</span>
+          <p class="mth">Derivar é linear: deriva termo a termo.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Produto</span>
+          <h3>Regra do produto</h3>
+          <span class="formula">(f·g)′ = f′·g + f·g′</span>
+          <p class="mth">“primeiro derivado vezes segundo + primeiro vezes segundo derivado”.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Quociente</span>
+          <h3>Regra do quociente</h3>
+          <span class="formula">(f/g)′ = (f′·g − f·g′) / g²</span>
+          <p class="mth">Atenção ao sinal: o derivado do numerador vem primeiro.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Composição</span>
+          <h3>Regra da cadeia</h3>
+          <span class="formula">[f(g(x))]′ = f′(g(x))·g′(x)</span>
+          <p class="mth">Derive a “casca” e multiplique pela derivada do “miolo”.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Elementares</span>
+          <h3>Derivadas conhecidas</h3>
+          <span class="formula">
+            (eˣ)′ = eˣ &nbsp;·&nbsp; (ln x)′ = 1/x<br>
+            (sen x)′ = cos x &nbsp;·&nbsp; (cos x)′ = −sen x
+          </span>
+          <p class="mth">(aˣ)′ = aˣ·ln a &nbsp;·&nbsp; (√x)′ = 1/(2√x).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXEMPLOS ================= -->
+    <section id="exemplos">
+      <h2>Exemplos resolvidos</h2>
+
+      <div class="card">
+        <h3>Exemplo 1 — Polinômio (termo a termo)</h3>
+        <p class="mth">f(x) = 3x⁴ − 5x² + 7</p>
+        <ol class="steps">
+          <li>Derive a primeira parcela: <span class="mth">(3x⁴)′ = 3·4·x³ = 12x³</span>.</li>
+          <li>Derive a segunda: <span class="mth">(−5x²)′ = −5·2·x = −10x</span>.</li>
+          <li>A constante some: <span class="mth">(7)′ = 0</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">f′(x) = 12x³ − 10x</span>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 2 — Regra do produto</h3>
+        <p class="mth">f(x) = x² · sen(x)</p>
+        <ol class="steps">
+          <li>Chame <span class="mth">u = x²</span> e <span class="mth">v = sen(x)</span>.</li>
+          <li><span class="mth">u′ = 2x</span> e <span class="mth">v′ = cos(x)</span>.</li>
+          <li><span class="mth">f′ = u′v + uv′ = 2x·sen(x) + x²·cos(x)</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">f′(x) = 2x·sen(x) + x²·cos(x)</span>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 3 — Regra do quociente</h3>
+        <p class="mth">f(x) = (x + 1)/(x − 1)</p>
+        <ol class="steps">
+          <li>Numerador <span class="mth">u = x + 1</span> → <span class="mth">u′ = 1</span>; denominador <span class="mth">v = x − 1</span> → <span class="mth">v′ = 1</span>.</li>
+          <li><span class="mth">f′ = [1·(x − 1) − (x + 1)·1] / (x − 1)²</span>.</li>
+          <li>Simplifique o numerador: <span class="mth">x − 1 − x − 1 = −2</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">f′(x) = −2/(x − 1)²</span>.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Exemplo 4 — Regra da cadeia</h3>
+        <p class="mth">f(x) = (3x² + 1)⁵</p>
+        <ol class="steps">
+          <li>Casca: potência 5 → <span class="mth">5(3x² + 1)⁴</span>.</li>
+          <li>Miolo: <span class="mth">(3x² + 1)′ = 6x</span>.</li>
+          <li>Multiplique: <span class="mth">f′ = 5(3x² + 1)⁴ · 6x</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">f′(x) = 30x·(3x² + 1)⁴</span>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= GRÁFICOS ================= -->
+    <section id="graficos">
+      <h2>Gráficos interativos — tangente e secante</h2>
+      <p class="muted">
+        Escolha uma função e um ponto. A linha <strong>tracejada amarela</strong>
+        é a <em>secante</em> (taxa média) e a <strong>rosa</strong> é a
+        <em>tangente</em> (derivada). Quanto menor o passo <span class="mth">h</span>,
+        mais a secante “vira” tangente — é o limite acontecendo!
+      </p>
+
+      <div class="plot-box">
+        <div class="plot-controls">
+          <div class="field">
+            <label for="dv-expr">Função f(x)</label>
+            <input type="text" id="dv-expr" class="wide" value="x^2">
+          </div>
+          <div class="field"><label for="dv-x0">ponto x₀</label><input type="number" id="dv-x0" value="1" step="any"></div>
+          <div class="field"><label for="dv-h">passo h (secante)</label><input type="number" id="dv-h" value="2" step="any"></div>
+          <button class="btn small" id="dv-plot">Traçar</button>
+        </div>
+        <div class="preset-row">
+          <button class="chip" data-expr="x^2" data-x0="1" data-h="2">y = x² em x₀ = 1</button>
+          <button class="chip" data-expr="x^3 - 3*x" data-x0="2" data-h="1.5">y = x³ − 3x em x₀ = 2</button>
+          <button class="chip" data-expr="sin(x)" data-x0="1" data-h="1">y = sen(x) em x₀ = 1</button>
+          <button class="chip" data-expr="2^x" data-x0="2" data-h="2">y = 2ˣ em x₀ = 2</button>
+          <button class="chip" data-expr="ln(x)" data-x0="3" data-h="2">y = ln(x) em x₀ = 3</button>
+          <button class="chip" data-expr="abs(x)" data-x0="0" data-h="2">y = |x| em x₀ = 0 (não derivável)</button>
+        </div>
+        <canvas id="dv-canvas" style="margin-top:14px"></canvas>
+        <p class="muted" id="dv-info"></p>
+        <p class="muted" id="dv-erro" style="color:var(--danger)"></p>
+      </div>
+
+      <div class="note">
+        <strong>O que observar:</strong> em <span class="mth">f(x) = x²</span> com
+        <span class="mth">x₀ = 1</span>, a derivada é
+        <span class="mth">f′(1) = 2</span>. Reduzindo <span class="mth">h</span>,
+        a inclinação da secante se aproxima de 2 — visualização direta da definição.
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
+    <section id="ex-resolvidos">
+      <h2>Exercícios resolvidos</h2>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido A — Derivada em um ponto</p>
+        <p class="mth">f(x) = 5x³ − 2x + 4, calcule f′(2)</p>
+        <ol class="steps">
+          <li>Derive: <span class="mth">f′(x) = 15x² − 2</span>.</li>
+          <li>Substitua <span class="mth">x = 2</span>: <span class="mth">15·4 − 2 = 58</span>.</li>
+          <li><strong>Resposta: f′(2) = 58.</strong></li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido B — Reta tangente</p>
+        <p class="mth">Ache a equação da tangente de f(x) = x² em x₀ = 3</p>
+        <ol class="steps">
+          <li>Derivada: <span class="mth">f′(x) = 2x</span> → inclinação <span class="mth">m = f′(3) = 6</span>.</li>
+          <li>Ponto: <span class="mth">f(3) = 9</span>, ou seja <span class="mth">(3, 9)</span>.</li>
+          <li>Usando <span class="mth">y − y₀ = m(x − x₀)</span>: <span class="mth">y − 9 = 6(x − 3)</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">y = 6x − 9</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido C — Ponto crítico</p>
+        <p class="mth">f(x) = x² − 6x + 11</p>
+        <ol class="steps">
+          <li><span class="mth">f′(x) = 2x − 6</span>.</li>
+          <li>Iguale a zero: <span class="mth">2x − 6 = 0 → x = 3</span>.</li>
+          <li><span class="mth">f(3) = 9 − 18 + 11 = 2</span> → ponto <span class="mth">(3, 2)</span>.</li>
+          <li>Como <span class="mth">f″ = 2 &gt; 0</span>, é um <strong>mínimo</strong>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= EXERCÍCIOS PROPOSTOS ================= -->
+    <section id="ex-propostos">
+      <h2>Exercícios propostos (digite os números)</h2>
+      <p class="muted">Preencha os campos e clique em <strong>Verificar</strong>.</p>
+
+      <!-- Q1 -->
+      <div class="exercise" data-expect="a*n*x0^(n-1)" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Regra da potência aplicada. 🎯">
+        <p class="q-title">Questão 1 — Derivada de uma potência</p>
+        <p>
+          Seja <span class="mth">f(x) = a·xⁿ</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:70px"> </span>,
+          <span class="mth">n = <input type="number" data-var="n" step="any" style="width:70px"> </span> e
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:70px"></span>.
+          Calcule <span class="mth">f′(x₀)</span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f′(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Pela regra da potência: <span class="mth">f′(x) = a·n·xⁿ⁻¹</span>.</li>
+            <li>Substitua <span class="mth">x = x₀</span>: <span class="mth">f′(x₀) = a·n·x₀ⁿ⁻¹</span>.</li>
+            <li>Cuidado: o expoente da derivada é <span class="mth">n − 1</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exercise" data-expect="2*a*x0 + b; (a*x0^2 + b*x0 + c) - (2*a*x0 + b)*x0" data-tol="0.01"
+           data-success="<strong>Excelente!</strong> Tangente montada corretamente. 🎯">
+        <p class="q-title">Questão 2 — Reta tangente de uma parábola</p>
+        <p>
+          Para <span class="mth">f(x) = a·x² + b·x + c</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
+          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:65px"> </span> e
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>,
+          determine a tangente na forma <span class="mth">y = m·x + q</span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>inclinação m =</label>
+            <input type="number" data-answer step="any" placeholder="m">
+          </div>
+          <div class="field answer-field">
+            <label>coeficiente q =</label>
+            <input type="number" data-answer step="any" placeholder="q">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Derivada: <span class="mth">f′(x) = 2a·x + b</span> → <span class="mth">m = 2a·x₀ + b</span>.</li>
+            <li>Valor da função: <span class="mth">y₀ = a·x₀² + b·x₀ + c</span>.</li>
+            <li>Equação ponto-inclinação: <span class="mth">y − y₀ = m(x − x₀)</span>.</li>
+            <li>Isolando: <span class="mth">y = m·x + (y₀ − m·x₀)</span>, logo
+              <span class="mth">q = y₀ − m·x₀</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exercise" data-expect="a*(c*x0 + d) + c*(a*x0 + b)" data-tol="0.01"
+           data-success="<strong>Certo!</strong> Regra do produto aplicada. 🎯">
+        <p class="q-title">Questão 3 — Regra do produto</p>
+        <p>
+          Sendo <span class="mth">f(x) = (a·x + b)·(c·x + d)</span>, calcule
+          <span class="mth">f′(x₀)</span> para
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
+          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:65px"> </span>,
+          <span class="mth">d = <input type="number" data-var="d" step="any" style="width:65px"> </span>,
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f′(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Chame <span class="mth">u = a·x + b</span> (logo <span class="mth">u′ = a</span>) e
+              <span class="mth">v = c·x + d</span> (<span class="mth">v′ = c</span>).</li>
+            <li><span class="mth">f′(x) = a·(c·x + d) + c·(a·x + b)</span>.</li>
+            <li>Substitua <span class="mth">x = x₀</span> na fórmula acima.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exercise" data-expect="(a*(c*x0 + d) - c*(a*x0 + b))/(c*x0 + d)^2" data-tol="0.01"
+           data-success="<strong>Correto!</strong> Regra do quociente perfeita. 🎯">
+        <p class="q-title">Questão 4 — Regra do quociente</p>
+        <p>
+          Para <span class="mth">f(x) = (a·x + b)/(c·x + d)</span>, calcule
+          <span class="mth">f′(x₀)</span> com
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
+          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:65px"> </span>,
+          <span class="mth">d = <input type="number" data-var="d" step="any" style="width:65px"> </span>,
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f′(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li><span class="mth">u = a·x + b → u′ = a</span>; <span class="mth">v = c·x + d → v′ = c</span>.</li>
+            <li><span class="mth">f′ = (u′v − uv′)/v²</span>.</li>
+            <li><span class="mth">f′(x) = [a·(c·x + d) − c·(a·x + b)] / (c·x + d)²</span>.</li>
+            <li>Substitua <span class="mth">x = x₀</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exercise" data-expect="a*n*(a*x0 + b)^(n-1)" data-tol="0.01"
+           data-success="<strong>Ótimo!</strong> Cadeia dominada. 🎯">
+        <p class="q-title">Questão 5 — Regra da cadeia</p>
+        <p>
+          Sendo <span class="mth">f(x) = (a·x + b)ⁿ</span>, calcule
+          <span class="mth">f′(x₀)</span> para
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
+          <span class="mth">n = <input type="number" data-var="n" step="any" style="width:65px"> </span>,
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f′(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Casca (potência): <span class="mth">n·(a·x + b)ⁿ⁻¹</span>.</li>
+            <li>Miolo (derivada interna): <span class="mth">a</span>.</li>
+            <li><span class="mth">f′(x) = a·n·(a·x + b)ⁿ⁻¹</span>; substitua <span class="mth">x = x₀</span>.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Cálculo Visual — material de estudo estático (HTML · CSS · JavaScript)
+  </footer>
+
+  <script src="js/math.js?v=3"></script>
+  <script src="js/graph.js?v=3"></script>
+  <script src="js/exercises.js?v=3"></script>
+  <script>
+    const dvCanvas = document.getElementById('dv-canvas');
+    const dvExpr = document.getElementById('dv-expr');
+    const dvX0 = document.getElementById('dv-x0');
+    const dvH = document.getElementById('dv-h');
+    const dvInfo = document.getElementById('dv-info');
+    const dvErro = document.getElementById('dv-erro');
+
+    function plotTangent() {
+      const expr = dvExpr.value.trim();
+      const x0 = parseFloat(dvX0.value);
+      let h = parseFloat(dvH.value);
+      dvErro.textContent = '';
+      dvInfo.textContent = '';
+      if (!isFinite(x0)) { dvErro.textContent = 'Informe o ponto x₀.'; return; }
+      if (!isFinite(h) || h === 0) h = 1;
+
+      let fn;
+      try { MathParser.compile(expr); } catch (e) {
+        dvErro.textContent = 'Erro na expressão: ' + e.message; return;
+      }
+      fn = MathParser.safe(expr);
+
+      const y0 = fn(x0);
+      const m = Plot.derivative(fn, x0);
+      const xm = x0 - h, ym = fn(xm);
+      const xp = x0 + h, yp = fn(xp);
+      const mSec = (yp - ym) / (xp - xm);
+
+      // detecta “canto” (ex.: |x| em 0): derivadas laterais divergem
+      const hs = 1e-3;
+      const dL = (fn(x0) - fn(x0 - hs)) / hs;
+      const dR = (fn(x0 + hs) - fn(x0)) / hs;
+      const canto = isFinite(dL) && isFinite(dR) &&
+        Math.abs(dL - dR) > 0.05 * (Math.abs(dL) + Math.abs(dR) + 1);
+
+      const range = Math.abs(x0) + 4;
+      const opts = {
+        xmin: x0 - range, xmax: x0 + range,
+        lines: [
+          { fn: x => y0 + m * (x - x0), color: '#f472b6', label: 'tangente' },
+          { fn: x => ym + mSec * (x - xm), color: '#fbbf24', label: 'secante' }
+        ],
+        markers: [
+          { x: x0, y: y0, type: 'dot', color: '#f472b6', label: 'x₀' },
+          { x: xm, y: ym, type: 'dot', color: '#fbbf24' },
+          { x: xp, y: yp, type: 'dot', color: '#fbbf24' }
+        ]
+      };
+
+      Plot.draw(dvCanvas, [{ expr: expr, color: '#34d399', label: 'f(x) = ' + expr }], opts);
+
+      dvInfo.innerHTML =
+        'No ponto x₀ = <strong>' + MathParser.format(x0) + '</strong>: ' +
+        'f(x₀) = ' + MathParser.format(y0) + ' · ' +
+        'derivada f′(x₀) ≈ <strong>' + MathParser.format(m) + '</strong> · ' +
+        'inclinação da secante (h = ' + MathParser.format(h) + ') ≈ ' + MathParser.format(mSec) +
+        '. ' + (Math.abs(m - mSec) > Math.abs(m) * 0.05 + 0.05
+          ? 'Reduza h para ver a secante tender à tangente.'
+          : 'A secante já está muito próxima da tangente!') +
+        (canto ? ' ⚠️ Atenção: as derivadas laterais diferem — a função não é diferenciável exatamente em x₀.' : '');
+    }
+
+    document.getElementById('dv-plot').addEventListener('click', plotTangent);
+    dvExpr.addEventListener('keydown', e => { if (e.key === 'Enter') plotTangent(); });
+    dvX0.addEventListener('keydown', e => { if (e.key === 'Enter') plotTangent(); });
+    dvH.addEventListener('keydown', e => { if (e.key === 'Enter') plotTangent(); });
+    document.querySelectorAll('.chip[data-expr]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        dvExpr.value = chip.dataset.expr;
+        dvX0.value = chip.dataset.x0;
+        dvH.value = chip.dataset.h;
+        plotTangent();
+      });
+    });
+    plotTangent();
+  </script>
+</body>
+</html>
