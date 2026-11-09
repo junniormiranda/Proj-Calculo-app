@@ -3,8 +3,8 @@
 
    Uso:
      Plot.draw('meuCanvas', [
-       { expr: 'x^2 - 4', color: '#34d399' },
-       { expr: '2*x + 1', color: '#fbbf24', dash: [6, 4] }
+       { expr: 'x^2 - 4', color: '#fb923c' },
+       { expr: '2*x + 1', color: '#38bdf8', dash: [6, 4] }
      ], { xmin: -6, xmax: 6 });
 
    Opções:
@@ -104,7 +104,7 @@ const Plot = (function () {
 
     const resolved = specs.map((s, i) => Object.assign({}, s, {
       fn: s.fn || MathParser.safe(s.expr),
-      color: s.color || ['#34d399', '#fbbf24', '#60a5fa', '#f472b6', '#c084fc'][i % 5],
+      color: s.color || ['#fb923c', '#38bdf8', '#f472b6', '#c084fc', '#facc15'][i % 5],
       width: s.width || 2.4
     }));
 
@@ -175,7 +175,7 @@ const Plot = (function () {
       if (Math.abs(v) < 1e-9) continue;
       ctx.fillText(fmtTick(v), px(0) - 7, py(v) + 4);
     }
-    ctx.fillStyle = 'rgba(167,243,208,0.9)';
+    ctx.fillStyle = 'rgba(254,215,170,0.9)';
     ctx.font = 'italic 14px "STIX Two Text", Georgia, serif';
     ctx.textAlign = 'left';
     ctx.fillText(opts.xLabel || 'x', W - PAD + 6, py(0) + 4);
@@ -203,7 +203,7 @@ const Plot = (function () {
       ctx.lineTo(px(b), py(0));
       ctx.lineTo(px(a), py(0));
       ctx.closePath();
-      ctx.fillStyle = f.color || 'rgba(16,185,129,0.28)';
+      ctx.fillStyle = f.color || 'rgba(249,115,22,0.28)';
       ctx.fill();
       ctx.restore();
     });
@@ -255,7 +255,7 @@ const Plot = (function () {
     (opts.markers || []).forEach(m => {
       if (!isFinite(m.x) || !isFinite(m.y)) return;
       if (m.x < o.xmin || m.x > o.xmax || m.y < o.ymin || m.y > o.ymax) return;
-      const col = m.color || '#fbbf24';
+      const col = m.color || '#38bdf8';
       ctx.beginPath();
       ctx.arc(px(m.x), py(m.y), 6, 0, Math.PI * 2);
       if (m.type === 'open') {
@@ -287,7 +287,7 @@ const Plot = (function () {
       if (l.label) legendItems.push({ color: l.color || '#f472b6', label: l.label, dash: [7, 5] });
     });
     (opts.fills || []).forEach(f => {
-      if (f.label) legendItems.push({ color: f.color || 'rgba(16,185,129,0.45)', label: f.label, fill: true });
+      if (f.label) legendItems.push({ color: f.color || 'rgba(249,115,22,0.45)', label: f.label, fill: true });
     });
 
     if (legendItems.length && opts.showLegend !== false) {

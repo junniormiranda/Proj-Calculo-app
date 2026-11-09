@@ -111,12 +111,12 @@
         } else if (key === 'area') {
           const [a, b] = pair(val);
           xs.push(a, b);
-          fills.push({ fn: f, expr: fnExpr, from: Math.min(a, b), to: Math.max(a, b), color: 'rgba(52,211,153,0.28)', label: 'área de ' + fmt(a) + ' a ' + fmt(b) });
+          fills.push({ fn: f, expr: fnExpr, from: Math.min(a, b), to: Math.max(a, b), color: 'rgba(251,146,60,0.28)', label: 'área de ' + fmt(a) + ' a ' + fmt(b) });
         } else if (key === 'hline') {
           const c = ev(val);
-          lines.push({ fn: () => c, color: '#fbbf24', dash: [6, 5], label: 'y = ' + fmt(c) });
+          lines.push({ fn: () => c, color: '#38bdf8', dash: [6, 5], label: 'y = ' + fmt(c) });
         } else if (key === 'vline') {
-          lines.push({ vertical: ev(val), color: 'rgba(251,191,36,0.6)' });
+          lines.push({ vertical: ev(val), color: 'rgba(56,189,248,0.6)' });
         } else if (key === 'x') xr = pair(val);
         else if (key === 'y') yr = pair(val);
         else if (key === 'caption') caption = val;
@@ -139,7 +139,7 @@
       const opts = { xmin: xr[0], xmax: xr[1], height: 300, markers, lines, fills };
       if ((!yr || !yr.every(isFinite)) && tangentY && tangentY.every(isFinite)) yr = tangentY;
       if (yr && yr.every(isFinite)) { opts.ymin = Math.min(yr[0], yr[1]); opts.ymax = Math.max(yr[0], yr[1]); }
-      Plot.draw(box.querySelector('canvas'), [{ fn: f, expr: fnExpr, color: '#34d399', label: 'f(x)' }], opts);
+      Plot.draw(box.querySelector('canvas'), [{ fn: f, expr: fnExpr, color: '#fb923c', label: 'f(x)' }], opts);
     } catch (e) {
       console.warn('Gráfico do exercício não pôde ser gerado:', e);
       removePlot(root);
