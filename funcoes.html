@@ -90,52 +90,40 @@
       <h2>Tipos de funções</h2>
       <div class="grid">
         <div class="card">
-          <span class="tag">Grau 1</span>
-          <h3>Linear</h3>
+          <span class="tag">Tipo 1</span>
+          <h3>Função constante</h3>
+          <span class="formula">f(x) = b</span>
+          <p class="mth">A saída é sempre a mesma, qualquer que seja x. Gráfico: reta horizontal na altura b.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Tipo 2</span>
+          <h3>Função afim</h3>
           <span class="formula">f(x) = ax + b &nbsp;(a ≠ 0)</span>
-          <p class="mth">Gráfico: reta. Coeficiente a = inclinação; b = altura em x = 0.</p>
+          <p class="mth">Gráfico: reta. a = coeficiente angular (inclinação); b = coeficiente linear (corte no eixo y). Raiz em x = −b/a.</p>
         </div>
         <div class="card">
-          <span class="tag">Grau 2</span>
-          <h3>Quadrática</h3>
-          <span class="formula">f(x) = ax² + bx + c</span>
-          <p class="mth">Gráfico: parábola. Vértice em x = −b/2a; se a &gt; 0 abre para cima.</p>
+          <span class="tag">Tipo 3</span>
+          <h3>Função linear</h3>
+          <span class="formula">f(x) = ax &nbsp;(a ≠ 0)</span>
+          <p class="mth">Caso particular da afim com b = 0. Gráfico: reta que passa pela origem; y é proporcional a x.</p>
         </div>
         <div class="card">
-          <span class="tag">Grau n</span>
-          <h3>Polinomial</h3>
-          <span class="formula">f(x) = aₙxⁿ + … + a₁x + a₀</span>
-          <p class="mth">Soma de potências de x. Raízes: valores em que f(x) = 0.</p>
+          <span class="tag">Tipo 4</span>
+          <h3>Função quadrática</h3>
+          <span class="formula">f(x) = ax² + bx + c &nbsp;(a ≠ 0)</span>
+          <p class="mth">Gráfico: parábola. Vértice em x = −b/2a; abre para cima se a &gt; 0 e para baixo se a &lt; 0.</p>
         </div>
         <div class="card">
-          <span class="tag">Razão</span>
-          <h3>Racional</h3>
-          <span class="formula">f(x) = p(x) / q(x)</span>
-          <p class="mth">Onde q(x) = 0 a função não existe (buraco na reta vertical).</p>
+          <span class="tag">Tipo 5</span>
+          <h3>Função exponencial</h3>
+          <span class="formula">f(x) = aˣ &nbsp;(a &gt; 0, a ≠ 1)</span>
+          <p class="mth">Cresce (a &gt; 1) ou decresce (0 &lt; a &lt; 1). Sempre positiva; passa por (0, 1).</p>
         </div>
         <div class="card">
-          <span class="tag">Crescimento</span>
-          <h3>Exponencial</h3>
-          <span class="formula">f(x) = a·bˣ &nbsp;(b &gt; 0, b ≠ 1)</span>
-          <p class="mth">Cresce (b &gt; 1) ou decai (0 &lt; b &lt; 1) rapidamente. Nunca zera.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Inversa da exponencial</span>
-          <h3>Logarítmica</h3>
-          <span class="formula">f(x) = log<sub>b</sub>(x)</span>
-          <p class="mth">Domínio: x &gt; 0. Crescente se b &gt; 1; assíntota vertical em x = 0.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Periódica</span>
-          <h3>Trigonométrica</h3>
-          <span class="formula">f(x) = sen(x), cos(x), tan(x)</span>
-          <p class="mth">Oscilam em ciclos (período 2π para seno e cosseno).</p>
-        </div>
-        <div class="card">
-          <span class="tag">Não diferenciável no “canto”</span>
-          <h3>Valor absoluto</h3>
-          <span class="formula">f(x) = |x|</span>
-          <p class="mth">Gráfico em “V”. Vértice em x = 0; usada em problemas de distância.</p>
+          <span class="tag">Tipo 6</span>
+          <h3>Função logarítmica</h3>
+          <span class="formula">f(x) = log<sub>a</sub>(x) &nbsp;(a &gt; 0, a ≠ 1)</span>
+          <p class="mth">Inversa da exponencial. Domínio: x &gt; 0; passa por (1, 0); assíntota vertical em x = 0.</p>
         </div>
       </div>
     </section>
@@ -181,12 +169,14 @@
     <section id="graficos">
       <h2>Gráficos interativos</h2>
 
-      <h3>Gráficos dos tipos principais</h3>
+      <h3>Gráficos dos tipos</h3>
       <div class="grid">
-        <div class="plot-box"><canvas id="g-linear"></canvas></div>
-        <div class="plot-box"><canvas id="g-quad"></canvas></div>
-        <div class="plot-box"><canvas id="g-exp"></canvas></div>
-        <div class="plot-box"><canvas id="g-sen"></canvas></div>
+        <div class="plot-box"><p class="plot-caption">Constante: f(x) = 3</p><canvas id="g-const"></canvas></div>
+        <div class="plot-box"><p class="plot-caption">Afim: f(x) = 2x + 1</p><canvas id="g-afim"></canvas></div>
+        <div class="plot-box"><p class="plot-caption">Linear: f(x) = 2x</p><canvas id="g-linear"></canvas></div>
+        <div class="plot-box"><p class="plot-caption">Quadrática: f(x) = x² − 4x + 3</p><canvas id="g-quad"></canvas></div>
+        <div class="plot-box"><p class="plot-caption">Exponencial: f(x) = 2ˣ</p><canvas id="g-exp"></canvas></div>
+        <div class="plot-box"><p class="plot-caption">Logarítmica: f(x) = ln(x)</p><canvas id="g-log"></canvas></div>
       </div>
 
       <h3>Monte o seu próprio gráfico</h3>
@@ -202,14 +192,12 @@
         </div>
 
         <div class="preset-row">
-          <button class="chip" data-expr="2*x + 1">Linear: 2x + 1</button>
+          <button class="chip" data-expr="3">Constante: 3</button>
+          <button class="chip" data-expr="2*x + 1">Afim: 2x + 1</button>
+          <button class="chip" data-expr="2*x">Linear: 2x</button>
           <button class="chip" data-expr="x^2 - 4*x + 3">Quadrática: x² − 4x + 3</button>
-          <button class="chip" data-expr="x^3 - 3*x">Cúbica: x³ − 3x</button>
-          <button class="chip" data-expr="abs(x)">Valor absoluto: |x|</button>
-          <button class="chip" data-expr="1/x">Racional: 1/x</button>
           <button class="chip" data-expr="2^x">Exponencial: 2ˣ</button>
           <button class="chip" data-expr="ln(x)">Logarítmica: ln(x)</button>
-          <button class="chip" data-expr="sin(x)">Seno: sen(x)</button>
         </div>
 
         <canvas id="fn-canvas" style="margin-top:14px"></canvas>
@@ -477,7 +465,13 @@
   <script src="js/exercises.js?v=4"></script>
   <script>
     /* ---- gráficos dos tipos ---- */
-    Plot.draw('g-linear', [{ expr: '2*x + 1', color: '#34d399', label: 'y = 2x + 1' }],
+    Plot.draw('g-const', [{ expr: '3', color: '#34d399', label: 'y = 3' }],
+      { xmin: -5, xmax: 5, ymin: -2, ymax: 5, height: 240, showLegend: false });
+
+    Plot.draw('g-afim', [{ expr: '2*x + 1', color: '#34d399', label: 'y = 2x + 1' }],
+      { xmin: -5, xmax: 5, height: 240, showLegend: false });
+
+    Plot.draw('g-linear', [{ expr: '2*x', color: '#34d399', label: 'y = 2x' }],
       { xmin: -5, xmax: 5, height: 240, showLegend: false });
 
     Plot.draw('g-quad', [{ expr: 'x^2 - 4*x + 3', color: '#34d399', label: 'y = x² − 4x + 3' }],
@@ -486,8 +480,9 @@
     Plot.draw('g-exp', [{ expr: '2^x', color: '#fbbf24', label: 'y = 2ˣ' }],
       { xmin: -4, xmax: 4, height: 240, showLegend: false });
 
-    Plot.draw('g-sen', [{ expr: 'sin(x)', color: '#60a5fa', label: 'y = sen(x)' }],
-      { xmin: -7, xmax: 7, height: 240, showLegend: false });
+    Plot.draw('g-log', [{ expr: 'ln(x)', color: '#60a5fa', label: 'y = ln(x)' }],
+      { xmin: -1, xmax: 8, height: 240, showLegend: false });
+
 
     /* ---- explorador de gráficos ---- */
     const fnCanvas = document.getElementById('fn-canvas');
