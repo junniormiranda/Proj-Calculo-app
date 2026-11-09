@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -253,7 +253,8 @@
       </p>
 
       <!-- Q1 -->
-      <div class="exercise" data-expect="a*x0 + b" data-tol="0.01"
+      <div class="exercise" data-expect="a*x0 + b"
+           data-plot="fn: a*x + b | point: x0, a*x0 + b | caption: Gráfico de f(x) = a·x + b com o ponto (x₀, f(x₀))" data-tol="0.01"
            data-success="<strong>Correto!</strong> Você calculou f(x₀) certinho. 🎯">
         <p class="q-title">Questão 1 — Avaliação de função</p>
         <p>
@@ -287,7 +288,8 @@
       </div>
 
       <!-- Q2 -->
-      <div class="exercise" data-expect="-b/a" data-tol="0.01"
+      <div class="exercise" data-expect="-b/a"
+           data-plot="fn: a*x + b | point: -b/a, 0 | caption: A raiz é onde a reta corta o eixo x" data-tol="0.01"
            data-success="<strong>Excelente!</strong> Raiz encontrada corretamente. 🎯">
         <p class="q-title">Questão 2 — Raiz de uma função linear</p>
         <p>
@@ -320,7 +322,8 @@
       </div>
 
       <!-- Q3 -->
-      <div class="exercise" data-expect="-b/(2*a); c - b^2/(4*a)" data-tol="0.01"
+      <div class="exercise" data-expect="-b/(2*a); c - b^2/(4*a)"
+           data-plot="fn: a*x^2 + b*x + c | point: -b/(2*a), c - b^2/(4*a) | caption: Parábola com o vértice destacado" data-tol="0.01"
            data-success="<strong>Correto!</strong> Vértice calculado perfeitamente. 🎯">
         <p class="q-title">Questão 3 — Vértice da parábola</p>
         <p>
@@ -358,7 +361,8 @@
       </div>
 
       <!-- Q4 -->
-      <div class="exercise" data-expect="k" data-tol="0.0001"
+      <div class="exercise" data-expect="k"
+           data-plot="fn: 1/(x - k) | vline: k | x: k - 6, k + 6 | y: -6, 6 | caption: f(x) = 1/(x − k) não existe em x = k (assíntota vertical)" data-tol="0.0001"
            data-success="<strong>Certo!</strong> Esse é o ponto proibido do domínio. 🎯">
         <p class="q-title">Questão 4 — Domínio da função racional</p>
         <p>
@@ -389,7 +393,8 @@
       </div>
 
       <!-- Q5 -->
-      <div class="exercise" data-expect="k*b^x0" data-tol="0.01"
+      <div class="exercise" data-expect="k*b^x0"
+           data-plot="fn: k*b^x | point: x0, k*b^x0 | caption: Curva exponencial com o ponto (x₀, f(x₀))" data-tol="0.01"
            data-success="<strong>Correto!</strong> Função exponencial dominada. 🎯">
         <p class="q-title">Questão 5 — Função exponencial</p>
         <p>
@@ -460,9 +465,9 @@
     </div>
   </footer>
 
-  <script src="js/math.js?v=4"></script>
-  <script src="js/graph.js?v=4"></script>
-  <script src="js/exercises.js?v=4"></script>
+  <script src="js/math.js?v=5"></script>
+  <script src="js/graph.js?v=5"></script>
+  <script src="js/exercises.js?v=5"></script>
   <script>
     /* ---- gráficos dos tipos ---- */
     Plot.draw('g-const', [{ expr: '3', color: '#34d399', label: 'y = 3' }],
@@ -514,6 +519,6 @@
     });
     plotFn();
   </script>
-  <script src="js/ui.js?v=4"></script>
+  <script src="js/ui.js?v=5"></script>
 </body>
 </html>

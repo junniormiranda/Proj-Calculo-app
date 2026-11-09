@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -178,9 +178,9 @@
     </div>
   </footer>
 
-  <script src="js/math.js?v=4"></script>
-  <script src="js/graph.js?v=4"></script>
-  <script src="js/ui.js?v=4"></script>
+  <script src="js/math.js?v=5"></script>
+  <script src="js/graph.js?v=5"></script>
+  <script src="js/ui.js?v=5"></script>
   <script>
     (function () {
       var f = function (x) { return x * x * x / 6 - x + 1; };
@@ -188,7 +188,7 @@
       Plot.draw("hero-canvas", [{ fn: f, expr: "x^3/6 - x + 1", color: "#34d399", width: 2.8, label: "f(x)" }], {
         xmin: -4, xmax: 4, ymin: -2.5, ymax: 4.5,
         fills: [{ fn: f, expr: "x^3/6 - x + 1", from: 0.4, to: 2.6, color: "rgba(52,211,153,0.18)", label: "área (integral)" }],
-        lines: [{ y: function (x) { return y0 + m * (x - x0); }, color: "#fbbf24", label: "tangente (derivada)" }],
+        lines: [{ fn: function (x) { return y0 + m * (x - x0); }, color: "#fbbf24", label: "tangente (derivada)" }],
         markers: [{ x: x0, y: y0, type: "dot", color: "#fbbf24" }]
       });
     })();

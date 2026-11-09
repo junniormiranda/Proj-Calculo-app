@@ -13,7 +13,7 @@
      height            altura do canvas em px (padrão 340)
      fills             [{ expr, from, to, color }] áreas sombreadas
      markers           [{ x, y, type: 'open'|'dot', label, color }]
-     lines             [{ y: (x)=>..., color, dash, label }] retas
+     lines             [{ fn: (x)=>..., color, dash, label } | { vertical: x0, color }] retas
      showLegend        boolean (padrão true)
      xLabel, yLabel    rótulos dos eixos
    ========================================================= */

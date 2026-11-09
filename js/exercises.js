@@ -47,6 +47,109 @@
     el.innerHTML = html;
   }
 
+  /* ---------------------------------------------------------
+     Gráfico exibido quando o exercício é resolvido.
+     data-plot="fn: a*x + b | point: x0, a*x0 + b | x: -5, 5"
+       fn      expressão em x (usa as variáveis do exercício)
+       point   ponto destacado "x, y" (pode repetir)
+       hole    bolinha aberta "x, y" (limite)
+       tangent abscissa do ponto de tangência
+       area    intervalo sombreado "de, até"
+       hline   reta horizontal y = valor (assíntota)
+       vline   reta vertical x = valor (assíntota)
+       x / y   janela "mín, máx" (opcional)
+       caption legenda acima do gráfico
+     --------------------------------------------------------- */
+  function parsePlotSpec(str) {
+    const spec = [];
+    str.split('|').forEach(part => {
+      const i = part.indexOf(':');
+      if (i < 0) return;
+      spec.push({ key: part.slice(0, i).trim(), val: part.slice(i + 1).trim() });
+    });
+    return spec;
+  }
+
+  function renderPlot(root, vars) {
+    const raw = root.dataset.plot;
+    if (!raw || typeof Plot === 'undefined') return;
+    removePlot(root);
+
+    const ev = e => MathParser.evaluate(e, vars);
+    const pair = v => v.split(',').map(s => ev(s.trim()));
+    const fmt = n => MathParser.format(Math.round(n * 1e4) / 1e4);
+
+    let fnExpr = null, caption = null, xr = null, yr = null, tangentY = null;
+    const markers = [], lines = [], fills = [], xs = [];
+
+    try {
+      const spec = parsePlotSpec(raw);
+      const fnItem = spec.find(s => s.key === 'fn');
+      if (!fnItem) return;
+      fnExpr = fnItem.val;
+      const compiled = MathParser.compile(fnExpr);
+      const f = x => {
+        try { const v = compiled(Object.assign({}, vars, { x: x })); return isFinite(v) ? v : NaN; }
+        catch (e) { return NaN; }
+      };
+
+      spec.forEach(({ key, val }) => {
+        if (key === 'point' || key === 'hole') {
+          const [x, y] = pair(val);
+          xs.push(x);
+          markers.push({ x, y, type: key === 'hole' ? 'open' : 'dot', label: '(' + fmt(x) + ', ' + fmt(y) + ')' });
+        } else if (key === 'tangent') {
+          const x0 = ev(val), y0 = f(x0), m = Plot.derivative(f, x0);
+          xs.push(x0);
+          const sx = Math.abs(x0) < 1e-9 ? 'x' : '(x ' + (x0 < 0 ? '+ ' : '− ') + fmt(Math.abs(x0)) + ')';
+          const sy = Math.abs(y0) < 1e-9 ? '' : (y0 < 0 ? ' − ' : ' + ') + fmt(Math.abs(y0));
+          lines.push({ fn: x => y0 + m * (x - x0), color: '#f472b6', label: 'tangente: y = ' + fmt(m) + '·' + sx + sy });
+          // janela vertical centrada no ponto de tangência
+          const h = Math.max(3, Math.abs(m) * 2.4);
+          tangentY = [y0 - h, y0 + h];
+          markers.push({ x: x0, y: y0, type: 'dot', color: '#f472b6', label: '(' + fmt(x0) + ', ' + fmt(y0) + ')' });
+        } else if (key === 'area') {
+          const [a, b] = pair(val);
+          xs.push(a, b);
+          fills.push({ fn: f, expr: fnExpr, from: Math.min(a, b), to: Math.max(a, b), color: 'rgba(52,211,153,0.28)', label: 'área de ' + fmt(a) + ' a ' + fmt(b) });
+        } else if (key === 'hline') {
+          const c = ev(val);
+          lines.push({ fn: () => c, color: '#fbbf24', dash: [6, 5], label: 'y = ' + fmt(c) });
+        } else if (key === 'vline') {
+          lines.push({ vertical: ev(val), color: 'rgba(251,191,36,0.6)' });
+        } else if (key === 'x') xr = pair(val);
+        else if (key === 'y') yr = pair(val);
+        else if (key === 'caption') caption = val;
+      });
+
+      if (!xr || !xr.every(isFinite)) {
+        if (xs.length) {
+          const lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
+          const pad = Math.max(3, (hi - lo) * 0.35);
+          xr = [lo - pad, hi + pad];
+        } else xr = [-6, 6];
+      }
+
+      const box = document.createElement('div');
+      box.className = 'ex-plot';
+      box.innerHTML = '<p class="ex-plot-title">' + (caption || 'Visualização da sua resposta') + '</p><canvas></canvas>';
+      const anchor = root.querySelector('.feedback');
+      anchor.parentNode.insertBefore(box, anchor.nextSibling);
+
+      const opts = { xmin: xr[0], xmax: xr[1], height: 300, markers, lines, fills };
+      if ((!yr || !yr.every(isFinite)) && tangentY && tangentY.every(isFinite)) yr = tangentY;
+      if (yr && yr.every(isFinite)) { opts.ymin = Math.min(yr[0], yr[1]); opts.ymax = Math.max(yr[0], yr[1]); }
+      Plot.draw(box.querySelector('canvas'), [{ fn: f, expr: fnExpr, color: '#34d399', label: 'f(x)' }], opts);
+    } catch (e) {
+      console.warn('Gráfico do exercício não pôde ser gerado:', e);
+      removePlot(root);
+    }
+  }
+
+  function removePlot(root) {
+    root.querySelectorAll('.ex-plot').forEach(el => el.remove());
+  }
+
   function initExercise(root) {
     const expects = (root.dataset.expect || '').split(';').map(s => s.trim()).filter(Boolean);
     const tol = parseFloat(root.dataset.tol || '0.01');
@@ -108,9 +211,12 @@
         showFeedback(feedback, 'ok', successMsg);
         if (solution) solution.classList.add('show');
         root.classList.add('solved');
+        renderPlot(root, vars);
         return;
       }
 
+      removePlot(root);
+      root.classList.remove('solved');
       attempts++;
       let msg = attempts === 1
         ? '<strong>Incorreto.</strong> Revise os passos e tente novamente.'
@@ -139,6 +245,7 @@
       if (solution) solution.classList.remove('show');
       if (btnSol) btnSol.textContent = 'Ver solução';
       root.classList.remove('solved');
+      removePlot(root);
     });
 
     // Enter verifica

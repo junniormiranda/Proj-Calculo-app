@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -264,7 +264,8 @@
       <p class="muted">Preencha os campos e clique em <strong>Verificar</strong>.</p>
 
       <!-- Q1 -->
-      <div class="exercise" data-expect="a*n*x0^(n-1)" data-tol="0.01"
+      <div class="exercise" data-expect="a*n*x0^(n-1)"
+           data-plot="fn: a*x^n | tangent: x0 | caption: A derivada é a inclinação da reta tangente em x₀" data-tol="0.01"
            data-success="<strong>Correto!</strong> Regra da potência aplicada. 🎯">
         <p class="q-title">Questão 1 — Derivada de uma potência</p>
         <p>
@@ -297,7 +298,8 @@
       </div>
 
       <!-- Q2 -->
-      <div class="exercise" data-expect="2*a*x0 + b; (a*x0^2 + b*x0 + c) - (2*a*x0 + b)*x0" data-tol="0.01"
+      <div class="exercise" data-expect="2*a*x0 + b; (a*x0^2 + b*x0 + c) - (2*a*x0 + b)*x0"
+           data-plot="fn: a*x^2 + b*x + c | tangent: x0 | caption: Parábola e a reta tangente que você encontrou" data-tol="0.01"
            data-success="<strong>Excelente!</strong> Tangente montada corretamente. 🎯">
         <p class="q-title">Questão 2 — Reta tangente de uma parábola</p>
         <p>
@@ -337,7 +339,8 @@
       </div>
 
       <!-- Q3 -->
-      <div class="exercise" data-expect="a*(c*x0 + d) + c*(a*x0 + b)" data-tol="0.01"
+      <div class="exercise" data-expect="a*(c*x0 + d) + c*(a*x0 + b)"
+           data-plot="fn: (a*x + b)*(c*x + d) | tangent: x0 | caption: f(x) = (ax + b)(cx + d) e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Certo!</strong> Regra do produto aplicada. 🎯">
         <p class="q-title">Questão 3 — Regra do produto</p>
         <p>
@@ -373,7 +376,8 @@
       </div>
 
       <!-- Q4 -->
-      <div class="exercise" data-expect="(a*(c*x0 + d) - c*(a*x0 + b))/(c*x0 + d)^2" data-tol="0.01"
+      <div class="exercise" data-expect="(a*(c*x0 + d) - c*(a*x0 + b))/(c*x0 + d)^2"
+           data-plot="fn: (a*x + b)/(c*x + d) | tangent: x0 | y: (a*x0 + b)/(c*x0 + d) - 6, (a*x0 + b)/(c*x0 + d) + 6 | caption: f(x) = (ax + b)/(cx + d) e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Correto!</strong> Regra do quociente perfeita. 🎯">
         <p class="q-title">Questão 4 — Regra do quociente</p>
         <p>
@@ -409,7 +413,8 @@
       </div>
 
       <!-- Q5 -->
-      <div class="exercise" data-expect="a*n*(a*x0 + b)^(n-1)" data-tol="0.01"
+      <div class="exercise" data-expect="a*n*(a*x0 + b)^(n-1)"
+           data-plot="fn: (a*x + b)^n | tangent: x0 | caption: f(x) = (ax + b)ⁿ e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Ótimo!</strong> Cadeia dominada. 🎯">
         <p class="q-title">Questão 5 — Regra da cadeia</p>
         <p>
@@ -481,9 +486,9 @@
     </div>
   </footer>
 
-  <script src="js/math.js?v=4"></script>
-  <script src="js/graph.js?v=4"></script>
-  <script src="js/exercises.js?v=4"></script>
+  <script src="js/math.js?v=5"></script>
+  <script src="js/graph.js?v=5"></script>
+  <script src="js/exercises.js?v=5"></script>
   <script>
     const dvCanvas = document.getElementById('dv-canvas');
     const dvExpr = document.getElementById('dv-expr');
@@ -561,6 +566,6 @@
     });
     plotTangent();
   </script>
-  <script src="js/ui.js?v=4"></script>
+  <script src="js/ui.js?v=5"></script>
 </body>
 </html>

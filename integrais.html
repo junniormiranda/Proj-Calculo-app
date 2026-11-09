@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -255,7 +255,8 @@
       <p class="muted">Preencha os campos e clique em <strong>Verificar</strong>. Use vírgula ou ponto para decimais.</p>
 
       <!-- Q1 -->
-      <div class="exercise" data-expect="k*(s^(n+1) - i^(n+1))/(n+1)" data-tol="0.01"
+      <div class="exercise" data-expect="k*(s^(n+1) - i^(n+1))/(n+1)"
+           data-plot="fn: k*x^n | area: i, s | caption: A integral é a área (com sinal) sob a curva" data-tol="0.01"
            data-success="<strong>Correto!</strong> Potência integrada certinho. 🎯">
         <p class="q-title">Questão 1 — Integral de uma potência</p>
         <p>
@@ -288,7 +289,8 @@
       </div>
 
       <!-- Q2 -->
-      <div class="exercise" data-expect="m/2*(s^2 - i^2) + b*(s - i)" data-tol="0.01"
+      <div class="exercise" data-expect="m/2*(s^2 - i^2) + b*(s - i)"
+           data-plot="fn: m*x + b | area: i, s | caption: Área sob a reta entre os limites de integração" data-tol="0.01"
            data-success="<strong>Excelente!</strong> Integral linear perfeita. 🎯">
         <p class="q-title">Questão 2 — Integral de uma função linear</p>
         <p>
@@ -321,7 +323,8 @@
       </div>
 
       <!-- Q3 -->
-      <div class="exercise" data-expect="k*b^(n+1)/(n+1)" data-tol="0.01"
+      <div class="exercise" data-expect="k*b^(n+1)/(n+1)"
+           data-plot="fn: k*x^n | area: 0, b | caption: Área sob a curva de 0 até b" data-tol="0.01"
            data-success="<strong>Certo!</strong> Limite inferior zero facilitou tudo. 🎯">
         <p class="q-title">Questão 3 — De zero até b</p>
         <p>
@@ -353,7 +356,8 @@
       </div>
 
       <!-- Q4 -->
-      <div class="exercise" data-expect="a*(s^3 - i^3)/3 + b*(s^2 - i^2)/2 + c*(s - i)" data-tol="0.01"
+      <div class="exercise" data-expect="a*(s^3 - i^3)/3 + b*(s^2 - i^2)/2 + c*(s - i)"
+           data-plot="fn: a*x^2 + b*x + c | area: i, s | caption: Área sob o polinômio entre os limites" data-tol="0.01"
            data-success="<strong>Ótimo!</strong> Polinômio integrado termo a termo. 🎯">
         <p class="q-title">Questão 4 — Integral de um polinômio</p>
         <p>
@@ -387,7 +391,8 @@
       </div>
 
       <!-- Q5 -->
-      <div class="exercise" data-expect="k/(a*(n+1))*((a*s + b)^(n+1) - (a*i + b)^(n+1))" data-tol="0.01"
+      <div class="exercise" data-expect="k/(a*(n+1))*((a*s + b)^(n+1) - (a*i + b)^(n+1))"
+           data-plot="fn: k*(a*x + b)^n | area: i, s | caption: Área sob k·(ax + b)ⁿ entre os limites" data-tol="0.01"
            data-success="<strong>Impressionante!</strong> Substituição aplicada corretamente. 🏆">
         <p class="q-title">Questão 5 — Composição (substituição)</p>
         <p>
@@ -461,9 +466,9 @@
     </div>
   </footer>
 
-  <script src="js/math.js?v=4"></script>
-  <script src="js/graph.js?v=4"></script>
-  <script src="js/exercises.js?v=4"></script>
+  <script src="js/math.js?v=5"></script>
+  <script src="js/graph.js?v=5"></script>
+  <script src="js/exercises.js?v=5"></script>
   <script>
     const igCanvas = document.getElementById('ig-canvas');
     const igExpr = document.getElementById('ig-expr');
@@ -518,6 +523,6 @@
     });
     plotIntegral();
   </script>
-  <script src="js/ui.js?v=4"></script>
+  <script src="js/ui.js?v=5"></script>
 </body>
 </html>
