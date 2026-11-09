@@ -73,10 +73,33 @@ const Plot = (function () {
     return [ymin - pad, ymax + pad];
   }
 
+  /* redesenha automaticamente quando o canvas muda de largura */
+  const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(entries => {
+    entries.forEach(e => {
+      const c = e.target, st = c.__plot;
+      if (!st) return;
+      const w = Math.round(e.contentRect.width);
+      if (w && w !== st.w) { st.w = w; draw(c, st.specs, st.opts); }
+    });
+  }) : null;
+
+  function watchResize(canvas, specs, opts) {
+    const first = !canvas.__plot;
+    canvas.__plot = { specs: specs, opts: opts, w: Math.round(canvas.clientWidth) };
+    if (first) { all.add(canvas); if (ro) ro.observe(canvas); }
+  }
+
+  /* redesenha quando as fontes web terminam de carregar */
+  const all = new Set();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => all.forEach(c => draw(c, c.__plot.specs, c.__plot.opts)));
+  }
+
   function draw(canvas, specs, opts) {
     if (typeof canvas === 'string') canvas = document.getElementById(canvas);
     if (!canvas || !canvas.getContext) { console.error('Plot.draw: canvas inválido.', canvas); return; }
     opts = opts || {};
+    watchResize(canvas, specs, opts);
     specs = (specs || []).filter(s => s && (s.expr || s.fn));
 
     const resolved = specs.map((s, i) => Object.assign({}, s, {
@@ -121,7 +144,7 @@ const Plot = (function () {
     const stepX = niceStep(o.xmax - o.xmin, 7);
     const stepY = niceStep(yRange, 6);
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(16,185,129,0.10)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.055)';
     ctx.beginPath();
     for (let v = Math.ceil(o.xmin / stepX) * stepX; v <= o.xmax; v += stepX) {
       ctx.moveTo(px(v), PAD); ctx.lineTo(px(v), H - PAD);
@@ -132,16 +155,16 @@ const Plot = (function () {
     ctx.stroke();
 
     /* eixos */
-    ctx.strokeStyle = 'rgba(110,231,183,0.75)';
-    ctx.lineWidth = 1.6;
+    ctx.strokeStyle = 'rgba(184,199,192,0.55)';
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
     if (o.ymin <= 0 && o.ymax >= 0) { ctx.moveTo(PAD, py(0)); ctx.lineTo(W - PAD, py(0)); }
     if (o.xmin <= 0 && o.xmax >= 0) { ctx.moveTo(px(0), PAD); ctx.lineTo(px(0), H - PAD); }
     ctx.stroke();
 
     /* rótulos dos eixos */
-    ctx.fillStyle = 'rgba(139,165,152,0.95)';
-    ctx.font = '11px Segoe UI, sans-serif';
+    ctx.fillStyle = 'rgba(132,151,143,0.95)';
+    ctx.font = '500 11px Inter, Segoe UI, sans-serif';
     ctx.textAlign = 'center';
     for (let v = Math.ceil(o.xmin / stepX) * stepX; v <= o.xmax; v += stepX) {
       if (Math.abs(v) < 1e-9) continue;
@@ -152,8 +175,8 @@ const Plot = (function () {
       if (Math.abs(v) < 1e-9) continue;
       ctx.fillText(fmtTick(v), px(0) - 7, py(v) + 4);
     }
-    ctx.fillStyle = 'rgba(110,231,183,0.9)';
-    ctx.font = 'italic 12px Georgia, serif';
+    ctx.fillStyle = 'rgba(167,243,208,0.9)';
+    ctx.font = 'italic 14px "STIX Two Text", Georgia, serif';
     ctx.textAlign = 'left';
     ctx.fillText(opts.xLabel || 'x', W - PAD + 6, py(0) + 4);
     ctx.fillText(opts.yLabel || 'y', px(0) + 8, PAD - 6);
@@ -247,7 +270,7 @@ const Plot = (function () {
       }
       if (m.label) {
         ctx.fillStyle = col;
-        ctx.font = '12px Segoe UI, sans-serif';
+        ctx.font = '500 12px Inter, Segoe UI, sans-serif';
         ctx.textAlign = 'left';
         ctx.fillText(m.label, px(m.x) + 10, py(m.y) - 8);
       }
@@ -268,12 +291,12 @@ const Plot = (function () {
     });
 
     if (legendItems.length && opts.showLegend !== false) {
-      ctx.font = '12px Segoe UI, sans-serif';
+      ctx.font = '500 12px Inter, Segoe UI, sans-serif';
       let lx = PAD + 10, ly = 12;
       const boxW = Math.max(...legendItems.map(it => ctx.measureText(it.label).width)) + 34;
       const boxH = legendItems.length * 20 + 12;
-      ctx.fillStyle = 'rgba(5,7,6,0.82)';
-      ctx.strokeStyle = 'rgba(16,185,129,0.3)';
+      ctx.fillStyle = 'rgba(11,15,14,0.88)';
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.roundRect(lx - 6, ly, boxW, boxH, 8);
@@ -289,14 +312,14 @@ const Plot = (function () {
         ctx.lineTo(lx + 18, ly - 5);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = '#d9e8e0';
+        ctx.fillStyle = '#e6eeea';
         ctx.textAlign = 'left';
         ctx.fillText(it.label, lx + 26, ly - 1);
       });
     }
 
     /* moldura */
-    ctx.strokeStyle = 'rgba(16,185,129,0.25)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
     ctx.lineWidth = 1;
     ctx.strokeRect(PAD, PAD, W - PAD * 2, H - PAD * 2);
   }
