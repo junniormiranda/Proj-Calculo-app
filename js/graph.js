@@ -137,7 +137,7 @@ const Plot = (function () {
 
     /* fundo */
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#060a08';
+    ctx.fillStyle = '#0a0f1c';
     ctx.fillRect(0, 0, W, H);
 
     /* grade */
@@ -259,7 +259,7 @@ const Plot = (function () {
       ctx.beginPath();
       ctx.arc(px(m.x), py(m.y), 6, 0, Math.PI * 2);
       if (m.type === 'open') {
-        ctx.fillStyle = '#060a08';
+        ctx.fillStyle = '#0a0f1c';
         ctx.fill();
         ctx.strokeStyle = col;
         ctx.lineWidth = 2.4;
@@ -295,7 +295,7 @@ const Plot = (function () {
       let lx = PAD + 10, ly = 12;
       const boxW = Math.max(...legendItems.map(it => ctx.measureText(it.label).width)) + 34;
       const boxH = legendItems.length * 20 + 12;
-      ctx.fillStyle = 'rgba(11,15,14,0.88)';
+      ctx.fillStyle = 'rgba(17,24,39,0.9)';
       ctx.strokeStyle = 'rgba(255,255,255,0.12)';
       ctx.lineWidth = 1;
       ctx.beginPath();
