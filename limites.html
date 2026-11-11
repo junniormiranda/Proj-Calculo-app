@@ -165,21 +165,6 @@
             <button type="button" class="btn small ghost type-reset">Restaurar</button>
           </div>
         </article>
-        <article class="card type-card" data-type="lim-trig">
-          <div class="type-info">
-            <span class="tag">Caso 6</span>
-            <h3>Trigonométricos notáveis</h3>
-            <span class="formula">lim<sub>x→0</sub> sen(x)/x = 1</span>
-            <p class="mth">Consequência: lim x→0 sen(kx)/x = k. E lim x→0 (1 − cos x)/x = 0.</p>
-            <p class="muted try">Mova <strong>k</strong>: o buraco em x = 0 sobe até a altura k.</p>
-          </div>
-          <div class="type-plot">
-            <p class="plot-caption type-live" aria-live="polite"></p>
-            <canvas></canvas>
-            <div class="sliders"></div>
-            <button type="button" class="btn small ghost type-reset">Restaurar</button>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -198,7 +183,6 @@
         <div class="preset-row">
           <button class="chip" data-expr="(x^2 - 9)/(x - 3)" data-a="3">(x²−9)/(x−3), x→3</button>
           <button class="chip" data-expr="(x^2 - 1)/(x - 1)" data-a="1">(x²−1)/(x−1), x→1</button>
-          <button class="chip" data-expr="sin(x)/x" data-a="0">sen(x)/x, x→0</button>
           <button class="chip" data-expr="abs(x)/x" data-a="0">|x|/x, x→0 (não existe)</button>
           <button class="chip" data-expr="1/x" data-a="0">1/x, x→0 (∞)</button>
           <button class="chip" data-expr="x^2 + 1" data-a="2">x²+1, x→2 (direto)</button>
@@ -296,15 +280,6 @@
         </ol>
       </div>
 
-      <div class="exercise">
-        <p class="q-title">Resolvido F — Limite trigonométrico</p>
-        <p>Calcule <span class="mth">lim<sub>x→0</sub> sen(2x)/(3x)</span>.</p>
-        <ol class="steps">
-          <li>Escreva <span class="mth">(2/3) · [sen(2x)/(2x)]</span>.</li>
-          <li>Com <span class="mth">u = 2x</span>, <span class="mth">u → 0</span> e <span class="mth">lim<sub>u→0</sub> sen(u)/u = 1</span>.</li>
-          <li><strong>Resposta: 2/3 ≈ 0,6667.</strong></li>
-        </ol>
-      </div>
     </section>
 
     <!-- ================= EXERCÍCIOS PROPOSTOS ================= -->
@@ -344,41 +319,10 @@
       </div>
 
       <!-- Q2 -->
-      <div class="exercise" data-expect="k"
-           data-plot="fn: sin(k*x)/x | hole: 0, k | x: -6, 6 | caption: sen(kx)/x se aproxima de k quando x → 0" data-tol="0.01"
-           data-success="<strong>Certo!</strong> Limite trigonométrico certo. 🎯">
-        <p class="q-title">Questão 2 — Limite trigonométrico</p>
-        <p>
-          Calcule <span class="mth">lim<sub>x→0</sub> sen(k·x)/x</span> para
-          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:80px"></span>.
-        </p>
-        <div class="inputs-row">
-          <div class="field answer-field">
-            <label>Resposta: limite =</label>
-            <input type="number" data-answer step="any" placeholder="valor">
-          </div>
-          <div class="actions">
-            <button class="btn small btn-check">Verificar</button>
-            <button class="btn small ghost btn-solution">Ver solução</button>
-            <button class="btn small ghost btn-reset">Limpar</button>
-          </div>
-        </div>
-        <div class="feedback"></div>
-        <div class="solution">
-          <h4>Solução passo a passo</h4>
-          <ol class="steps">
-            <li>Multiplique e divida por <span class="mth">k</span>: <span class="mth">k · sen(kx)/(kx)</span>.</li>
-            <li>Como <span class="mth">x→0</span>, também <span class="mth">kx→0</span>.</li>
-            <li>Como <span class="mth">lim<sub>u→0</sub> sen(u)/u = 1</span>, o resultado é <span class="mth">k · 1 = k</span>.</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q3 -->
       <div class="exercise" data-expect="m/n"
            data-plot="fn: (m*x^2 + 3)/(n*x^2 - 5) | hline: m/n | x: 0, 30 | y: m/n - 2*abs(m/n) - 1, m/n + 2*abs(m/n) + 1 | caption: Para x grande, a função se aproxima da assíntota y = m/n" data-tol="0.01"
            data-success="<strong>Excelente!</strong> Proporção de graus correta. 🎯">
-        <p class="q-title">Questão 3 — Limite no infinito</p>
+        <p class="q-title">Questão 2 — Limite no infinito</p>
         <p>
           Calcule <span class="mth">lim<sub>x→∞</sub> (m·x² + 3)/(n·x² − 5)</span> com
           <span class="mth">m = <input type="number" data-var="m" step="any" style="width:75px"> </span>
@@ -407,11 +351,11 @@
         </div>
       </div>
 
-      <!-- Q4 -->
+      <!-- Q3 -->
       <div class="exercise" data-expect="3*a^2"
            data-plot="fn: (x^3 - a^3)/(x - a) | hole: a, 3*a^2 | caption: A função não existe em x = a, mas tende a 3a²" data-tol="0.01"
            data-success="<strong>Correto!</strong> Diferência de cubos dominada. 🎯">
-        <p class="q-title">Questão 4 — Diferência de cubos</p>
+        <p class="q-title">Questão 3 — Diferença de cubos</p>
         <p>
           Calcule <span class="mth">lim<sub>x→a</sub> (x³ − a³)/(x − a)</span> para
           <span class="mth">a = <input type="number" data-var="a" step="any" style="width:80px"></span>.
@@ -434,39 +378,6 @@
             <li>Identidade: <span class="mth">x³ − a³ = (x − a)(x² + x·a + a²)</span>.</li>
             <li>Simplifique o fator <span class="mth">(x − a)</span>.</li>
             <li>Substitua <span class="mth">x = a</span>: <span class="mth">a² + a² + a² = 3a²</span>.</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q5 -->
-      <div class="exercise" data-expect="k/m"
-           data-plot="fn: sin(k*x)/(m*x) | hole: 0, k/m | x: -6, 6 | caption: sen(kx)/(mx) se aproxima de k/m quando x → 0" data-tol="0.01"
-           data-success="<strong>Certo!</strong> Ajuste de constantes perfeito. 🎯">
-        <p class="q-title">Questão 5 — Limite com duas constantes</p>
-        <p>
-          Calcule <span class="mth">lim<sub>x→0</sub> sen(k·x)/(m·x)</span> com
-          <span class="mth">k = <input type="number" data-var="k" step="any" style="width:75px"> </span>
-          e <span class="mth">m = <input type="number" data-var="m" step="any" style="width:75px"></span>
-          (<span class="mth">m ≠ 0</span>).
-        </p>
-        <div class="inputs-row">
-          <div class="field answer-field">
-            <label>Resposta: limite =</label>
-            <input type="number" data-answer step="any" placeholder="valor">
-          </div>
-          <div class="actions">
-            <button class="btn small btn-check">Verificar</button>
-            <button class="btn small ghost btn-solution">Ver solução</button>
-            <button class="btn small ghost btn-reset">Limpar</button>
-          </div>
-        </div>
-        <div class="feedback"></div>
-        <div class="solution">
-          <h4>Solução passo a passo</h4>
-          <ol class="steps">
-            <li>Reescreva: <span class="mth">(k/m) · [sen(kx)/(kx)]</span>.</li>
-            <li>O colchete tende a 1 quando <span class="mth">x→0</span>.</li>
-            <li>Resultado: <span class="mth">k/m</span>.</li>
           </ol>
         </div>
       </div>
@@ -513,7 +424,7 @@
   <script src="js/math.js?v=8"></script>
   <script src="js/graph.js?v=8"></script>
   <script src="js/exercises.js?v=8"></script>
-  <script src="js/types.js?v=10"></script>
+  <script src="js/types.js?v=11"></script>
   <script>
     /* ---- estimativa numérica do limite ---- */
     function estimateLimit(fn, a) {

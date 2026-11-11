@@ -232,18 +232,6 @@
         lines: [{ vertical: p.a, color: VLINE }]
       })
     },
-    'lim-trig': {
-      params: { k: { min: 0.5, max: 4, step: 0.5, value: 1 } },
-      view: p => ({ xmin: -10, xmax: 10, ymin: -1.5, ymax: Math.max(p.k, 1) + 1 }),
-      formula: p => p.k === 1
-        ? lim('0') + 'sen(x)/x = 1'
-        : lim('0') + 'sen(' + num(p.k) + 'x)/x = ' + num(p.k) + ' · ' + lim('0') + 'sen(' + num(p.k) + 'x)/(' + num(p.k) + 'x) = ' + num(p.k),
-      plot: p => ({
-        curves: [{ fn: x => (x === 0 ? NaN : Math.sin(p.k * x) / x) }],
-        markers: [{ x: 0, y: p.k, type: 'open', color: BLUE, label: 'lim = ' + num(p.k) }],
-        lines: [{ vertical: 0, color: VLINE }]
-      })
-    },
 
     /* ---------------- DERIVADAS ---------------- */
     'der-constante': {
