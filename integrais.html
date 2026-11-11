@@ -47,7 +47,7 @@
     <section id="sumario">
       <h2>Nesta página</h2>
       <ul class="clean">
-        <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
+        <li><a href="#conceito">Conceito</a> · <a href="#regras">Regras</a> · <a href="#tipos">Tipos</a> ·
           <a href="#graficos">Área sob a curva</a> ·
           <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
           <a href="#ex-propostos">Exercícios propostos</a></li>
@@ -82,6 +82,89 @@
         <li>Área <strong>sempre</strong> é positiva: use módulo quando a curva desce abaixo do eixo.</li>
         <li>Integral acumula sinal: parte negativa “cancela” parte positiva.</li>
       </ul>
+    </section>
+
+    <!-- ================= REGRAS ================= -->
+    <section id="regras">
+      <h2>Regras de integração</h2>
+      <p class="muted">Cinco regras básicas para calcular antiderivadas. Em cada gráfico, F (laranja) é a antiderivada e f (azul tracejado) é o integrando: como F′ = f, a inclinação de F em cada ponto é a altura de f.</p>
+      <div class="type-list">
+        <article class="card type-card" data-type="int-r-constante">
+          <div class="type-info">
+            <span class="tag">Regra 1</span>
+            <h3>Regra da constante</h3>
+            <span class="formula">∫ k dx = k·x + C</span>
+            <p class="mth">A integral de uma constante é a constante vezes x. Ex.: ∫ 5 dx = 5x + C · ∫ dx = x + C.</p>
+            <p class="muted try">Mova <strong>k</strong> e <strong>C</strong>. Azul tracejado: o integrando f(x) = k. Laranja: a antiderivada F(x) = kx + C, uma reta de inclinação k.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-r-potencia">
+          <div class="type-info">
+            <span class="tag">Regra 2</span>
+            <h3>Regra da potência</h3>
+            <span class="formula">∫ xⁿ dx = xⁿ⁺¹/(n + 1) + C &nbsp;(n ≠ −1)</span>
+            <p class="mth">Some 1 ao expoente e divida pelo novo expoente. Ex.: ∫ x³ dx = x⁴/4 + C. Para n = −1: ∫ 1/x dx = ln|x| + C.</p>
+            <p class="muted try">Mova <strong>n</strong> e <strong>x₀</strong>: a inclinação da tangente (rosa) a F é igual à altura do integrando (ponto azul).</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-r-soma">
+          <div class="type-info">
+            <span class="tag">Regra 3</span>
+            <h3>Regra da soma e da subtração</h3>
+            <span class="formula">∫ [f(x) ± g(x)] dx = ∫ f(x) dx ± ∫ g(x) dx</span>
+            <p class="mth">Integre termo a termo, mantendo os sinais. Constantes que multiplicam saem da integral: ∫ c·f(x) dx = c·∫ f(x) dx.</p>
+            <p class="muted try">Troque a <strong>operação</strong> em ∫ (x² ± 2) dx. As curvas cinza são as parcelas x³/3 e ±2x, que somadas dão F.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-r-exponencial">
+          <div class="type-info">
+            <span class="tag">Regra 4</span>
+            <h3>Regra da exponencial</h3>
+            <span class="formula">∫ eˣ dx = eˣ + C &nbsp;·&nbsp; ∫ aˣ dx = aˣ/ln a + C</span>
+            <p class="mth">A exponencial de base e é a própria integral. Para outra base a (a &gt; 0, a ≠ 1), divida por ln a.</p>
+            <p class="muted try">Mova a <strong>base a</strong>: com a = e, F e f coincidem. Para outras bases, F é f dividida por ln a.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-r-trig">
+          <div class="type-info">
+            <span class="tag">Regra 5</span>
+            <h3>Regra trigonométrica</h3>
+            <span class="formula">∫ sen x dx = −cos x + C &nbsp;·&nbsp; ∫ cos x dx = sen x + C</span>
+            <p class="mth">Atenção ao sinal: a integral do seno é <strong>menos</strong> cosseno. Confira derivando: (−cos x)′ = sen x.</p>
+            <p class="muted try">Troque a <strong>função</strong> e mova <strong>x₀</strong>: a tangente a F tem sempre a inclinação dada pelo integrando.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- ================= TIPOS ================= -->
@@ -223,10 +306,64 @@
     <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
     <section id="ex-resolvidos">
       <h2>Exercícios resolvidos</h2>
-      <p class="muted">Um exercício para cada tipo de integral, resolvido passo a passo.</p>
+      <p class="muted">Um exercício para cada regra de integração (A–E) e para cada tipo de integral (F–K), resolvidos passo a passo.</p>
 
       <div class="exercise">
-        <p class="q-title">Resolvido A — Integral indefinida</p>
+        <p class="q-title">Resolvido A — Regra da constante</p>
+        <p>Calcule <span class="mth">∫ 7 dx</span> e <span class="mth">∫<sub>1</sub><sup>4</sup> 5 dx</span>.</p>
+        <ol class="steps">
+          <li>Pela regra da constante: <span class="mth">∫ 7 dx = 7x + C</span>.</li>
+          <li>Para a definida, a antiderivada de 5 é <span class="mth">5x</span>: <span class="mth">5·4 − 5·1 = 15</span>.</li>
+          <li>Confira pela geometria: é um retângulo de base <span class="mth">4 − 1 = 3</span> e altura 5.</li>
+          <li><strong>Resposta:</strong> <span class="mth">7x + C</span> e <span class="mth">15</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido B — Regra da potência</p>
+        <p>Calcule <span class="mth">∫ x⁴ dx</span>, <span class="mth">∫ 1/x³ dx</span> e <span class="mth">∫ √x dx</span>.</p>
+        <ol class="steps">
+          <li><span class="mth">∫ x⁴ dx = x⁵/5 + C</span>.</li>
+          <li>Escreva <span class="mth">1/x³ = x⁻³</span>: <span class="mth">∫ x⁻³ dx = x⁻²/(−2) + C = −1/(2x²) + C</span>.</li>
+          <li>Escreva <span class="mth">√x = x<sup>1/2</sup></span>: <span class="mth">∫ x<sup>1/2</sup> dx = x<sup>3/2</sup>/(3/2) + C = (2/3)·x<sup>3/2</sup> + C</span>.</li>
+          <li><strong>Dica:</strong> reescreva raízes e frações como potências antes de integrar.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido C — Regra da soma e da subtração</p>
+        <p>Calcule <span class="mth">∫ (4x³ − 6x + 2) dx</span>.</p>
+        <ol class="steps">
+          <li>Separe termo a termo: <span class="mth">∫ 4x³ dx − ∫ 6x dx + ∫ 2 dx</span>.</li>
+          <li><span class="mth">4·x⁴/4 = x⁴</span>, <span class="mth">6·x²/2 = 3x²</span> e <span class="mth">2x</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">x⁴ − 3x² + 2x + C</span>. Confira: a derivada devolve <span class="mth">4x³ − 6x + 2</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido D — Regra da exponencial</p>
+        <p>Calcule <span class="mth">∫ (3eˣ + 2ˣ) dx</span> e <span class="mth">∫<sub>0</sub><sup>1</sup> eˣ dx</span>.</p>
+        <ol class="steps">
+          <li><span class="mth">∫ 3eˣ dx = 3eˣ</span> e <span class="mth">∫ 2ˣ dx = 2ˣ/ln 2</span>.</li>
+          <li>Logo <span class="mth">∫ (3eˣ + 2ˣ) dx = 3eˣ + 2ˣ/ln 2 + C</span>.</li>
+          <li>Definida: <span class="mth">[eˣ]<sub>0</sub><sup>1</sup> = e¹ − e⁰ = e − 1</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">3eˣ + 2ˣ/ln 2 + C</span> e <span class="mth">e − 1 ≈ 1,718</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido E — Regra trigonométrica</p>
+        <p>Calcule <span class="mth">∫ (2cos x − sen x) dx</span> e <span class="mth">∫<sub>0</sub><sup>π</sup> sen x dx</span>.</p>
+        <ol class="steps">
+          <li><span class="mth">∫ 2cos x dx = 2 sen x</span> e <span class="mth">∫ sen x dx = −cos x</span>.</li>
+          <li>Logo <span class="mth">∫ (2cos x − sen x) dx = 2 sen x − (−cos x) + C = 2 sen x + cos x + C</span>.</li>
+          <li>Definida: <span class="mth">[−cos x]<sub>0</sub><sup>π</sup> = −cos π − (−cos 0) = 1 + 1 = 2</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">2 sen x + cos x + C</span> e <span class="mth">2</span> (área de um “arco” do seno).</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido F — Integral indefinida</p>
         <p>Calcule <span class="mth">∫ (3x² + 2x − 5) dx</span>.</p>
         <ol class="steps">
           <li>Integre termo a termo pela potência: <span class="mth">∫3x² dx = x³</span>, <span class="mth">∫2x dx = x²</span>, <span class="mth">∫5 dx = 5x</span>.</li>
@@ -236,7 +373,7 @@
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido B — Integral definida</p>
+        <p class="q-title">Resolvido G — Integral definida</p>
         <p>Calcule <span class="mth">∫<sub>1</sub><sup>3</sup> (2x + 1) dx</span>.</p>
         <ol class="steps">
           <li>Antiderivada: <span class="mth">F(x) = x² + x</span>.</li>
@@ -246,7 +383,7 @@
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido C — Por substituição</p>
+        <p class="q-title">Resolvido H — Por substituição</p>
         <p>Calcule <span class="mth">∫ 2x·(x² + 1)³ dx</span>.</p>
         <ol class="steps">
           <li>Escolha <span class="mth">u = x² + 1</span>; então <span class="mth">du = 2x dx</span>.</li>
@@ -256,7 +393,7 @@
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido D — Por partes</p>
+        <p class="q-title">Resolvido I — Por partes</p>
         <p>Calcule <span class="mth">∫ x·eˣ dx</span>.</p>
         <ol class="steps">
           <li>Escolha <span class="mth">u = x</span> (fica mais simples ao derivar) e <span class="mth">dv = eˣ dx</span>.</li>
@@ -267,7 +404,7 @@
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido E — Área entre curvas</p>
+        <p class="q-title">Resolvido J — Área entre curvas</p>
         <p>Calcule a área entre <span class="mth">y = x</span> e <span class="mth">y = x²</span>.</p>
         <ol class="steps">
           <li>Interseções: <span class="mth">x = x²</span> ⇒ <span class="mth">x(x − 1) = 0</span> ⇒ <span class="mth">x = 0</span> e <span class="mth">x = 1</span>.</li>
@@ -278,7 +415,7 @@
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido F — Acumulação (deslocamento)</p>
+        <p class="q-title">Resolvido K — Acumulação (deslocamento)</p>
         <p>Um carro tem velocidade <span class="mth">v(t) = 3 + 2t</span> m/s. Quanto ele percorre de <span class="mth">t = 0</span> a <span class="mth">t = 4</span> s?</p>
         <ol class="steps">
           <li>O deslocamento é a integral da velocidade: <span class="mth">Δs = ∫<sub>0</sub><sup>4</sup> (3 + 2t) dt</span>.</li>
@@ -509,7 +646,7 @@
   <script src="js/math.js?v=8"></script>
   <script src="js/graph.js?v=8"></script>
   <script src="js/exercises.js?v=8"></script>
-  <script src="js/types.js?v=12"></script>
+  <script src="js/types.js?v=13"></script>
   <script>
     const igCanvas = document.getElementById('ig-canvas');
     const igExpr = document.getElementById('ig-expr');

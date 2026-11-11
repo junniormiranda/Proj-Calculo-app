@@ -69,7 +69,7 @@
 
   /* função, derivada, tangente em x₀ e os pontos correspondentes;
      parts: funções auxiliares desenhadas em cinza (parcelas, fatores) */
-  function derivPlot(f, df, x0, parts) {
+  function derivPlot(f, df, x0, parts, dLabel) {
     const y0 = f(x0), m = df(x0);
     const ok = isFinite(y0) && isFinite(m);
     return {
@@ -82,7 +82,7 @@
       lines: ok ? [{ fn: x => y0 + m * (x - x0), color: PINK }] : [],
       markers: ok ? [
         { x: x0, y: y0, color: ACCENT },
-        { x: x0, y: m, color: BLUE, label: 'f′(x₀)' }
+        { x: x0, y: m, color: BLUE, label: dLabel || 'f′(x₀)' }
       ] : []
     };
   }
@@ -90,6 +90,13 @@
   function derivText(fTxt, dfTxt, x0, m) {
     return 'f(x) = ' + fTxt + '\nf′(x) = ' + dfTxt + '\n' +
       (isFinite(m) ? 'f′(' + num(x0) + ') = ' + num(m) + ' → inclinação da tangente' : 'x₀ = ' + num(x0) + ' fora do domínio');
+  }
+
+  /* texto das regras de integração: integral, verificação e inclinação */
+  function intText(fT, FT, C, x0, fx0, showC) {
+    return '∫ ' + fT + ' dx = ' + FT + ' + C' + (showC ? '   (C = ' + num(C) + ')' : '') +
+      '\nF′(x) = ' + fT + '   (derivar desfaz a integral)' +
+      '\ninclinação de F em x = ' + num(x0) + ' → f(' + num(x0) + ') = ' + num(fx0);
   }
 
   /* ================= DEFINIÇÕES ================= */
@@ -363,6 +370,76 @@
     },
 
     /* ---------------- INTEGRAIS ---------------- */
+    /* regras: F (laranja) é a antiderivada; f (azul) é o integrando.
+       A inclinação de F em x₀ (tangente rosa) é igual a f(x₀). */
+    'int-r-constante': {
+      params: {
+        k: { min: -3, max: 3, step: 0.5, value: 2 },
+        C: { min: -3, max: 3, step: 0.5, value: 0 }
+      },
+      view: { xmin: -4, xmax: 4, ymin: -6, ymax: 6 },
+      formula: p => intText(num(p.k), poly([[p.k, 'x']]), p.C, 1, p.k, true),
+      plot: p => derivPlot(x => p.k * x + p.C, () => p.k, 1, null, 'f(x₀)')
+    },
+    'int-r-potencia': {
+      params: {
+        n: { min: 0, max: 4, step: 1, value: 2 },
+        x0: { min: -2, max: 2, step: 0.25, value: 1, label: 'x₀' }
+      },
+      view: { xmin: -2.5, xmax: 2.5, ymin: -5, ymax: 5 },
+      formula: p => {
+        const fT = p.n === 0 ? '1' : p.n === 1 ? 'x' : 'x' + sup(p.n);
+        const FT = p.n === 0 ? 'x' : 'x' + sup(p.n + 1) + '/' + (p.n + 1);
+        return intText(fT, FT, 0, p.x0, Math.pow(p.x0, p.n));
+      },
+      plot: p => derivPlot(x => Math.pow(x, p.n + 1) / (p.n + 1), x => Math.pow(x, p.n), p.x0, null, 'f(x₀)')
+    },
+    'int-r-soma': {
+      params: {
+        op: { min: 0, max: 1, step: 1, value: 0, label: 'operação', choices: ['soma', 'subtração'] },
+        x0: { min: -2.5, max: 2.5, step: 0.25, value: 1, label: 'x₀' }
+      },
+      view: { xmin: -3, xmax: 3, ymin: -6, ymax: 6 },
+      formula: p => {
+        const s = p.op === 0 ? 1 : -1, o = s > 0 ? ' + ' : ' − ';
+        return '∫ (x²' + o + '2) dx = ∫ x² dx' + o + '∫ 2 dx\n' +
+          intText('x²' + o + '2', 'x³/3' + o + '2x', 0, p.x0, p.x0 * p.x0 + 2 * s).split('\n').slice(1).join('\n');
+      },
+      plot: p => {
+        const s = p.op === 0 ? 1 : -1;
+        return derivPlot(x => x * x * x / 3 + 2 * s * x, x => x * x + 2 * s, p.x0,
+          [x => x * x * x / 3, x => 2 * s * x], 'f(x₀)');
+      }
+    },
+    'int-r-exponencial': {
+      params: {
+        a: { min: 0.3, max: 4, step: 0.1, value: Math.E, avoid: [1], label: 'base a' },
+        x0: { min: -2, max: 2, step: 0.25, value: 0.5, label: 'x₀' }
+      },
+      view: { xmin: -3, xmax: 3, ymin: -2, ymax: 8 },
+      formula: p => {
+        const isE = Math.abs(p.a - Math.E) < 0.01;
+        const fT = isE ? 'eˣ' : num(p.a) + 'ˣ';
+        const FT = isE ? 'eˣ' : num(p.a) + 'ˣ / ln ' + num(p.a);
+        return intText(fT, FT, 0, p.x0, Math.pow(p.a, p.x0));
+      },
+      plot: p => derivPlot(x => Math.pow(p.a, x) / Math.log(p.a), x => Math.pow(p.a, x), p.x0, null, 'f(x₀)')
+    },
+    'int-r-trig': {
+      params: {
+        f: { min: 0, max: 1, step: 1, value: 0, label: 'função', choices: ['sen x', 'cos x'] },
+        x0: { min: -3, max: 3, step: 0.25, value: 1, label: 'x₀' }
+      },
+      view: { xmin: -6.5, xmax: 6.5, ymin: -2.5, ymax: 2.5 },
+      formula: p => p.f === 0
+        ? intText('sen(x)', '−cos(x)', 0, p.x0, Math.sin(p.x0))
+        : intText('cos(x)', 'sen(x)', 0, p.x0, Math.cos(p.x0)),
+      plot: p => p.f === 0
+        ? derivPlot(x => -Math.cos(x), Math.sin, p.x0, null, 'f(x₀)')
+        : derivPlot(Math.sin, Math.cos, p.x0, null, 'f(x₀)')
+    },
+
+    /* tipos */
     'int-indefinida': {
       params: { C: { min: -3, max: 3, step: 0.5, value: 0 } },
       view: { xmin: -2.5, xmax: 2.5, ymin: -6, ymax: 6 },
