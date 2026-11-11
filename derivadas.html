@@ -298,51 +298,10 @@
       </div>
 
       <!-- Q2 -->
-      <div class="exercise" data-expect="2*a*x0 + b; (a*x0^2 + b*x0 + c) - (2*a*x0 + b)*x0"
-           data-plot="fn: a*x^2 + b*x + c | tangent: x0 | caption: Parábola e a reta tangente que você encontrou" data-tol="0.01"
-           data-success="<strong>Excelente!</strong> Tangente montada corretamente. 🎯">
-        <p class="q-title">Questão 2 — Reta tangente de uma parábola</p>
-        <p>
-          Para <span class="mth">f(x) = a·x² + b·x + c</span> com
-          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
-          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
-          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:65px"> </span> e
-          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>,
-          determine a tangente na forma <span class="mth">y = m·x + q</span>.
-        </p>
-        <div class="inputs-row">
-          <div class="field answer-field">
-            <label>inclinação m =</label>
-            <input type="number" data-answer step="any" placeholder="m">
-          </div>
-          <div class="field answer-field">
-            <label>coeficiente q =</label>
-            <input type="number" data-answer step="any" placeholder="q">
-          </div>
-          <div class="actions">
-            <button class="btn small btn-check">Verificar</button>
-            <button class="btn small ghost btn-solution">Ver solução</button>
-            <button class="btn small ghost btn-reset">Limpar</button>
-          </div>
-        </div>
-        <div class="feedback"></div>
-        <div class="solution">
-          <h4>Solução passo a passo</h4>
-          <ol class="steps">
-            <li>Derivada: <span class="mth">f′(x) = 2a·x + b</span> → <span class="mth">m = 2a·x₀ + b</span>.</li>
-            <li>Valor da função: <span class="mth">y₀ = a·x₀² + b·x₀ + c</span>.</li>
-            <li>Equação ponto-inclinação: <span class="mth">y − y₀ = m(x − x₀)</span>.</li>
-            <li>Isolando: <span class="mth">y = m·x + (y₀ − m·x₀)</span>, logo
-              <span class="mth">q = y₀ − m·x₀</span>.</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q3 -->
       <div class="exercise" data-expect="a*(c*x0 + d) + c*(a*x0 + b)"
            data-plot="fn: (a*x + b)*(c*x + d) | tangent: x0 | caption: f(x) = (ax + b)(cx + d) e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Certo!</strong> Regra do produto aplicada. 🎯">
-        <p class="q-title">Questão 3 — Regra do produto</p>
+        <p class="q-title">Questão 2 — Regra do produto</p>
         <p>
           Sendo <span class="mth">f(x) = (a·x + b)·(c·x + d)</span>, calcule
           <span class="mth">f′(x₀)</span> para
@@ -375,11 +334,11 @@
         </div>
       </div>
 
-      <!-- Q4 -->
+      <!-- Q3 -->
       <div class="exercise" data-expect="(a*(c*x0 + d) - c*(a*x0 + b))/(c*x0 + d)^2"
            data-plot="fn: (a*x + b)/(c*x + d) | tangent: x0 | y: (a*x0 + b)/(c*x0 + d) - 6, (a*x0 + b)/(c*x0 + d) + 6 | caption: f(x) = (ax + b)/(cx + d) e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Correto!</strong> Regra do quociente perfeita. 🎯">
-        <p class="q-title">Questão 4 — Regra do quociente</p>
+        <p class="q-title">Questão 3 — Regra do quociente</p>
         <p>
           Para <span class="mth">f(x) = (a·x + b)/(c·x + d)</span>, calcule
           <span class="mth">f′(x₀)</span> com
@@ -412,11 +371,11 @@
         </div>
       </div>
 
-      <!-- Q5 -->
+      <!-- Q4 -->
       <div class="exercise" data-expect="a*n*(a*x0 + b)^(n-1)"
            data-plot="fn: (a*x + b)^n | tangent: x0 | caption: f(x) = (ax + b)ⁿ e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Ótimo!</strong> Cadeia dominada. 🎯">
-        <p class="q-title">Questão 5 — Regra da cadeia</p>
+        <p class="q-title">Questão 4 — Regra da cadeia</p>
         <p>
           Sendo <span class="mth">f(x) = (a·x + b)ⁿ</span>, calcule
           <span class="mth">f′(x₀)</span> para

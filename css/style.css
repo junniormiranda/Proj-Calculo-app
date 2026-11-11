@@ -1089,6 +1089,69 @@ table.data tr:hover td { background: var(--panel-hover); }
 .to-top:hover { border-color: var(--border-accent); color: var(--accent-300); }
 .to-top svg { width: 18px; height: 18px; }
 
+/* ---------------- Tipos de função (gráfico ao lado) ---------------- */
+.type-list { display: flex; flex-direction: column; gap: 18px; margin-top: 16px; }
+
+.type-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 28px;
+  align-items: start;
+  margin: 0;
+}
+
+.type-info .formula { margin-top: 10px; }
+.type-info .try { font-size: 0.9rem; margin-top: 12px; }
+
+.type-plot { min-width: 0; }
+.type-plot .type-live {
+  font-family: var(--font-math);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--accent-200);
+  min-height: 1.6em;
+  white-space: pre;
+}
+.type-plot canvas {
+  width: 100%;
+  height: 300px;
+  display: block;
+  background: var(--canvas-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.sliders { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 12px; }
+
+.slider-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 12px;
+}
+.slider-row label { font-size: 1.05rem; color: var(--text-2); }
+.slider-row output {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--accent-300);
+  text-align: right;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-500);
+  cursor: pointer;
+  height: 28px;
+  margin: 0;
+}
+
+.type-reset:disabled { opacity: 0.4; pointer-events: none; }
+
+@media (max-width: 900px) {
+  .type-card { grid-template-columns: 1fr; gap: 16px; }
+}
+
 /* ---------------- Responsivo ---------------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 40px 28px; }

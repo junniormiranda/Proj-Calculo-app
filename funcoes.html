@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -49,7 +49,7 @@
       <ul class="clean">
         <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
           <a href="#exemplos">Exemplos resolvidos</a> ·
-          <a href="#graficos">Gráficos interativos</a> ·
+          <a href="#graficos">Monte seu gráfico</a> ·
           <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
           <a href="#ex-propostos">Exercícios propostos</a></li>
       </ul>
@@ -88,43 +88,83 @@
     <!-- ================= TIPOS ================= -->
     <section id="tipos">
       <h2>Tipos de funções</h2>
-      <div class="grid">
-        <div class="card">
-          <span class="tag">Tipo 1</span>
-          <h3>Função constante</h3>
-          <span class="formula">f(x) = b</span>
-          <p class="mth">A saída é sempre a mesma, qualquer que seja x. Gráfico: reta horizontal na altura b.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Tipo 2</span>
-          <h3>Função afim</h3>
-          <span class="formula">f(x) = ax + b &nbsp;(a ≠ 0)</span>
-          <p class="mth">Gráfico: reta. a = coeficiente angular (inclinação); b = coeficiente linear (corte no eixo y). Raiz em x = −b/a.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Tipo 3</span>
-          <h3>Função linear</h3>
-          <span class="formula">f(x) = ax &nbsp;(a ≠ 0)</span>
-          <p class="mth">Caso particular da afim com b = 0. Gráfico: reta que passa pela origem; y é proporcional a x.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Tipo 4</span>
-          <h3>Função quadrática</h3>
-          <span class="formula">f(x) = ax² + bx + c &nbsp;(a ≠ 0)</span>
-          <p class="mth">Gráfico: parábola. Vértice em x = −b/2a; abre para cima se a &gt; 0 e para baixo se a &lt; 0.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Tipo 5</span>
-          <h3>Função exponencial</h3>
-          <span class="formula">f(x) = aˣ &nbsp;(a &gt; 0, a ≠ 1)</span>
-          <p class="mth">Cresce (a &gt; 1) ou decresce (0 &lt; a &lt; 1). Sempre positiva; passa por (0, 1).</p>
-        </div>
-        <div class="card">
-          <span class="tag">Tipo 6</span>
-          <h3>Função logarítmica</h3>
-          <span class="formula">f(x) = log<sub>a</sub>(x) &nbsp;(a &gt; 0, a ≠ 1)</span>
-          <p class="mth">Inversa da exponencial. Domínio: x &gt; 0; passa por (1, 0); assíntota vertical em x = 0.</p>
-        </div>
+      <p class="muted">Arraste os controles ao lado de cada tipo para ver como os coeficientes mudam o gráfico.</p>
+      <div class="type-list">
+        <article class="card type-card" data-type="constante">
+          <div class="type-info">
+            <span class="tag">Tipo 1</span>
+            <h3>Função constante</h3>
+            <span class="formula">f(x) = b</span>
+            <p class="mth">A saída é sempre a mesma, qualquer que seja x. Gráfico: reta horizontal na altura b.</p>
+            <p class="muted try">Mova <strong>b</strong>: a reta sobe ou desce, mas nunca inclina.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="afim">
+          <div class="type-info">
+            <span class="tag">Tipo 2</span>
+            <h3>Função afim</h3>
+            <span class="formula">f(x) = ax + b &nbsp;(a ≠ 0)</span>
+            <p class="mth">Gráfico: reta. a = coeficiente angular (inclinação); b = coeficiente linear (corte no eixo y). Raiz em x = −b/a.</p>
+            <p class="muted try">Mova <strong>a</strong> para mudar a inclinação e <strong>b</strong> para deslocar a reta. Os pontos marcam o corte no eixo y e a raiz.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="linear">
+          <div class="type-info">
+            <span class="tag">Tipo 3</span>
+            <h3>Função linear</h3>
+            <span class="formula">f(x) = ax &nbsp;(a ≠ 0)</span>
+            <p class="mth">Caso particular da afim com b = 0. Gráfico: reta que passa pela origem; y é proporcional a x.</p>
+            <p class="muted try">Mova <strong>a</strong>: a reta gira em torno da origem. Com a &lt; 0 ela passa a descer.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="exponencial">
+          <div class="type-info">
+            <span class="tag">Tipo 4</span>
+            <h3>Função exponencial</h3>
+            <span class="formula">f(x) = aˣ &nbsp;(a &gt; 0, a ≠ 1)</span>
+            <p class="mth">Cresce (a &gt; 1) ou decresce (0 &lt; a &lt; 1). Sempre positiva; passa por (0, 1).</p>
+            <p class="muted try">Mova <strong>a</strong> entre 0 e 1 e depois acima de 1: a curva troca de crescente para decrescente, mas sempre passa por (0, 1).</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="logaritmica">
+          <div class="type-info">
+            <span class="tag">Tipo 5</span>
+            <h3>Função logarítmica</h3>
+            <span class="formula">f(x) = log<sub>a</sub>(x) &nbsp;(a &gt; 0, a ≠ 1)</span>
+            <p class="mth">Inversa da exponencial. Domínio: x &gt; 0; passa por (1, 0); assíntota vertical em x = 0.</p>
+            <p class="muted try">Mova <strong>a</strong>: todas as curvas passam por (1, 0), e o ponto (a, 1) acompanha a base.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -144,47 +184,24 @@
       </div>
 
       <div class="card">
-        <h3>Exemplo 2 — Vértice de uma parábola</h3>
-        <p class="mth">f(x) = x² − 6x + 5</p>
+        <h3>Exemplo 2 — Raiz de uma função</h3>
+        <p class="mth">f(x) = 2x − 6</p>
         <ol class="steps">
-          <li>Coeficientes: <span class="mth">a = 1</span>, <span class="mth">b = −6</span>, <span class="mth">c = 5</span>.</li>
-          <li>Abscissa do vértice: <span class="mth">x<sub>v</sub> = −b / 2a = 6 / 2 = 3</span>.</li>
-          <li>Ordenada: <span class="mth">f(3) = 9 − 18 + 5 = −4</span>.</li>
-          <li><strong>Vértice:</strong> <span class="mth">(3, −4)</span> — é o ponto de mínimo, pois <span class="mth">a &gt; 0</span>.</li>
-        </ol>
-      </div>
-
-      <div class="card">
-        <h3>Exemplo 3 — Raízes de uma função</h3>
-        <p class="mth">f(x) = x² − 4</p>
-        <ol class="steps">
-          <li>Buscar <span class="mth">x</span> tal que <span class="mth">f(x) = 0</span>: <span class="mth">x² − 4 = 0</span>.</li>
-          <li>Fatorar: <span class="mth">(x − 2)(x + 2) = 0</span>.</li>
-          <li><strong>Raízes:</strong> <span class="mth">x = 2</span> e <span class="mth">x = −2</span> — são os cortes no eixo x.</li>
+          <li>Buscar <span class="mth">x</span> tal que <span class="mth">f(x) = 0</span>: <span class="mth">2x − 6 = 0</span>.</li>
+          <li>Isolar x: <span class="mth">2x = 6</span>, logo <span class="mth">x = 3</span>.</li>
+          <li><strong>Raiz:</strong> <span class="mth">x = 3</span> — é onde a reta corta o eixo x.</li>
         </ol>
       </div>
     </section>
 
     <!-- ================= GRÁFICOS ================= -->
     <section id="graficos">
-      <h2>Gráficos interativos</h2>
-
-      <h3>Gráficos dos tipos</h3>
-      <div class="grid">
-        <div class="plot-box"><p class="plot-caption">Constante: f(x) = 3</p><canvas id="g-const"></canvas></div>
-        <div class="plot-box"><p class="plot-caption">Afim: f(x) = 2x + 1</p><canvas id="g-afim"></canvas></div>
-        <div class="plot-box"><p class="plot-caption">Linear: f(x) = 2x</p><canvas id="g-linear"></canvas></div>
-        <div class="plot-box"><p class="plot-caption">Quadrática: f(x) = x² − 4x + 3</p><canvas id="g-quad"></canvas></div>
-        <div class="plot-box"><p class="plot-caption">Exponencial: f(x) = 2ˣ</p><canvas id="g-exp"></canvas></div>
-        <div class="plot-box"><p class="plot-caption">Logarítmica: f(x) = ln(x)</p><canvas id="g-log"></canvas></div>
-      </div>
-
-      <h3>Monte o seu próprio gráfico</h3>
+      <h2>Monte o seu próprio gráfico</h2>
       <div class="plot-box">
         <div class="plot-controls">
           <div class="field">
             <label for="fn-expr">Função f(x) — use x como variável</label>
-            <input type="text" id="fn-expr" class="wide" value="x^2 - 4*x + 3" placeholder="ex.: x^2 - 4*x + 3">
+            <input type="text" id="fn-expr" class="wide" value="2*x + 1" placeholder="ex.: 2*x + 1">
           </div>
           <div class="field"><label for="fn-xmin">x mín.</label><input type="number" id="fn-xmin" value="-8" step="any"></div>
           <div class="field"><label for="fn-xmax">x máx.</label><input type="number" id="fn-xmax" value="8" step="any"></div>
@@ -195,7 +212,6 @@
           <button class="chip" data-expr="3">Constante: 3</button>
           <button class="chip" data-expr="2*x + 1">Afim: 2x + 1</button>
           <button class="chip" data-expr="2*x">Linear: 2x</button>
-          <button class="chip" data-expr="x^2 - 4*x + 3">Quadrática: x² − 4x + 3</button>
           <button class="chip" data-expr="2^x">Exponencial: 2ˣ</button>
           <button class="chip" data-expr="ln(x)">Logarítmica: ln(x)</button>
         </div>
@@ -235,11 +251,11 @@
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido C — Imagem de f(x) = x² para x ∈ ℝ</p>
+        <p class="q-title">Resolvido C — Imagem de f(x) = 2ˣ para x ∈ ℝ</p>
         <ol class="steps">
-          <li>Qualquer número real ao quadrado é maior ou igual a zero.</li>
-          <li>O menor valor atingido é 0 (em <span class="mth">x = 0</span>).</li>
-          <li><strong>Imagem:</strong> <span class="mth">C = [0, +∞)</span>.</li>
+          <li>Uma potência de base positiva é sempre maior que zero: <span class="mth">2ˣ &gt; 0</span>.</li>
+          <li>Ela nunca chega a 0, mas se aproxima dele quando <span class="mth">x → −∞</span>, e cresce sem limite quando <span class="mth">x → +∞</span>.</li>
+          <li><strong>Imagem:</strong> <span class="mth">C = (0, +∞)</span>.</li>
         </ol>
       </div>
     </section>
@@ -322,49 +338,10 @@
       </div>
 
       <!-- Q3 -->
-      <div class="exercise" data-expect="-b/(2*a); c - b^2/(4*a)"
-           data-plot="fn: a*x^2 + b*x + c | point: -b/(2*a), c - b^2/(4*a) | caption: Parábola com o vértice destacado" data-tol="0.01"
-           data-success="<strong>Correto!</strong> Vértice calculado perfeitamente. 🎯">
-        <p class="q-title">Questão 3 — Vértice da parábola</p>
-        <p>
-          Dada <span class="mth">f(x) = a·x² + b·x + c</span> com
-          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:70px"> </span>,
-          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:70px"> </span> e
-          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:70px"></span>,
-          determine as coordenadas do vértice <span class="mth">(x<sub>v</sub>, y<sub>v</sub>)</span>.
-        </p>
-        <div class="inputs-row">
-          <div class="field answer-field">
-            <label>x<sub>v</sub> =</label>
-            <input type="number" data-answer step="any" placeholder="valor">
-          </div>
-          <div class="field answer-field">
-            <label>y<sub>v</sub> =</label>
-            <input type="number" data-answer step="any" placeholder="valor">
-          </div>
-          <div class="actions">
-            <button class="btn small btn-check">Verificar</button>
-            <button class="btn small ghost btn-solution">Ver solução</button>
-            <button class="btn small ghost btn-reset">Limpar</button>
-          </div>
-        </div>
-        <div class="feedback"></div>
-        <div class="solution">
-          <h4>Solução passo a passo</h4>
-          <ol class="steps">
-            <li>Abcissa do vértice: <span class="mth">x<sub>v</sub> = −b / (2a)</span>.</li>
-            <li>Ordem: substitua <span class="mth">x<sub>v</sub></span> em <span class="mth">f</span>. Uma forma rápida:
-              <span class="mth">y<sub>v</sub> = c − b² / (4a)</span>.</li>
-            <li>O vértice é o ponto de máximo (se <span class="mth">a &lt; 0</span>) ou mínimo (se <span class="mth">a &gt; 0</span>).</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q4 -->
       <div class="exercise" data-expect="k"
            data-plot="fn: 1/(x - k) | vline: k | x: k - 6, k + 6 | y: -6, 6 | caption: f(x) = 1/(x − k) não existe em x = k (assíntota vertical)" data-tol="0.0001"
            data-success="<strong>Certo!</strong> Esse é o ponto proibido do domínio. 🎯">
-        <p class="q-title">Questão 4 — Domínio da função racional</p>
+        <p class="q-title">Questão 3 — Domínio da função racional</p>
         <p>
           Sendo <span class="mth">f(x) = 1 / (x − k)</span> com
           <span class="mth">k = <input type="number" data-var="k" step="any" style="width:80px"></span>,
@@ -392,11 +369,11 @@
         </div>
       </div>
 
-      <!-- Q5 -->
+      <!-- Q4 -->
       <div class="exercise" data-expect="k*b^x0"
            data-plot="fn: k*b^x | point: x0, k*b^x0 | caption: Curva exponencial com o ponto (x₀, f(x₀))" data-tol="0.01"
            data-success="<strong>Correto!</strong> Função exponencial dominada. 🎯">
-        <p class="q-title">Questão 5 — Função exponencial</p>
+        <p class="q-title">Questão 4 — Função exponencial</p>
         <p>
           Para <span class="mth">f(x) = k·bˣ</span> com
           <span class="mth">k = <input type="number" data-var="k" step="any" style="width:70px"> </span>,
@@ -468,27 +445,8 @@
   <script src="js/math.js?v=7"></script>
   <script src="js/graph.js?v=7"></script>
   <script src="js/exercises.js?v=7"></script>
+  <script src="js/types.js?v=8"></script>
   <script>
-    /* ---- gráficos dos tipos ---- */
-    Plot.draw('g-const', [{ expr: '3', color: '#fb923c', label: 'y = 3' }],
-      { xmin: -5, xmax: 5, ymin: -2, ymax: 5, height: 240, showLegend: false });
-
-    Plot.draw('g-afim', [{ expr: '2*x + 1', color: '#fb923c', label: 'y = 2x + 1' }],
-      { xmin: -5, xmax: 5, height: 240, showLegend: false });
-
-    Plot.draw('g-linear', [{ expr: '2*x', color: '#fb923c', label: 'y = 2x' }],
-      { xmin: -5, xmax: 5, height: 240, showLegend: false });
-
-    Plot.draw('g-quad', [{ expr: 'x^2 - 4*x + 3', color: '#fb923c', label: 'y = x² − 4x + 3' }],
-      { xmin: -2, xmax: 6, height: 240, showLegend: false });
-
-    Plot.draw('g-exp', [{ expr: '2^x', color: '#38bdf8', label: 'y = 2ˣ' }],
-      { xmin: -4, xmax: 4, height: 240, showLegend: false });
-
-    Plot.draw('g-log', [{ expr: 'ln(x)', color: '#60a5fa', label: 'y = ln(x)' }],
-      { xmin: -1, xmax: 8, height: 240, showLegend: false });
-
-
     /* ---- explorador de gráficos ---- */
     const fnCanvas = document.getElementById('fn-canvas');
     const fnExpr = document.getElementById('fn-expr');
