@@ -11,7 +11,8 @@
      xmin, xmax        intervalo do eixo x (padrão -10..10)
      ymin, ymax        fixa o eixo y (senão, calcula automaticamente)
      height            altura do canvas em px (padrão 340)
-     fills             [{ expr, from, to, color }] áreas sombreadas
+     fills             [{ expr|fn, from, to, color, lower? }] áreas sombreadas
+                       (com lower: área entre a curva e a função lower)
      markers           [{ x, y, type: 'open'|'dot', label, color }]
      lines             [{ fn: (x)=>..., color, dash, label } | { vertical: x0, color }] retas
      showLegend        boolean (padrão true)
@@ -200,8 +201,15 @@ const Plot = (function () {
         if (!started) { ctx.moveTo(px(p[0]), py(yy)); started = true; }
         else ctx.lineTo(px(p[0]), py(yy));
       });
-      ctx.lineTo(px(b), py(0));
-      ctx.lineTo(px(a), py(0));
+      if (f.lower) {
+        /* área entre duas curvas: volta pela curva de baixo */
+        sample(f.lower, a, b, 500).reverse().forEach(p => {
+          if (isFinite(p[1])) ctx.lineTo(px(p[0]), py(Math.min(Math.max(p[1], o.ymin - yRange), o.ymax + yRange)));
+        });
+      } else {
+        ctx.lineTo(px(b), py(0));
+        ctx.lineTo(px(a), py(0));
+      }
       ctx.closePath();
       ctx.fillStyle = f.color || 'rgba(249,115,22,0.28)';
       ctx.fill();

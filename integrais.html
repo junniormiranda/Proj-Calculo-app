@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -48,8 +48,7 @@
       <h2>Nesta página</h2>
       <ul class="clean">
         <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
-          <a href="#exemplos">Exemplos resolvidos</a> ·
-          <a href="#graficos">Gráficos interativos</a> ·
+          <a href="#graficos">Área sob a curva</a> ·
           <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
           <a href="#ex-propostos">Exercícios propostos</a></li>
       </ul>
@@ -88,97 +87,104 @@
     <!-- ================= TIPOS ================= -->
     <section id="tipos">
       <h2>Tipos de integrais</h2>
-      <div class="grid">
-        <div class="card">
-          <span class="tag">Tipo 1</span>
-          <h3>Integral indefinida</h3>
-          <span class="formula">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</span>
-          <p class="mth">Resultado é uma função + constante C (família de antiderivadas).</p>
-        </div>
-        <div class="card">
-          <span class="tag">Tipo 2</span>
-          <h3>Integral definida</h3>
-          <span class="formula">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span>
-          <p class="mth">Resultado é um número — representa a área com sinal.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Método</span>
-          <h3>Por substituição</h3>
-          <span class="formula">∫ f(g(x))·g′(x) dx → ∫ f(u) du</span>
-          <p class="mth">Escolha u = g(x) para simplificar a expressão.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Método</span>
-          <h3>Por partes</h3>
-          <span class="formula">∫ u dv = u·v − ∫ v du</span>
-          <p class="mth">Útil em produtos como x·eˣ ou x·sen x.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Aplicação</span>
-          <h3>Área entre curvas</h3>
-          <span class="formula">∫<sub>a</sub><sup>b</sup> [f(x) − g(x)] dx</span>
-          <p class="mth">Área entre duas funções, integrando a de cima menos a de baixo.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Aplicação</span>
-          <h3>Funções definidas</h3>
-          <span class="formula">P(X ≤ x) = ∫ f(t) dt</span>
-          <p class="mth">Probabilidade, trabalho, deslocamento a partir da velocidade…</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= EXEMPLOS ================= -->
-    <section id="exemplos">
-      <h2>Exemplos resolvidos</h2>
-
-      <div class="card">
-        <h3>Exemplo 1 — Integral indefinida</h3>
-        <p class="mth">∫ (3x² + 2x − 5) dx</p>
-        <ol class="steps">
-          <li>Integre termo a termo pela potência: <span class="mth">∫3x² dx = x³</span>.</li>
-          <li><span class="mth">∫2x dx = x²</span> e <span class="mth">∫5 dx = 5x</span>.</li>
-          <li><strong>Resultado:</strong> <span class="mth">x³ + x² − 5x + C</span>.</li>
-          <li>Confira derivando: a derivada devolve a expressão original.</li>
-        </ol>
-      </div>
-
-      <div class="card">
-        <h3>Exemplo 2 — Integral definida pelo Teorema Fundamental</h3>
-        <p class="mth">∫<sub>0</sub><sup>2</sup> x² dx</p>
-        <ol class="steps">
-          <li>Antiderivada: <span class="mth">F(x) = x³/3</span>.</li>
-          <li>Avalie no limite superior: <span class="mth">F(2) = 8/3</span>.</li>
-          <li>Avalie no inferior: <span class="mth">F(0) = 0</span>.</li>
-          <li><strong>Resultado:</strong> <span class="mth">8/3 − 0 = 8/3 ≈ 2,6667</span> (área sob y = x² de 0 a 2).</li>
-        </ol>
-      </div>
-
-      <div class="card">
-        <h3>Exemplo 3 — Funções notáveis</h3>
-        <ol class="steps">
-          <li><span class="mth">∫ 1/x dx = ln|x| + C</span> (para <span class="mth">x ≠ 0</span>).</li>
-          <li><span class="mth">∫ eˣ dx = eˣ + C</span>.</li>
-          <li><span class="mth">∫ sen x dx = −cos x + C</span>; <span class="mth">∫ cos x dx = sen x + C</span>.</li>
-          <li><span class="mth">∫ aˣ dx = aˣ/ln a + C</span>.</li>
-        </ol>
-      </div>
-
-      <div class="card">
-        <h3>Exemplo 4 — Área com sinal</h3>
-        <p class="mth">∫<sub>0</sub><sup>2π</sup> sen x dx</p>
-        <ol class="steps">
-          <li>Antiderivada: <span class="mth">−cos x</span>.</li>
-          <li>Avalie: <span class="mth">(−cos 2π) − (−cos 0) = (−1) − (−1) = 0</span>.</li>
-          <li>Resultado zero porque as áreas acima e abaixo do eixo se cancelam.</li>
-          <li>A <strong>área geométrica</strong> seria <span class="mth">2 + 2 = 4</span> (soma dos módulos).</li>
-        </ol>
+      <p class="muted">Arraste os controles ao lado de cada item para ver o gráfico responder.</p>
+      <div class="type-list">
+        <article class="card type-card" data-type="int-indefinida">
+          <div class="type-info">
+            <span class="tag">Tipo 1</span>
+            <h3>Integral indefinida</h3>
+            <span class="formula">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</span>
+            <p class="mth">O resultado é uma família de funções: a antiderivada mais uma constante C qualquer.</p>
+            <p class="muted try">Mova <strong>C</strong>: a curva desliza para cima e para baixo, mas a derivada (a inclinação em cada x) não muda.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-definida">
+          <div class="type-info">
+            <span class="tag">Tipo 2</span>
+            <h3>Integral definida</h3>
+            <span class="formula">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a)</span>
+            <p class="mth">O resultado é um número: a área com sinal entre a curva e o eixo x.</p>
+            <p class="muted try">Mova os limites <strong>a</strong> e <strong>b</strong> e veja a área sombreada e o valor mudarem.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-substituicao">
+          <div class="type-info">
+            <span class="tag">Método</span>
+            <h3>Por substituição</h3>
+            <span class="formula">∫ f(g(x))·g′(x) dx → ∫ f(u) du</span>
+            <p class="mth">Escolha u = g(x) para simplificar. Ex.: com u = x², ∫ 2x·cos(x²) dx = sen(x²) + C.</p>
+            <p class="muted try">Mova <strong>b</strong>: partes abaixo do eixo descontam da área, e o total é sempre sen(b²).</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-partes">
+          <div class="type-info">
+            <span class="tag">Método</span>
+            <h3>Por partes</h3>
+            <span class="formula">∫ u dv = u·v − ∫ v du</span>
+            <p class="mth">Útil em produtos como x·eˣ ou x·sen x. Ex.: ∫ x·sen x dx = sen x − x·cos x + C.</p>
+            <p class="muted try">Mova <strong>b</strong>: depois de π a curva fica negativa e a integral começa a diminuir.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-entre">
+          <div class="type-info">
+            <span class="tag">Aplicação</span>
+            <h3>Área entre curvas</h3>
+            <span class="formula">∫<sub>a</sub><sup>b</sup> [f(x) − g(x)] dx</span>
+            <p class="mth">Integre a função de cima menos a de baixo, entre os pontos de interseção.</p>
+            <p class="muted try">Mova <strong>k</strong> (a reta y = k): os pontos de interseção ±√k e a área mudam juntos.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="int-aplicacao">
+          <div class="type-info">
+            <span class="tag">Aplicação</span>
+            <h3>Acumulação (deslocamento)</h3>
+            <span class="formula">Δs = ∫<sub>0</sub><sup>T</sup> v(t) dt</span>
+            <p class="mth">A integral acumula uma taxa: da velocidade vem o deslocamento, da vazão o volume, da densidade a probabilidade.</p>
+            <p class="muted try">Mova <strong>v₀</strong>, a aceleração <strong>a</strong> e o tempo <strong>T</strong>: a área sob v(t) é a distância percorrida.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- ================= GRÁFICOS ================= -->
     <section id="graficos">
-      <h2>Gráficos interativos — área sob a curva</h2>
+      <h2>Explore a área sob a curva</h2>
       <p class="muted">
         Digite a função e os limites de integração. A área sombreada é a
         integral definida — o valor numérico é calculado por integração de
@@ -217,34 +223,68 @@
     <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
     <section id="ex-resolvidos">
       <h2>Exercícios resolvidos</h2>
+      <p class="muted">Um exercício para cada tipo de integral, resolvido passo a passo.</p>
 
       <div class="exercise">
-        <p class="q-title">Resolvido A — ∫<sub>1</sub><sup>3</sup> (2x + 1) dx</p>
+        <p class="q-title">Resolvido A — Integral indefinida</p>
+        <p>Calcule <span class="mth">∫ (3x² + 2x − 5) dx</span>.</p>
+        <ol class="steps">
+          <li>Integre termo a termo pela potência: <span class="mth">∫3x² dx = x³</span>, <span class="mth">∫2x dx = x²</span>, <span class="mth">∫5 dx = 5x</span>.</li>
+          <li>Some a constante de integração <span class="mth">C</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">x³ + x² − 5x + C</span>. Derivando, volta a expressão original.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido B — Integral definida</p>
+        <p>Calcule <span class="mth">∫<sub>1</sub><sup>3</sup> (2x + 1) dx</span>.</p>
         <ol class="steps">
           <li>Antiderivada: <span class="mth">F(x) = x² + x</span>.</li>
-          <li><span class="mth">F(3) = 9 + 3 = 12</span>.</li>
-          <li><span class="mth">F(1) = 1 + 1 = 2</span>.</li>
-          <li><strong>Resultado: 12 − 2 = 10.</strong></li>
+          <li><span class="mth">F(3) = 9 + 3 = 12</span> e <span class="mth">F(1) = 1 + 1 = 2</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">12 − 2 = 10</span>.</li>
         </ol>
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido B — ∫ x·√x dx (simplifique antes)</p>
+        <p class="q-title">Resolvido C — Por substituição</p>
+        <p>Calcule <span class="mth">∫ 2x·(x² + 1)³ dx</span>.</p>
         <ol class="steps">
-          <li><span class="mth">x·√x = x·x^(1/2) = x^(3/2)</span>.</li>
-          <li>Some 1 ao expoente: <span class="mth">3/2 + 1 = 5/2</span>.</li>
-          <li><strong>Resultado:</strong> <span class="mth">x^(5/2)/(5/2) + C = (2/5)·x^(5/2) + C</span>.</li>
+          <li>Escolha <span class="mth">u = x² + 1</span>; então <span class="mth">du = 2x dx</span>.</li>
+          <li>A integral vira <span class="mth">∫ u³ du = u⁴/4 + C</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">(x² + 1)⁴/4 + C</span>.</li>
         </ol>
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido C — Área de um triângulo pela integral</p>
-        <p class="mth">∫<sub>0</sub><sup>4</sup> (−x + 4) dx</p>
+        <p class="q-title">Resolvido D — Por partes</p>
+        <p>Calcule <span class="mth">∫ x·eˣ dx</span>.</p>
         <ol class="steps">
-          <li>A reta forma um triângulo de base 4 e altura 4 → área 8.</li>
-          <li>Pela integral: antiderivada <span class="mth">−x²/2 + 4x</span>.</li>
-          <li>Avalie em 4: <span class="mth">−8 + 16 = 8</span>; em 0: 0.</li>
-          <li><strong>Resultado: 8</strong> — bateu com a geometria!</li>
+          <li>Escolha <span class="mth">u = x</span> (fica mais simples ao derivar) e <span class="mth">dv = eˣ dx</span>.</li>
+          <li>Então <span class="mth">du = dx</span> e <span class="mth">v = eˣ</span>.</li>
+          <li><span class="mth">∫ u dv = u·v − ∫ v du = x·eˣ − ∫ eˣ dx</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">x·eˣ − eˣ + C = (x − 1)eˣ + C</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido E — Área entre curvas</p>
+        <p>Calcule a área entre <span class="mth">y = x</span> e <span class="mth">y = x²</span>.</p>
+        <ol class="steps">
+          <li>Interseções: <span class="mth">x = x²</span> ⇒ <span class="mth">x(x − 1) = 0</span> ⇒ <span class="mth">x = 0</span> e <span class="mth">x = 1</span>.</li>
+          <li>Entre 0 e 1, <span class="mth">x ≥ x²</span>: a reta fica por cima.</li>
+          <li><span class="mth">∫<sub>0</sub><sup>1</sup> (x − x²) dx = [x²/2 − x³/3]<sub>0</sub><sup>1</sup> = 1/2 − 1/3</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">1/6 ≈ 0,1667</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido F — Acumulação (deslocamento)</p>
+        <p>Um carro tem velocidade <span class="mth">v(t) = 3 + 2t</span> m/s. Quanto ele percorre de <span class="mth">t = 0</span> a <span class="mth">t = 4</span> s?</p>
+        <ol class="steps">
+          <li>O deslocamento é a integral da velocidade: <span class="mth">Δs = ∫<sub>0</sub><sup>4</sup> (3 + 2t) dt</span>.</li>
+          <li>Antiderivada: <span class="mth">3t + t²</span>.</li>
+          <li>Avalie: <span class="mth">(12 + 16) − 0 = 28</span>.</li>
+          <li><strong>Resposta: 28 m.</strong></li>
         </ol>
       </div>
     </section>
@@ -454,7 +494,7 @@
         <h5>Em cada tema</h5>
         <ul>
           <li>Conceito e tipos</li>
-          <li>Exemplos resolvidos</li>
+          <li>Exercícios resolvidos</li>
           <li>Gráficos interativos</li>
           <li>Exercícios propostos</li>
         </ul>
@@ -466,9 +506,10 @@
     </div>
   </footer>
 
-  <script src="js/math.js?v=7"></script>
-  <script src="js/graph.js?v=7"></script>
-  <script src="js/exercises.js?v=7"></script>
+  <script src="js/math.js?v=8"></script>
+  <script src="js/graph.js?v=8"></script>
+  <script src="js/exercises.js?v=8"></script>
+  <script src="js/types.js?v=9"></script>
   <script>
     const igCanvas = document.getElementById('ig-canvas');
     const igExpr = document.getElementById('ig-expr');
@@ -523,6 +564,6 @@
     });
     plotIntegral();
   </script>
-  <script src="js/ui.js?v=7"></script>
+  <script src="js/ui.js?v=8"></script>
 </body>
 </html>
