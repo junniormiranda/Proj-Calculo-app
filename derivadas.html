@@ -87,15 +87,45 @@
     <!-- ================= TIPOS / REGRAS ================= -->
     <section id="tipos">
       <h2>Regras de derivação</h2>
-      <p class="muted">Arraste os controles ao lado de cada item para ver o gráfico responder.</p>
+      <p class="muted">Cinco regras básicas, na ordem em que costumam ser usadas. Arraste os controles para ver cada uma no gráfico.</p>
       <div class="type-list">
+        <article class="card type-card" data-type="der-constante">
+          <div class="type-info">
+            <span class="tag">Regra 1</span>
+            <h3>Regra da constante</h3>
+            <span class="formula">(c)′ = 0</span>
+            <p class="mth">A derivada de uma constante é zero: o gráfico é uma reta horizontal, que não sobe nem desce. Ex.: (7)′ = 0 · (−2)′ = 0 · (π)′ = 0.</p>
+            <p class="muted try">Mova <strong>c</strong> e <strong>x₀</strong>. Laranja: f(x). Azul tracejado: f′(x), sempre sobre o eixo x. A tangente (rosa) coincide com a própria reta.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
         <article class="card type-card" data-type="der-potencia">
           <div class="type-info">
-            <span class="tag">Básica</span>
-            <h3>Constante e potência</h3>
-            <span class="formula">(c)′ = 0 &nbsp;&nbsp; (xⁿ)′ = n·xⁿ⁻¹</span>
-            <p class="mth">Ex.: (x⁵)′ = 5x⁴ &nbsp;·&nbsp; (7)′ = 0.</p>
-            <p class="muted try">Mova <strong>n</strong> e <strong>x₀</strong>. Laranja: f(x). Azul tracejado: f′(x). Rosa: a reta tangente, cuja inclinação é a altura do ponto azul.</p>
+            <span class="tag">Regra 2</span>
+            <h3>Regra da potência</h3>
+            <span class="formula">(xⁿ)′ = n·xⁿ⁻¹</span>
+            <p class="mth">O expoente desce multiplicando e diminui uma unidade. Vale para qualquer expoente real. Ex.: (x⁵)′ = 5x⁴ · (√x)′ = (x<sup>1/2</sup>)′ = 1/(2√x).</p>
+            <p class="muted try">Mova <strong>n</strong> e <strong>x₀</strong>. A inclinação da tangente (rosa) é a altura do ponto azul sobre f′.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+        <article class="card type-card" data-type="der-multiplo">
+          <div class="type-info">
+            <span class="tag">Regra 3</span>
+            <h3>Regra do múltiplo constante</h3>
+            <span class="formula">(c·f)′ = c·f′</span>
+            <p class="mth">A constante que multiplica a função passa para fora e multiplica a derivada. Ex.: (4x³)′ = 4·3x² = 12x².</p>
+            <p class="muted try">Mova <strong>c</strong>: a curva cinza é x²; multiplicar por c estica (ou inverte) a curva e multiplica a inclinação por c.</p>
           </div>
           <div class="type-plot">
             <p class="plot-caption type-live" aria-live="polite"></p>
@@ -106,11 +136,11 @@
         </article>
         <article class="card type-card" data-type="der-soma">
           <div class="type-info">
-            <span class="tag">Linearidade</span>
-            <h3>Múltiplo e soma</h3>
-            <span class="formula">(c·f)′ = c·f′ &nbsp;·&nbsp; (f ± g)′ = f′ ± g′</span>
-            <p class="mth">Derivar é linear: derive termo a termo e mantenha as constantes multiplicando.</p>
-            <p class="muted try">Mova <strong>c</strong> e <strong>d</strong> em f(x) = c·x³ + d·x: onde f′ cruza o zero, a tangente fica horizontal.</p>
+            <span class="tag">Regra 4</span>
+            <h3>Regra da soma e da diferença</h3>
+            <span class="formula">(f ± g)′ = f′ ± g′</span>
+            <p class="mth">A derivada de uma soma (ou diferença) é a soma (ou diferença) das derivadas: derive termo a termo. Ex.: (x³ − 3x)′ = 3x² − 3.</p>
+            <p class="muted try">Troque a <strong>operação</strong> e mova <strong>x₀</strong>. As curvas cinza são as parcelas x³ e ±3x.</p>
           </div>
           <div class="type-plot">
             <p class="plot-caption type-live" aria-live="polite"></p>
@@ -121,56 +151,11 @@
         </article>
         <article class="card type-card" data-type="der-produto">
           <div class="type-info">
-            <span class="tag">Produto</span>
+            <span class="tag">Regra 5</span>
             <h3>Regra do produto</h3>
             <span class="formula">(f·g)′ = f′·g + f·g′</span>
-            <p class="mth">“Primeiro derivado vezes o segundo + primeiro vezes o segundo derivado.” Ex.: (x·sen x)′ = sen x + x·cos x.</p>
-            <p class="muted try">Mova <strong>x₀</strong> ao longo de f(x) = x·sen(x) e acompanhe a inclinação da tangente.</p>
-          </div>
-          <div class="type-plot">
-            <p class="plot-caption type-live" aria-live="polite"></p>
-            <canvas></canvas>
-            <div class="sliders"></div>
-            <button type="button" class="btn small ghost type-reset">Restaurar</button>
-          </div>
-        </article>
-        <article class="card type-card" data-type="der-quociente">
-          <div class="type-info">
-            <span class="tag">Quociente</span>
-            <h3>Regra do quociente</h3>
-            <span class="formula">(f/g)′ = (f′·g − f·g′) / g²</span>
-            <p class="mth">Atenção ao sinal: a derivada do numerador vem primeiro. Ex.: [(x + 1)/(x − 1)]′ = −2/(x − 1)².</p>
-            <p class="muted try">Mova <strong>x₀</strong>: f′ é sempre negativa, então a função decresce dos dois lados de x = 1.</p>
-          </div>
-          <div class="type-plot">
-            <p class="plot-caption type-live" aria-live="polite"></p>
-            <canvas></canvas>
-            <div class="sliders"></div>
-            <button type="button" class="btn small ghost type-reset">Restaurar</button>
-          </div>
-        </article>
-        <article class="card type-card" data-type="der-cadeia">
-          <div class="type-info">
-            <span class="tag">Composição</span>
-            <h3>Regra da cadeia</h3>
-            <span class="formula">[f(g(x))]′ = f′(g(x))·g′(x)</span>
-            <p class="mth">Derive a “casca” e multiplique pela derivada do “miolo”. Ex.: [sen(kx)]′ = k·cos(kx).</p>
-            <p class="muted try">Mova <strong>k</strong>: a curva fica mais apertada e a derivada é multiplicada por k.</p>
-          </div>
-          <div class="type-plot">
-            <p class="plot-caption type-live" aria-live="polite"></p>
-            <canvas></canvas>
-            <div class="sliders"></div>
-            <button type="button" class="btn small ghost type-reset">Restaurar</button>
-          </div>
-        </article>
-        <article class="card type-card" data-type="der-elementares">
-          <div class="type-info">
-            <span class="tag">Elementares</span>
-            <h3>Derivadas conhecidas</h3>
-            <span class="formula">(eˣ)′ = eˣ &nbsp;·&nbsp; (ln x)′ = 1/x<br>(sen x)′ = cos x &nbsp;·&nbsp; (cos x)′ = −sen x</span>
-            <p class="mth">(aˣ)′ = aˣ·ln a &nbsp;·&nbsp; (√x)′ = 1/(2√x).</p>
-            <p class="muted try">Troque a <strong>função</strong> e mova <strong>x₀</strong>. Repare que, para eˣ, as curvas de f e f′ coincidem.</p>
+            <p class="mth">“Derivada do primeiro vezes o segundo + o primeiro vezes a derivada do segundo.” Atenção: (f·g)′ ≠ f′·g′.</p>
+            <p class="muted try">Mova <strong>x₀</strong> ao longo de f(x) = x·(x² − 4). As curvas cinza são os fatores u = x e v = x² − 4.</p>
           </div>
           <div class="type-plot">
             <p class="plot-caption type-live" aria-live="polite"></p>
@@ -229,68 +214,58 @@
       <p class="muted">Um exercício para cada regra de derivação, resolvido passo a passo.</p>
 
       <div class="exercise">
-        <p class="q-title">Resolvido A — Constante e potência</p>
-        <p>Para <span class="mth">f(x) = x⁴</span> e <span class="mth">g(x) = 7</span>, calcule <span class="mth">f′(2)</span> e <span class="mth">g′(x)</span>.</p>
+        <p class="q-title">Resolvido A — Regra da constante</p>
+        <p>Derive <span class="mth">f(x) = −7</span>, <span class="mth">g(x) = π</span> e <span class="mth">h(x) = √5</span>.</p>
         <ol class="steps">
-          <li>Regra da potência: <span class="mth">f′(x) = 4x³</span>.</li>
-          <li>Em <span class="mth">x = 2</span>: <span class="mth">f′(2) = 4·8 = 32</span>.</li>
-          <li>Constante tem derivada zero: <span class="mth">g′(x) = 0</span>.</li>
-          <li><strong>Resposta:</strong> <span class="mth">f′(2) = 32</span> e <span class="mth">g′(x) = 0</span>.</li>
+          <li>As três funções são constantes: não dependem de x.</li>
+          <li>Pela regra da constante, <span class="mth">(c)′ = 0</span>.</li>
+          <li>Cuidado: <span class="mth">π</span> e <span class="mth">√5</span> são números, não variáveis.</li>
+          <li><strong>Resposta:</strong> <span class="mth">f′(x) = g′(x) = h′(x) = 0</span>.</li>
         </ol>
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido B — Múltiplo e soma</p>
+        <p class="q-title">Resolvido B — Regra da potência</p>
+        <p>Derive <span class="mth">f(x) = x⁶</span> e <span class="mth">g(x) = √x</span>; calcule <span class="mth">f′(1)</span>.</p>
+        <ol class="steps">
+          <li><span class="mth">f′(x) = 6x⁵</span>, logo <span class="mth">f′(1) = 6</span>.</li>
+          <li>Escreva a raiz como potência: <span class="mth">√x = x<sup>1/2</sup></span>.</li>
+          <li><span class="mth">g′(x) = (1/2)·x<sup>−1/2</sup> = 1/(2√x)</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">f′(x) = 6x⁵</span>, <span class="mth">f′(1) = 6</span> e <span class="mth">g′(x) = 1/(2√x)</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido C — Regra do múltiplo constante</p>
+        <p>Derive <span class="mth">f(x) = 4x³</span> e calcule <span class="mth">f′(−1)</span>.</p>
+        <ol class="steps">
+          <li>A constante 4 passa para fora: <span class="mth">f′(x) = 4·(x³)′</span>.</li>
+          <li>Regra da potência: <span class="mth">(x³)′ = 3x²</span>, então <span class="mth">f′(x) = 12x²</span>.</li>
+          <li>Em <span class="mth">x = −1</span>: <span class="mth">12·(−1)² = 12</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">f′(x) = 12x²</span> e <span class="mth">f′(−1) = 12</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido D — Regra da soma e da diferença</p>
         <p>Para <span class="mth">f(x) = 5x³ − 2x + 4</span>, calcule <span class="mth">f′(2)</span>.</p>
         <ol class="steps">
-          <li>Derive termo a termo: <span class="mth">(5x³)′ = 15x²</span>, <span class="mth">(−2x)′ = −2</span>, <span class="mth">(4)′ = 0</span>.</li>
-          <li><span class="mth">f′(x) = 15x² − 2</span>.</li>
+          <li>Derive termo a termo: <span class="mth">(5x³)′ = 15x²</span>, <span class="mth">(2x)′ = 2</span>, <span class="mth">(4)′ = 0</span>.</li>
+          <li>Mantenha os sinais: <span class="mth">f′(x) = 15x² − 2 + 0 = 15x² − 2</span>.</li>
           <li>Substitua <span class="mth">x = 2</span>: <span class="mth">15·4 − 2 = 58</span>.</li>
           <li><strong>Resposta:</strong> <span class="mth">f′(2) = 58</span>.</li>
         </ol>
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido C — Regra do produto</p>
-        <p>Derive <span class="mth">f(x) = x·eˣ</span> e calcule <span class="mth">f′(0)</span>.</p>
+        <p class="q-title">Resolvido E — Regra do produto</p>
+        <p>Derive <span class="mth">f(x) = (2x + 1)·(x² − 3)</span> e calcule <span class="mth">f′(1)</span>.</p>
         <ol class="steps">
-          <li>Chame <span class="mth">u = x</span> e <span class="mth">v = eˣ</span>: <span class="mth">u′ = 1</span> e <span class="mth">v′ = eˣ</span>.</li>
-          <li><span class="mth">f′ = u′v + uv′ = eˣ + x·eˣ = (1 + x)·eˣ</span>.</li>
-          <li>Em <span class="mth">x = 0</span>: <span class="mth">(1 + 0)·e⁰ = 1</span>.</li>
-          <li><strong>Resposta:</strong> <span class="mth">f′(x) = (1 + x)eˣ</span> e <span class="mth">f′(0) = 1</span>.</li>
-        </ol>
-      </div>
-
-      <div class="exercise">
-        <p class="q-title">Resolvido D — Regra do quociente</p>
-        <p>Derive <span class="mth">f(x) = (x + 1)/(x − 1)</span> e calcule <span class="mth">f′(3)</span>.</p>
-        <ol class="steps">
-          <li>Numerador <span class="mth">u = x + 1</span> → <span class="mth">u′ = 1</span>; denominador <span class="mth">v = x − 1</span> → <span class="mth">v′ = 1</span>.</li>
-          <li><span class="mth">f′ = [1·(x − 1) − (x + 1)·1] / (x − 1)²</span>.</li>
-          <li>Simplifique o numerador: <span class="mth">x − 1 − x − 1 = −2</span>, logo <span class="mth">f′(x) = −2/(x − 1)²</span>.</li>
-          <li><strong>Resposta:</strong> <span class="mth">f′(3) = −2/4 = −0,5</span>.</li>
-        </ol>
-      </div>
-
-      <div class="exercise">
-        <p class="q-title">Resolvido E — Regra da cadeia</p>
-        <p>Derive <span class="mth">f(x) = (3x² + 1)⁵</span>.</p>
-        <ol class="steps">
-          <li>Casca: potência 5 → <span class="mth">5(3x² + 1)⁴</span>.</li>
-          <li>Miolo: <span class="mth">(3x² + 1)′ = 6x</span>.</li>
-          <li>Multiplique: <span class="mth">f′ = 5(3x² + 1)⁴ · 6x</span>.</li>
-          <li><strong>Resposta:</strong> <span class="mth">f′(x) = 30x·(3x² + 1)⁴</span>.</li>
-        </ol>
-      </div>
-
-      <div class="exercise">
-        <p class="q-title">Resolvido F — Derivadas conhecidas</p>
-        <p>Derive <span class="mth">f(x) = 3eˣ + 2·ln(x) − cos(x)</span>.</p>
-        <ol class="steps">
-          <li><span class="mth">(3eˣ)′ = 3eˣ</span>.</li>
-          <li><span class="mth">(2·ln x)′ = 2/x</span>.</li>
-          <li><span class="mth">(−cos x)′ = −(−sen x) = sen x</span>.</li>
-          <li><strong>Resposta:</strong> <span class="mth">f′(x) = 3eˣ + 2/x + sen(x)</span>.</li>
+          <li><span class="mth">u = 2x + 1</span> → <span class="mth">u′ = 2</span>; <span class="mth">v = x² − 3</span> → <span class="mth">v′ = 2x</span>.</li>
+          <li><span class="mth">f′ = u′v + uv′ = 2(x² − 3) + (2x + 1)·2x</span>.</li>
+          <li>Simplifique: <span class="mth">2x² − 6 + 4x² + 2x = 6x² + 2x − 6</span>.</li>
+          <li>Em <span class="mth">x = 1</span>: <span class="mth">6 + 2 − 6 = 2</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">f′(x) = 6x² + 2x − 6</span> e <span class="mth">f′(1) = 2</span>. Confira expandindo: <span class="mth">f = 2x³ + x² − 6x − 3</span>.</li>
         </ol>
       </div>
     </section>
@@ -335,10 +310,45 @@
       </div>
 
       <!-- Q2 -->
+      <div class="exercise" data-expect="3*a*x0^2 + b"
+           data-plot="fn: a*x^3 + b*x - c | tangent: x0 | caption: f(x) = ax³ + bx − c e a tangente em x₀" data-tol="0.01"
+           data-success="<strong>Certo!</strong> Soma e diferença derivadas termo a termo. 🎯">
+        <p class="q-title">Questão 2 — Regra da soma e da diferença</p>
+        <p>
+          Sendo <span class="mth">f(x) = a·x³ + b·x − c</span>, calcule
+          <span class="mth">f′(x₀)</span> para
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
+          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
+          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:65px"> </span> e
+          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>.
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: f′(x₀) =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Derive termo a termo: <span class="mth">(a·x³)′ = 3a·x²</span>, <span class="mth">(b·x)′ = b</span>, <span class="mth">(c)′ = 0</span>.</li>
+            <li><span class="mth">f′(x) = 3a·x² + b</span>.</li>
+            <li>Substitua <span class="mth">x = x₀</span>: <span class="mth">f′(x₀) = 3a·x₀² + b</span>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Q3 -->
       <div class="exercise" data-expect="a*(c*x0 + d) + c*(a*x0 + b)"
            data-plot="fn: (a*x + b)*(c*x + d) | tangent: x0 | caption: f(x) = (ax + b)(cx + d) e a tangente em x₀" data-tol="0.01"
            data-success="<strong>Certo!</strong> Regra do produto aplicada. 🎯">
-        <p class="q-title">Questão 2 — Regra do produto</p>
+        <p class="q-title">Questão 3 — Regra do produto</p>
         <p>
           Sendo <span class="mth">f(x) = (a·x + b)·(c·x + d)</span>, calcule
           <span class="mth">f′(x₀)</span> para
@@ -367,78 +377,6 @@
               <span class="mth">v = c·x + d</span> (<span class="mth">v′ = c</span>).</li>
             <li><span class="mth">f′(x) = a·(c·x + d) + c·(a·x + b)</span>.</li>
             <li>Substitua <span class="mth">x = x₀</span> na fórmula acima.</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q3 -->
-      <div class="exercise" data-expect="(a*(c*x0 + d) - c*(a*x0 + b))/(c*x0 + d)^2"
-           data-plot="fn: (a*x + b)/(c*x + d) | tangent: x0 | y: (a*x0 + b)/(c*x0 + d) - 6, (a*x0 + b)/(c*x0 + d) + 6 | caption: f(x) = (ax + b)/(cx + d) e a tangente em x₀" data-tol="0.01"
-           data-success="<strong>Correto!</strong> Regra do quociente perfeita. 🎯">
-        <p class="q-title">Questão 3 — Regra do quociente</p>
-        <p>
-          Para <span class="mth">f(x) = (a·x + b)/(c·x + d)</span>, calcule
-          <span class="mth">f′(x₀)</span> com
-          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
-          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
-          <span class="mth">c = <input type="number" data-var="c" step="any" style="width:65px"> </span>,
-          <span class="mth">d = <input type="number" data-var="d" step="any" style="width:65px"> </span>,
-          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>.
-        </p>
-        <div class="inputs-row">
-          <div class="field answer-field">
-            <label>Resposta: f′(x₀) =</label>
-            <input type="number" data-answer step="any" placeholder="valor">
-          </div>
-          <div class="actions">
-            <button class="btn small btn-check">Verificar</button>
-            <button class="btn small ghost btn-solution">Ver solução</button>
-            <button class="btn small ghost btn-reset">Limpar</button>
-          </div>
-        </div>
-        <div class="feedback"></div>
-        <div class="solution">
-          <h4>Solução passo a passo</h4>
-          <ol class="steps">
-            <li><span class="mth">u = a·x + b → u′ = a</span>; <span class="mth">v = c·x + d → v′ = c</span>.</li>
-            <li><span class="mth">f′ = (u′v − uv′)/v²</span>.</li>
-            <li><span class="mth">f′(x) = [a·(c·x + d) − c·(a·x + b)] / (c·x + d)²</span>.</li>
-            <li>Substitua <span class="mth">x = x₀</span>.</li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q4 -->
-      <div class="exercise" data-expect="a*n*(a*x0 + b)^(n-1)"
-           data-plot="fn: (a*x + b)^n | tangent: x0 | caption: f(x) = (ax + b)ⁿ e a tangente em x₀" data-tol="0.01"
-           data-success="<strong>Ótimo!</strong> Cadeia dominada. 🎯">
-        <p class="q-title">Questão 4 — Regra da cadeia</p>
-        <p>
-          Sendo <span class="mth">f(x) = (a·x + b)ⁿ</span>, calcule
-          <span class="mth">f′(x₀)</span> para
-          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:65px"> </span>,
-          <span class="mth">b = <input type="number" data-var="b" step="any" style="width:65px"> </span>,
-          <span class="mth">n = <input type="number" data-var="n" step="any" style="width:65px"> </span>,
-          <span class="mth">x₀ = <input type="number" data-var="x0" step="any" style="width:65px"></span>.
-        </p>
-        <div class="inputs-row">
-          <div class="field answer-field">
-            <label>Resposta: f′(x₀) =</label>
-            <input type="number" data-answer step="any" placeholder="valor">
-          </div>
-          <div class="actions">
-            <button class="btn small btn-check">Verificar</button>
-            <button class="btn small ghost btn-solution">Ver solução</button>
-            <button class="btn small ghost btn-reset">Limpar</button>
-          </div>
-        </div>
-        <div class="feedback"></div>
-        <div class="solution">
-          <h4>Solução passo a passo</h4>
-          <ol class="steps">
-            <li>Casca (potência): <span class="mth">n·(a·x + b)ⁿ⁻¹</span>.</li>
-            <li>Miolo (derivada interna): <span class="mth">a</span>.</li>
-            <li><span class="mth">f′(x) = a·n·(a·x + b)ⁿ⁻¹</span>; substitua <span class="mth">x = x₀</span>.</li>
           </ol>
         </div>
       </div>
@@ -485,7 +423,7 @@
   <script src="js/math.js?v=8"></script>
   <script src="js/graph.js?v=8"></script>
   <script src="js/exercises.js?v=8"></script>
-  <script src="js/types.js?v=9"></script>
+  <script src="js/types.js?v=10"></script>
   <script>
     const dvCanvas = document.getElementById('dv-canvas');
     const dvExpr = document.getElementById('dv-expr');

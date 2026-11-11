@@ -67,12 +67,15 @@
 
   /* ---------------- ajudantes de gráfico ---------------- */
 
-  /* função, derivada, tangente em x₀ e os pontos correspondentes */
-  function derivPlot(f, df, x0) {
+  /* função, derivada, tangente em x₀ e os pontos correspondentes;
+     parts: funções auxiliares desenhadas em cinza (parcelas, fatores) */
+  function derivPlot(f, df, x0, parts) {
     const y0 = f(x0), m = df(x0);
     const ok = isFinite(y0) && isFinite(m);
     return {
       curves: [
+        /* parcelas/fatores em cinza, para comparação */
+        ...(parts || []).map(fn => ({ fn, color: FAINT, width: 1.6 })),
         { fn: f, color: ACCENT, width: 2.8 },
         { fn: df, color: BLUE, dash: [6, 5], width: 2 }
       ],
@@ -243,61 +246,60 @@
     },
 
     /* ---------------- DERIVADAS ---------------- */
+    'der-constante': {
+      params: {
+        c: { min: -4, max: 4, step: 0.5, value: 3 },
+        x0: { min: -4, max: 4, step: 0.25, value: 1, label: 'x₀' }
+      },
+      view: { xmin: -5, xmax: 5, ymin: -5, ymax: 5 },
+      formula: p => derivText(num(p.c), '0', p.x0, 0),
+      plot: p => derivPlot(() => p.c, () => 0, p.x0)
+    },
     'der-potencia': {
       params: {
-        n: { min: 0, max: 4, step: 1, value: 3 },
+        n: { min: 1, max: 5, step: 1, value: 3 },
         x0: { min: -2, max: 2, step: 0.25, value: 1, label: 'x₀' }
       },
       view: { xmin: -2.5, xmax: 2.5, ymin: -6, ymax: 6 },
       formula: p => {
-        const fT = p.n === 0 ? '1' : p.n === 1 ? 'x' : 'x' + sup(p.n);
-        const dT = p.n === 0 ? '0' : p.n === 1 ? '1' : p.n === 2 ? '2x' : p.n + 'x' + sup(p.n - 1);
-        return derivText(fT, dT, p.x0, p.n * Math.pow(p.x0, p.n - 1) || 0);
+        const fT = p.n === 1 ? 'x' : 'x' + sup(p.n);
+        const dT = p.n === 1 ? '1' : p.n === 2 ? '2x' : p.n + 'x' + sup(p.n - 1);
+        return derivText(fT, dT, p.x0, p.n * Math.pow(p.x0, p.n - 1));
       },
-      plot: p => derivPlot(x => Math.pow(x, p.n), x => (p.n === 0 ? 0 : p.n * Math.pow(x, p.n - 1)), p.x0)
+      plot: p => derivPlot(x => Math.pow(x, p.n), x => p.n * Math.pow(x, p.n - 1), p.x0)
+    },
+    'der-multiplo': {
+      params: {
+        c: { min: -3, max: 3, step: 0.5, value: 2, avoid: [0] },
+        x0: { min: -2.5, max: 2.5, step: 0.25, value: 1, label: 'x₀' }
+      },
+      view: { xmin: -3, xmax: 3, ymin: -8, ymax: 8 },
+      formula: p => derivText(coef(p.c, 'x²'), coef(2 * p.c, 'x'), p.x0, 2 * p.c * p.x0) +
+        '\n(x²)′ = 2x, então (' + coef(p.c, 'x²') + ')′ = ' + par(p.c) + '·2x',
+      plot: p => derivPlot(x => p.c * x * x, x => 2 * p.c * x, p.x0, [x => x * x])
     },
     'der-soma': {
       params: {
-        c: { min: -2, max: 2, step: 0.5, value: 1 },
-        d: { min: -4, max: 4, step: 0.5, value: -3 },
+        op: { min: 0, max: 1, step: 1, value: 0, label: 'operação', choices: ['soma', 'diferença'] },
         x0: { min: -2.5, max: 2.5, step: 0.25, value: 1.5, label: 'x₀' }
       },
       view: { xmin: -3, xmax: 3, ymin: -8, ymax: 8 },
-      formula: p => derivText(poly([[p.c, 'x³'], [p.d, 'x']]), poly([[3 * p.c, 'x²'], [p.d, '']]), p.x0, 3 * p.c * p.x0 * p.x0 + p.d),
-      plot: p => derivPlot(x => p.c * x * x * x + p.d * x, x => 3 * p.c * x * x + p.d, p.x0)
+      formula: p => {
+        const s = p.op === 0 ? 1 : -1, o = s > 0 ? ' + ' : ' − ';
+        return 'f(x) = x³' + o + '3x  →  f′(x) = (x³)′' + o + '(3x)′\nf′(x) = 3x²' + o + '3\n' +
+          'f′(' + num(p.x0) + ') = ' + num(3 * p.x0 * p.x0 + 3 * s) + ' → inclinação da tangente';
+      },
+      plot: p => {
+        const s = p.op === 0 ? 1 : -1;
+        return derivPlot(x => x * x * x + 3 * s * x, x => 3 * x * x + 3 * s, p.x0, [x => x * x * x, x => 3 * s * x]);
+      }
     },
     'der-produto': {
-      params: { x0: { min: -6, max: 6, step: 0.25, value: 2, label: 'x₀' } },
-      view: { xmin: -7, xmax: 7, ymin: -8, ymax: 8 },
-      formula: p => derivText('x · sen(x)', 'sen(x) + x · cos(x)', p.x0, Math.sin(p.x0) + p.x0 * Math.cos(p.x0)),
-      plot: p => derivPlot(x => x * Math.sin(x), x => Math.sin(x) + x * Math.cos(x), p.x0)
-    },
-    'der-quociente': {
-      params: { x0: { min: -4, max: 4, step: 0.25, value: 3, avoid: [1], label: 'x₀' } },
-      view: { xmin: -5, xmax: 5, ymin: -6, ymax: 6 },
-      formula: p => derivText('(x + 1)/(x − 1)', '−2/(x − 1)²', p.x0, -2 / ((p.x0 - 1) * (p.x0 - 1))),
-      plot: p => derivPlot(x => (x + 1) / (x - 1), x => -2 / ((x - 1) * (x - 1)), p.x0)
-    },
-    'der-cadeia': {
-      params: {
-        k: { min: 0.5, max: 3, step: 0.5, value: 2 },
-        x0: { min: -3, max: 3, step: 0.25, value: 0.5, label: 'x₀' }
-      },
-      view: { xmin: -4, xmax: 4, ymin: -3.5, ymax: 3.5 },
-      formula: p => derivText('sen(' + coef(p.k, 'x') + ')', num(p.k) + ' · cos(' + coef(p.k, 'x') + ')', p.x0, p.k * Math.cos(p.k * p.x0)),
-      plot: p => derivPlot(x => Math.sin(p.k * x), x => p.k * Math.cos(p.k * x), p.x0)
-    },
-    'der-elementares': {
-      params: {
-        f: { min: 0, max: 3, step: 1, value: 0, label: 'função', choices: ['eˣ', 'ln x', 'sen x', 'cos x'] },
-        x0: { min: -3, max: 4, step: 0.25, value: 1, label: 'x₀' }
-      },
-      view: { xmin: -4, xmax: 5, ymin: -3, ymax: 6 },
-      formula: p => {
-        const E = ELEM[p.f];
-        return derivText(E.f, E.df, p.x0, E.d(p.x0));
-      },
-      plot: p => derivPlot(ELEM[p.f].fn, ELEM[p.f].d, p.x0)
+      params: { x0: { min: -2.5, max: 2.5, step: 0.25, value: 1.5, label: 'x₀' } },
+      view: { xmin: -3, xmax: 3, ymin: -8, ymax: 8 },
+      formula: p => 'f(x) = x · (x² − 4)   (u = x, v = x² − 4)\nf′(x) = 1·(x² − 4) + x·2x = 3x² − 4\n' +
+        'f′(' + num(p.x0) + ') = ' + num(3 * p.x0 * p.x0 - 4) + ' → inclinação da tangente',
+      plot: p => derivPlot(x => x * (x * x - 4), x => 3 * x * x - 4, p.x0, [x => x, x => x * x - 4])
     },
 
     /* ---------------- INTEGRAIS ---------------- */
@@ -386,12 +388,6 @@
     }
   };
 
-  const ELEM = [
-    { f: 'eˣ', df: 'eˣ', fn: Math.exp, d: Math.exp },
-    { f: 'ln(x)', df: '1/x', fn: x => (x > 0 ? Math.log(x) : NaN), d: x => (x > 0 ? 1 / x : NaN) },
-    { f: 'sen(x)', df: 'cos(x)', fn: Math.sin, d: Math.cos },
-    { f: 'cos(x)', df: '−sen(x)', fn: Math.cos, d: x => -Math.sin(x) }
-  ];
 
   /* ================= MOTOR ================= */
 
