@@ -47,7 +47,8 @@
     <section id="sumario">
       <h2>Nesta página</h2>
       <ul class="clean">
-        <li><a href="#conceito">Conceito</a> · <a href="#tipos">Tipos</a> ·
+        <li><a href="#conceito">Conceito</a> · <a href="#propriedades">Propriedades</a> · <a href="#tipos">Tipos</a> ·
+          <a href="#laterais">Laterais e infinitos</a> · <a href="#continuidade">Continuidade</a> ·
           <a href="#graficos">Explore um limite</a> ·
           <a href="#tabela">Exploração numérica</a> ·
           <a href="#ex-resolvidos">Exercícios resolvidos</a> ·
@@ -82,6 +83,53 @@
         <span class="mth">f(x)</span> tão perto de <span class="mth">L</span> quanto
         quiser, bastando escolher <span class="mth">x</span> suficientemente
         próximo de <span class="mth">a</span>.
+      </div>
+    </section>
+
+    <!-- ================= PROPRIEDADES ================= -->
+    <section id="propriedades">
+      <h2>Propriedades dos limites</h2>
+      <p>
+        Se <span class="mth">lim<sub>x→a</sub> f(x) = L</span> e <span class="mth">lim<sub>x→a</sub> g(x) = M</span>
+        <strong>existem</strong> (são números reais), os limites podem ser
+        calculados por partes, combinando os resultados:
+      </p>
+      <table class="data">
+        <thead><tr><th>Propriedade</th><th>Fórmula</th></tr></thead>
+        <tbody>
+          <tr><td>Constante</td><td><span class="mth">lim<sub>x→a</sub> c = c</span></td></tr>
+          <tr><td>Identidade</td><td><span class="mth">lim<sub>x→a</sub> x = a</span></td></tr>
+          <tr><td>Soma</td><td><span class="mth">lim [f(x) + g(x)] = L + M</span></td></tr>
+          <tr><td>Diferença</td><td><span class="mth">lim [f(x) − g(x)] = L − M</span></td></tr>
+          <tr><td>Múltiplo constante</td><td><span class="mth">lim [c · f(x)] = c · L</span></td></tr>
+          <tr><td>Produto</td><td><span class="mth">lim [f(x) · g(x)] = L · M</span></td></tr>
+          <tr><td>Quociente</td><td><span class="mth">lim [f(x) / g(x)] = L / M &nbsp;(se M ≠ 0)</span></td></tr>
+          <tr><td>Potência</td><td><span class="mth">lim [f(x)]ⁿ = Lⁿ</span></td></tr>
+          <tr><td>Raiz</td><td><span class="mth">lim ⁿ√f(x) = ⁿ√L &nbsp;(L ≥ 0 se n for par)</span></td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <strong>Consequência:</strong> para polinômios e funções racionais (com denominador
+        diferente de zero em <span class="mth">a</span>), as propriedades garantem que basta substituir:
+        <span class="mth">lim<sub>x→a</sub> p(x) = p(a)</span>. Se o denominador tende a zero, o quociente
+        não se aplica: aparece uma indeterminação ou um limite infinito (veja os casos abaixo).
+      </div>
+      <div class="type-list">
+        <article class="card type-card" data-type="lim-prop">
+          <div class="type-info">
+            <span class="tag">Propriedades</span>
+            <h3>As propriedades no gráfico</h3>
+            <span class="formula">limite da operação = operação dos limites</span>
+            <p class="mth">As curvas tracejadas são f(x) = x + 1 (azul) e g(x) = x/2 + 2 (rosa). A curva laranja é o resultado da operação escolhida.</p>
+            <p class="muted try">Troque a <strong>operação</strong> e mova <strong>a</strong>: o círculo aberto mostra que o limite do resultado é a mesma operação aplicada aos limites L e M.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -168,6 +216,108 @@
       </div>
     </section>
 
+    <!-- ================= LATERAIS E INFINITOS ================= -->
+    <section id="laterais">
+      <h2>Limites laterais e limites infinitos</h2>
+      <h3>Limites laterais</h3>
+      <p>
+        Às vezes a função se comporta de forma diferente de cada lado do ponto. Por isso
+        olhamos separadamente para cada caminho:
+      </p>
+      <ul class="clean">
+        <li><strong>À esquerda:</strong> <span class="mth">lim<sub>x→a⁻</sub> f(x)</span> — <span class="mth">x</span> se aproxima de <span class="mth">a</span> por valores <strong>menores</strong> que <span class="mth">a</span>.</li>
+        <li><strong>À direita:</strong> <span class="mth">lim<sub>x→a⁺</sub> f(x)</span> — <span class="mth">x</span> se aproxima de <span class="mth">a</span> por valores <strong>maiores</strong> que <span class="mth">a</span>.</li>
+      </ul>
+      <span class="formula center">lim<sub>x→a</sub> f(x) = L &nbsp;⇔&nbsp; lim<sub>x→a⁻</sub> f(x) = lim<sub>x→a⁺</sub> f(x) = L</span>
+      <p>
+        Se os laterais forem diferentes (ou um deles não existir), o limite bilateral
+        <strong>não existe</strong>. É o que acontece com funções definidas por partes e com
+        <span class="mth">|x|/x</span> em <span class="mth">x = 0</span>.
+      </p>
+
+      <h3>Limites infinitos</h3>
+      <p>
+        Quando <span class="mth">f(x)</span> cresce (ou decresce) sem limitação ao nos aproximarmos de
+        <span class="mth">a</span>, escrevemos <span class="mth">lim<sub>x→a</sub> f(x) = +∞</span> (ou <span class="mth">−∞</span>).
+        Isso <strong>não</strong> é um número: indica que a reta <span class="mth">x = a</span> é uma
+        <strong>assíntota vertical</strong>.
+      </p>
+      <ul class="clean">
+        <li>Numerador tende a <span class="mth">k ≠ 0</span> e denominador tende a <span class="mth">0</span>: o resultado é <span class="mth">±∞</span>.</li>
+        <li>O sinal vem do estudo dos lados: <span class="mth">k/0⁺</span> tem o sinal de <span class="mth">k</span>; <span class="mth">k/0⁻</span> tem o sinal oposto.</li>
+        <li>Ex.: <span class="mth">lim<sub>x→0⁺</sub> 1/x = +∞</span>, <span class="mth">lim<sub>x→0⁻</sub> 1/x = −∞</span> e <span class="mth">lim<sub>x→0</sub> 1/x² = +∞</span>.</li>
+      </ul>
+      <div class="note">
+        <strong>Não confunda:</strong> <em>limite infinito</em> (<span class="mth">x → a</span> e <span class="mth">f → ∞</span>,
+        assíntota vertical) é diferente de <em>limite no infinito</em> (<span class="mth">x → ∞</span> e
+        <span class="mth">f → L</span>, assíntota horizontal — Caso 4).
+      </div>
+      <div class="type-list">
+        <article class="card type-card" data-type="lim-aproxima">
+          <div class="type-info">
+            <span class="tag">Aproximação</span>
+            <h3>Aproximando-se pelos dois lados</h3>
+            <span class="formula">x = a − h &nbsp;e&nbsp; x = a + h, com h → 0</span>
+            <p class="mth">Os pontos azul (esquerda) e rosa (direita) ficam à distância h do ponto a. Diminuir h é “tomar o limite”.</p>
+            <p class="muted try">Escolha a <strong>função</strong> e diminua <strong>h</strong>: veja para onde vai cada lado e se eles chegam ao mesmo valor.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= CONTINUIDADE ================= -->
+    <section id="continuidade">
+      <h2>Continuidade</h2>
+      <p>
+        Intuitivamente, uma função é contínua quando o gráfico pode ser desenhado sem tirar o
+        lápis do papel. Formalmente, <span class="mth">f</span> é <strong>contínua em x = a</strong> quando
+        valem as três condições:
+      </p>
+      <ol class="steps">
+        <li><span class="mth">f(a)</span> existe (a está no domínio);</li>
+        <li><span class="mth">lim<sub>x→a</sub> f(x)</span> existe;</li>
+        <li><span class="mth">lim<sub>x→a</sub> f(x) = f(a)</span>.</li>
+      </ol>
+      <span class="formula center">f contínua em a &nbsp;⇔&nbsp; lim<sub>x→a</sub> f(x) = f(a)</span>
+      <h3>Tipos de descontinuidade</h3>
+      <ul class="clean">
+        <li><strong>Removível:</strong> o limite existe, mas <span class="mth">f(a)</span> não existe ou é diferente dele. Redefinir <span class="mth">f(a)</span> resolve.</li>
+        <li><strong>De salto:</strong> os limites laterais existem, mas são diferentes.</li>
+        <li><strong>Infinita:</strong> pelo menos um lateral é <span class="mth">±∞</span> (assíntota vertical).</li>
+      </ul>
+      <div class="note">
+        <strong>Funções contínuas no domínio:</strong> polinômios, racionais, raízes,
+        exponenciais, logarítmicas, seno e cosseno. Somas, produtos, quocientes (com
+        denominador ≠ 0) e composições de funções contínuas também são contínuas.
+        <br><strong>Teorema do Valor Intermediário:</strong> se <span class="mth">f</span> é contínua em
+        <span class="mth">[a, b]</span>, ela assume todos os valores entre <span class="mth">f(a)</span> e <span class="mth">f(b)</span>. Em
+        particular, se <span class="mth">f(a)</span> e <span class="mth">f(b)</span> têm sinais opostos, existe uma raiz entre <span class="mth">a</span> e <span class="mth">b</span>.
+      </div>
+      <div class="type-list">
+        <article class="card type-card" data-type="lim-continuidade">
+          <div class="type-info">
+            <span class="tag">Continuidade</span>
+            <h3>As três condições no gráfico</h3>
+            <span class="formula">lim<sub>x→1</sub> f(x) = f(1) ?</span>
+            <p class="mth">Quatro funções em torno de x = 1: uma contínua e uma de cada tipo de descontinuidade. Acima do gráfico, as três condições são verificadas.</p>
+            <p class="muted try">Troque o <strong>caso</strong> e veja qual condição falha em cada tipo de descontinuidade.</p>
+          </div>
+          <div class="type-plot">
+            <p class="plot-caption type-live" aria-live="polite"></p>
+            <canvas></canvas>
+            <div class="sliders"></div>
+            <button type="button" class="btn small ghost type-reset">Restaurar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- ================= GRÁFICOS ================= -->
     <section id="graficos">
       <h2>Explore qualquer limite no gráfico</h2>
@@ -223,7 +373,7 @@
     <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
     <section id="ex-resolvidos">
       <h2>Exercícios resolvidos</h2>
-      <p class="muted">Um exercício para cada caso de limite, resolvido passo a passo.</p>
+      <p class="muted">Um exercício para cada caso de limite (A–E), seguido das propriedades, dos limites laterais e infinitos e da continuidade (F–H).</p>
 
       <div class="exercise">
         <p class="q-title">Resolvido A — Substituição direta</p>
@@ -280,6 +430,39 @@
         </ol>
       </div>
 
+
+      <div class="exercise">
+        <p class="q-title">Resolvido F — Propriedades dos limites</p>
+        <p>Calcule <span class="mth">lim<sub>x→2</sub> (3x² − x)/(x + 1)</span> usando as propriedades.</p>
+        <ol class="steps">
+          <li>O limite do denominador é <span class="mth">2 + 1 = 3 ≠ 0</span>, então vale a propriedade do quociente.</li>
+          <li>Numerador (diferença, múltiplo e potência): <span class="mth">3·lim x² − lim x = 3·4 − 2 = 10</span>.</li>
+          <li>Denominador (soma): <span class="mth">lim x + lim 1 = 2 + 1 = 3</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">10/3 ≈ 3,333</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido G — Laterais e infinitos</p>
+        <p>Calcule <span class="mth">lim<sub>x→3⁻</sub> 2/(x − 3)</span> e <span class="mth">lim<sub>x→3⁺</sub> 2/(x − 3)</span>. O limite em <span class="mth">x = 3</span> existe?</p>
+        <ol class="steps">
+          <li>O numerador tende a <span class="mth">2 &gt; 0</span> e o denominador tende a <span class="mth">0</span>: o resultado é infinito.</li>
+          <li>Pela esquerda (<span class="mth">x &lt; 3</span>): <span class="mth">x − 3 → 0⁻</span>, então <span class="mth">2/0⁻ = −∞</span>.</li>
+          <li>Pela direita (<span class="mth">x &gt; 3</span>): <span class="mth">x − 3 → 0⁺</span>, então <span class="mth">2/0⁺ = +∞</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">−∞</span> e <span class="mth">+∞</span>; os laterais diferem, logo o limite <strong>não existe</strong>. Há assíntota vertical em <span class="mth">x = 3</span>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido H — Continuidade</p>
+        <p>Encontre <span class="mth">k</span> para que <span class="mth">f(x) = kx + 1</span> (se <span class="mth">x &lt; 2</span>) e <span class="mth">f(x) = x² − 1</span> (se <span class="mth">x ≥ 2</span>) seja contínua em <span class="mth">x = 2</span>.</p>
+        <ol class="steps">
+          <li>Condição 1: <span class="mth">f(2) = 2² − 1 = 3</span>.</li>
+          <li>Lateral à direita: <span class="mth">lim<sub>x→2⁺</sub> (x² − 1) = 3</span>. Lateral à esquerda: <span class="mth">lim<sub>x→2⁻</sub> (kx + 1) = 2k + 1</span>.</li>
+          <li>Para o limite existir e ser igual a <span class="mth">f(2)</span>: <span class="mth">2k + 1 = 3</span> ⇒ <span class="mth">k = 1</span>.</li>
+          <li><strong>Resposta:</strong> <span class="mth">k = 1</span>.</li>
+        </ol>
+      </div>
     </section>
 
     <!-- ================= EXERCÍCIOS PROPOSTOS ================= -->
@@ -381,6 +564,41 @@
           </ol>
         </div>
       </div>
+
+      <!-- Q4 -->
+      <div class="exercise" data-expect="a^2 - m*a"
+           data-plot="fn: (m*x + a^2 - m*a)*(1 - sign(x - a))/2 + x^2*(1 + sign(x - a))/2 | point: a, a^2 | x: a - 4, a + 4 | caption: Com o k certo, os dois pedaços se encontram em x = a e a função fica contínua" data-tol="0.01"
+           data-success="<strong>Correto!</strong> A função ficou contínua. 🎯">
+        <p class="q-title">Questão 4 — Continuidade</p>
+        <p>
+          Seja <span class="mth">f(x) = m·x + k</span> para <span class="mth">x &lt; a</span> e
+          <span class="mth">f(x) = x²</span> para <span class="mth">x ≥ a</span>, com
+          <span class="mth">m = <input type="number" data-var="m" step="any" style="width:70px"> </span> e
+          <span class="mth">a = <input type="number" data-var="a" step="any" style="width:70px"></span>.
+          Qual valor de <span class="mth">k</span> torna <span class="mth">f</span> contínua em <span class="mth">x = a</span>?
+        </p>
+        <div class="inputs-row">
+          <div class="field answer-field">
+            <label>Resposta: k =</label>
+            <input type="number" data-answer step="any" placeholder="valor">
+          </div>
+          <div class="actions">
+            <button class="btn small btn-check">Verificar</button>
+            <button class="btn small ghost btn-solution">Ver solução</button>
+            <button class="btn small ghost btn-reset">Limpar</button>
+          </div>
+        </div>
+        <div class="feedback"></div>
+        <div class="solution">
+          <h4>Solução passo a passo</h4>
+          <ol class="steps">
+            <li>Valor no ponto e lateral à direita: <span class="mth">f(a) = lim<sub>x→a⁺</sub> x² = a²</span>.</li>
+            <li>Lateral à esquerda: <span class="mth">lim<sub>x→a⁻</sub> (m·x + k) = m·a + k</span>.</li>
+            <li>Continuidade exige laterais iguais a <span class="mth">f(a)</span>: <span class="mth">m·a + k = a²</span>.</li>
+            <li>Logo <span class="mth">k = a² − m·a</span>.</li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <nav class="page-nav" aria-label="Navegação entre temas">
@@ -424,7 +642,7 @@
   <script src="js/math.js?v=8"></script>
   <script src="js/graph.js?v=8"></script>
   <script src="js/exercises.js?v=8"></script>
-  <script src="js/types.js?v=11"></script>
+  <script src="js/types.js?v=12"></script>
   <script>
     /* ---- estimativa numérica do limite ---- */
     function estimateLimit(fn, a) {

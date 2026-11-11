@@ -233,6 +233,78 @@
       })
     },
 
+    /* ---- propriedades: combina f e g e mostra o limite resultante ---- */
+    'lim-prop': {
+      params: {
+        op: { min: 0, max: 5, step: 1, value: 0, label: 'operação',
+          choices: ['soma', 'diferença', 'produto', 'quociente', 'múltiplo', 'potência'] },
+        a: { min: -3, max: 3, step: 0.5, value: 2 }
+      },
+      view: { xmin: -4, xmax: 4, ymin: -6, ymax: 12 },
+      formula: p => {
+        const L = p.a + 1, Mv = p.a / 2 + 2, O = PROP_OPS[p.op];
+        return 'lim f = ' + num(L) + '   (f(x) = x + 1)\nlim g = ' + num(Mv) + '   (g(x) = x/2 + 2)\n' +
+          lim(num(p.a)) + O.txt + ' = ' + O.rule(num(L), num(Mv)) + ' = ' + num(O.fn(L, Mv));
+      },
+      plot: p => {
+        const O = PROP_OPS[p.op], f = x => x + 1, g = x => x / 2 + 2;
+        const R = O.fn(p.a + 1, p.a / 2 + 2);
+        return {
+          curves: [
+            { fn: f, color: BLUE, width: 1.6, dash: [6, 5] },
+            { fn: g, color: PINK, width: 1.6, dash: [6, 5] },
+            { fn: x => O.fn(f(x), g(x)), color: ACCENT, width: 2.8 }
+          ],
+          markers: [{ x: p.a, y: R, type: 'open', color: ACCENT, label: 'lim = ' + num(R) }],
+          lines: [{ vertical: p.a, color: VLINE }]
+        };
+      }
+    },
+
+    /* ---- laterais e infinitos: aproxima-se de a pelos dois lados ---- */
+    'lim-aproxima': {
+      params: {
+        f: { min: 0, max: 3, step: 1, value: 0, label: 'função', choices: ['|x|/x', '1/x', '1/x²', 'salto'] },
+        h: { min: 0.05, max: 2, step: 0.05, value: 1, label: 'distância h' }
+      },
+      view: p => APPROACH[p.f].view,
+      formula: p => {
+        const A = APPROACH[p.f], a = A.a;
+        return 'x = ' + num(a - p.h) + ' (esquerda) → f = ' + num(A.fn(a - p.h)) +
+          '\nx = ' + num(a + p.h) + ' (direita) → f = ' + num(A.fn(a + p.h)) + '\n' + A.concl;
+      },
+      plot: p => {
+        const A = APPROACH[p.f], a = A.a;
+        return {
+          curves: (A.pieces || [A.fn]).map(fn => ({ fn })),
+          markers: [
+            { x: a - p.h, y: A.fn(a - p.h), color: BLUE, label: 'esq.' },
+            { x: a + p.h, y: A.fn(a + p.h), color: PINK, label: 'dir.' }
+          ].concat(A.marks || []),
+          lines: [{ vertical: a, color: VLINE }]
+        };
+      }
+    },
+
+    /* ---- continuidade: as três condições em cada tipo ---- */
+    'lim-continuidade': {
+      params: {
+        t: { min: 0, max: 3, step: 1, value: 0, label: 'caso', choices: ['contínua', 'removível', 'salto', 'infinita'] }
+      },
+      view: { xmin: -2, xmax: 4, ymin: -5, ymax: 7 },
+      formula: p => {
+        const C = CONT[p.t];
+        const mark = ok => (ok ? '✓ ' : '✗ ');
+        return mark(C.c[0]) + '1) f(1) existe: ' + C.t[0] + '\n' +
+          mark(C.c[1]) + '2) lim<sub>x→1</sub> f(x) existe: ' + C.t[1] + '\n' +
+          mark(C.c[2]) + '3) lim = f(1): ' + C.t[2] + '\n→ ' + C.verdict;
+      },
+      plot: p => {
+        const C = CONT[p.t];
+        return { curves: C.curves.map(fn => ({ fn })), markers: C.marks, lines: [{ vertical: 1, color: VLINE }] };
+      }
+    },
+
     /* ---------------- DERIVADAS ---------------- */
     'der-constante': {
       params: {
@@ -376,6 +448,47 @@
     }
   };
 
+
+  /* operações das propriedades dos limites */
+  const PROP_OPS = [
+    { txt: '[f(x) + g(x)]', rule: (L, M) => L + ' + ' + M, fn: (u, v) => u + v },
+    { txt: '[f(x) − g(x)]', rule: (L, M) => L + ' − ' + M, fn: (u, v) => u - v },
+    { txt: '[f(x) · g(x)]', rule: (L, M) => L + ' · ' + M, fn: (u, v) => u * v },
+    { txt: '[f(x) / g(x)]', rule: (L, M) => L + ' / ' + M, fn: (u, v) => u / v },
+    { txt: '[3 · f(x)]', rule: L => '3 · ' + L, fn: u => 3 * u },
+    { txt: '[f(x)]²', rule: L => '(' + L + ')²', fn: u => u * u }
+  ];
+
+  /* funções para a aproximação lateral */
+  const APPROACH = [
+    { a: 0, fn: x => (x === 0 ? NaN : Math.abs(x) / x), view: { xmin: -3, xmax: 3, ymin: -2.5, ymax: 2.5 },
+      pieces: [x => (x < 0 ? -1 : NaN), x => (x > 0 ? 1 : NaN)],
+      marks: [{ x: 0, y: -1, type: 'open', color: BLUE }, { x: 0, y: 1, type: 'open', color: PINK }],
+      concl: 'lim<sub>x→0⁻</sub> = −1 e lim<sub>x→0⁺</sub> = 1 → o limite não existe' },
+    { a: 0, fn: x => 1 / x, view: { xmin: -3, xmax: 3, ymin: -10, ymax: 10 },
+      concl: 'lim<sub>x→0⁻</sub> = −∞ e lim<sub>x→0⁺</sub> = +∞ → não existe; assíntota vertical x = 0' },
+    { a: 0, fn: x => 1 / (x * x), view: { xmin: -3, xmax: 3, ymin: -1, ymax: 12 },
+      concl: 'lim<sub>x→0⁻</sub> = lim<sub>x→0⁺</sub> = +∞ → lim = +∞; assíntota vertical x = 0' },
+    { a: 1, fn: x => (x < 1 ? x + 1 : x + 3), view: { xmin: -1, xmax: 3, ymin: -1, ymax: 7 },
+      pieces: [x => (x < 1 ? x + 1 : NaN), x => (x >= 1 ? x + 3 : NaN)],
+      marks: [{ x: 1, y: 2, type: 'open', color: BLUE }, { x: 1, y: 4, color: PINK }],
+      concl: 'lim<sub>x→1⁻</sub> = 2 e lim<sub>x→1⁺</sub> = 4 → o limite não existe (salto)' }
+  ];
+
+  /* os quatro casos de continuidade em x = 1 */
+  const CONT = [
+    { curves: [x => x + 1], c: [1, 1, 1], t: ['f(1) = 2', 'vale 2', '2 = 2'],
+      marks: [{ x: 1, y: 2, color: BLUE, label: 'f(1) = 2' }], verdict: 'f é contínua em x = 1' },
+    { curves: [x => (x === 1 ? NaN : x + 1)], c: [1, 1, 0], t: ['f(1) = 4', 'vale 2', '2 ≠ 4'],
+      marks: [{ x: 1, y: 2, type: 'open', color: BLUE, label: 'lim = 2' }, { x: 1, y: 4, color: PINK, label: 'f(1) = 4' }],
+      verdict: 'descontinuidade removível (basta redefinir f(1) = 2)' },
+    { curves: [x => (x < 1 ? x + 1 : NaN), x => (x >= 1 ? x + 3 : NaN)], c: [1, 0, 0],
+      t: ['f(1) = 4', 'não (laterais 2 e 4)', 'não se aplica'],
+      marks: [{ x: 1, y: 2, type: 'open', color: BLUE }, { x: 1, y: 4, color: PINK, label: 'f(1) = 4' }],
+      verdict: 'descontinuidade de salto' },
+    { curves: [x => 1 / (x - 1)], c: [0, 0, 0], t: ['não (divisão por zero)', 'não (±∞)', 'não se aplica'],
+      marks: [], verdict: 'descontinuidade infinita (assíntota vertical x = 1)' }
+  ];
 
   /* ================= MOTOR ================= */
 
