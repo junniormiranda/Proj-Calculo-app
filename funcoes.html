@@ -231,31 +231,81 @@
     <!-- ================= EXERCÍCIOS RESOLVIDOS ================= -->
     <section id="ex-resolvidos">
       <h2>Exercícios resolvidos</h2>
+      <p class="muted">Um exercício para cada tipo de função, resolvido passo a passo.</p>
 
       <div class="exercise">
-        <p class="q-title">Resolvido A — Calcule f(3) para f(x) = 4x − 7</p>
+        <p class="q-title">Resolvido A — Função constante: mensalidade fixa</p>
+        <p>
+          Uma academia cobra <span class="mth">R$ 90</span> por mês, não importa quantas vezes
+          o aluno frequente. Escreva a função do valor pago em função do número
+          <span class="mth">x</span> de visitas no mês, calcule <span class="mth">f(4)</span> e
+          <span class="mth">f(20)</span> e dê a imagem.
+        </p>
         <ol class="steps">
-          <li>Substitua <span class="mth">x = 3</span> na fórmula: <span class="mth">f(3) = 4·3 − 7</span>.</li>
-          <li>Multiplique: <span class="mth">f(3) = 12 − 7</span>.</li>
-          <li><strong>Resultado:</strong> <span class="mth">f(3) = 5</span>.</li>
+          <li>O valor não depende de <span class="mth">x</span>, então a função é constante: <span class="mth">f(x) = 90</span>.</li>
+          <li>Para qualquer entrada a saída é a mesma: <span class="mth">f(4) = 90</span> e <span class="mth">f(20) = 90</span>.</li>
+          <li>O gráfico é uma reta horizontal na altura 90.</li>
+          <li><strong>Imagem:</strong> um único valor, <span class="mth">Im = {90}</span>.</li>
         </ol>
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido B — Domínio de f(x) = √(x − 2)</p>
+        <p class="q-title">Resolvido B — Função afim: corrida de táxi</p>
+        <p>
+          Um táxi cobra bandeirada de <span class="mth">R$ 5,00</span> mais
+          <span class="mth">R$ 2,50</span> por quilômetro rodado. Quanto custa uma corrida de
+          12 km? E quantos quilômetros é possível rodar com <span class="mth">R$ 50,00</span>?
+        </p>
         <ol class="steps">
-          <li>A raiz exige o radicando não negativo: <span class="mth">x − 2 ≥ 0</span>.</li>
-          <li>Resolvendo: <span class="mth">x ≥ 2</span>.</li>
-          <li><strong>Domínio:</strong> <span class="mth">D = [2, +∞)</span>.</li>
+          <li>Parte fixa (b) mais parte proporcional (a·x): <span class="mth">f(x) = 2,5x + 5</span>.</li>
+          <li>Corrida de 12 km: <span class="mth">f(12) = 2,5·12 + 5 = 30 + 5 = 35</span> → <strong>R$ 35,00</strong>.</li>
+          <li>Com R$ 50: <span class="mth">2,5x + 5 = 50</span> ⇒ <span class="mth">2,5x = 45</span> ⇒ <span class="mth">x = 18</span>.</li>
+          <li><strong>Resultado:</strong> 12 km custam R$ 35,00, e R$ 50,00 pagam <strong>18 km</strong>.</li>
         </ol>
       </div>
 
       <div class="exercise">
-        <p class="q-title">Resolvido C — Imagem de f(x) = 2ˣ para x ∈ ℝ</p>
+        <p class="q-title">Resolvido C — Função linear: encontrar a lei pelo gráfico</p>
+        <p>
+          O gráfico de uma função linear passa pelo ponto <span class="mth">(4, 10)</span>.
+          Determine a lei da função e calcule <span class="mth">f(6)</span>.
+        </p>
         <ol class="steps">
-          <li>Uma potência de base positiva é sempre maior que zero: <span class="mth">2ˣ &gt; 0</span>.</li>
-          <li>Ela nunca chega a 0, mas se aproxima dele quando <span class="mth">x → −∞</span>, e cresce sem limite quando <span class="mth">x → +∞</span>.</li>
-          <li><strong>Imagem:</strong> <span class="mth">C = (0, +∞)</span>.</li>
+          <li>Função linear tem a forma <span class="mth">f(x) = ax</span> (passa pela origem).</li>
+          <li>Use o ponto dado: <span class="mth">f(4) = 10</span> ⇒ <span class="mth">4a = 10</span> ⇒ <span class="mth">a = 2,5</span>.</li>
+          <li>Lei da função: <span class="mth">f(x) = 2,5x</span>.</li>
+          <li><strong>Resultado:</strong> <span class="mth">f(6) = 2,5·6 = 15</span>. Note que dobrar x dobra y: é proporcionalidade direta.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido D — Função exponencial: crescimento de bactérias</p>
+        <p>
+          Uma cultura começa com 500 bactérias e a população dobra a cada hora, ou seja,
+          <span class="mth">N(t) = 500·2ᵗ</span> (t em horas). Quantas bactérias haverá após
+          5 horas? Em quanto tempo a população chega a 8 000?
+        </p>
+        <ol class="steps">
+          <li>Após 5 horas: <span class="mth">N(5) = 500·2⁵ = 500·32 = 16 000</span> bactérias.</li>
+          <li>Para 8 000: <span class="mth">500·2ᵗ = 8 000</span> ⇒ <span class="mth">2ᵗ = 16</span>.</li>
+          <li>Escreva 16 como potência de 2: <span class="mth">2ᵗ = 2⁴</span> ⇒ <span class="mth">t = 4</span>.</li>
+          <li><strong>Resultado:</strong> 16 000 bactérias em 5 h; a população chega a 8 000 em <strong>4 horas</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="exercise">
+        <p class="q-title">Resolvido E — Função logarítmica: valores e equação</p>
+        <p>
+          Dada <span class="mth">f(x) = log<sub>3</sub>(x)</span>, calcule
+          <span class="mth">f(81)</span> e <span class="mth">f(1/9)</span>, encontre
+          <span class="mth">x</span> tal que <span class="mth">f(x) = 2</span> e dê o domínio.
+        </p>
+        <ol class="steps">
+          <li>Definição: <span class="mth">log<sub>3</sub>(x) = y</span> ⇔ <span class="mth">3ʸ = x</span>.</li>
+          <li><span class="mth">f(81)</span>: <span class="mth">3ʸ = 81 = 3⁴</span> ⇒ <span class="mth">f(81) = 4</span>.</li>
+          <li><span class="mth">f(1/9)</span>: <span class="mth">3ʸ = 1/9 = 3⁻²</span> ⇒ <span class="mth">f(1/9) = −2</span>.</li>
+          <li><span class="mth">f(x) = 2</span> ⇒ <span class="mth">x = 3² = 9</span>.</li>
+          <li><strong>Domínio:</strong> o logaritmo só existe para <span class="mth">x &gt; 0</span>, então <span class="mth">D = (0, +∞)</span>.</li>
         </ol>
       </div>
     </section>
